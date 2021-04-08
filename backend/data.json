@@ -1,0 +1,30 @@
+[
+    {
+        "_id": 1,
+        "ItemName": "sample",
+        "stock": 2,
+        "imgSrc": ""
+    
+    },
+    {
+        "_id": 2,
+        "ItemName": "sample2",
+        "stock": 0,
+        "imgSrc": ""
+    
+    },
+    {
+        "_id": 3,
+        "ItemName": "sample3",
+        "stock": 5,
+        "imgSrc": ""
+    
+    },
+    {
+        "_id": 4,
+        "ItemName": "sample4",
+        "stock": 1,
+        "imgSrc": ""
+    
+    }
+]

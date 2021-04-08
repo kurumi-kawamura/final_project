@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-
+import Header from "./header/index";
+import HPAnimation from "./decolation/homepage_animation";
 
 const Homepage = () => {
   return (
     <>
       <Wrapper>
-          Homepage
+        <Header />
+        <Logo>
+          <span>YU</span>
+          <span>BO</span>
+          <span>SHA</span>
+        </Logo>
+        <HPAnimation />
       </Wrapper>
     </>
   );
@@ -18,6 +25,17 @@ const Wrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const Logo = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 92px;
+  height: 174px;
+  left: 454px;
+  top: 330px;
+  font-size: 50px;
 `;
 
 export default Homepage;

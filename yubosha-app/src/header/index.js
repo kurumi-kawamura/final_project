@@ -6,9 +6,9 @@ const Header = () => {
   return (
     <>
       <NavWrapper>
-        <StyledNavLink path to="/">EN/JP</StyledNavLink>
-        <StyledNavLink path to="/about">About</StyledNavLink>
-        <StyledNavLink path to="/map">Map</StyledNavLink>
+        <StyledNavLink exact to="/">EN/JP</StyledNavLink>
+        <StyledNavLink exact to="/about">About</StyledNavLink>
+        <StyledNavLink exact to="/map">Map</StyledNavLink>
       </NavWrapper>
     </>
   );

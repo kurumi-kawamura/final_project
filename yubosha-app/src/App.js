@@ -10,13 +10,13 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact to="/">
+        <Route exact path="/">
           <Homepage />
         </Route>
-        <Route exact to="/about">
+        <Route exact path="/about">
           <About />
         </Route>
-        <Route exact to="/map">
+        <Route exact path="/map">
           <Map />
         </Route>
       </Switch>

@@ -7,8 +7,8 @@ const Header = () => {
     <>
       <NavWrapper>
         <StyledNavLink path to="/">EN/JP</StyledNavLink>
-        <StyledNavLink path to="/">About</StyledNavLink>
-        <StyledNavLink path to="/">Map</StyledNavLink>
+        <StyledNavLink path to="/about">About</StyledNavLink>
+        <StyledNavLink path to="/map">Map</StyledNavLink>
       </NavWrapper>
     </>
   );

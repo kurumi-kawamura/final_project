@@ -1,30 +1,26 @@
 [
-    {
-        "_id": 1,
-        "ItemName": "sample",
-        "stock": 2,
-        "imgSrc": ""
-    
-    },
-    {
-        "_id": 2,
-        "ItemName": "sample2",
-        "stock": 0,
-        "imgSrc": ""
-    
-    },
-    {
-        "_id": 3,
-        "ItemName": "sample3",
-        "stock": 5,
-        "imgSrc": ""
-    
-    },
-    {
-        "_id": 4,
-        "ItemName": "sample4",
-        "stock": 1,
-        "imgSrc": ""
-    
-    }
+  {
+    "_id": 1,
+    "ItemName": "sample",
+    "stock": 2,
+    "imgSrc": "./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
+  },
+  {
+    "_id": 2,
+    "ItemName": "sample2",
+    "stock": 0,
+    "imgSrc": "./assets/meric-dagli-7NBO76G5JsE-unsplash.jpg"
+  },
+  {
+    "_id": 3,
+    "ItemName": "sample3",
+    "stock": 5,
+    "imgSrc": "./assets/su-san-lee-E_eWwM29wfU-unsplash.jpg"
+  },
+  {
+    "_id": 4,
+    "ItemName": "sample4",
+    "stock": 1,
+    "imgSrc": "../yubosha-app/public/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg"
+  }
 ]

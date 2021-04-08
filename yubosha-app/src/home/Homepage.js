@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./header/index";
-import HPAnimation from "./decolation/homepage_animation";
+import Header from "../header/index";
+import HPAnimation from "../decolation/homepage_animation";
+import Footer from "../footer/index";
 
 const Homepage = () => {
   return (
@@ -14,6 +15,9 @@ const Homepage = () => {
           <span>SHA</span>
         </Logo>
         <HPAnimation />
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
       </Wrapper>
     </>
   );
@@ -36,6 +40,12 @@ const Logo = styled.div`
   left: 454px;
   top: 330px;
   font-size: 50px;
+`;
+
+const FooterWrapper = styled.div`
+  position: absolute;
+  bottom: 1%;
+  right: 2%;
 `;
 
 export default Homepage;

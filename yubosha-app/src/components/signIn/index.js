@@ -22,7 +22,7 @@ const SignIn = () => {
         </BtnWrapper>
         {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
         <LinkWrapper>
-          <Link>here</Link>
+          <Link exact to="/CreateAcc">here</Link>
         </LinkWrapper>
       </Wrapper>
     </>
@@ -50,6 +50,7 @@ const FormWrapper = styled.div`
 const H1 = styled.h1`
   position: absolute;
   top: 200px;
+  color: white;
 `;
 
 const Input = styled.input`

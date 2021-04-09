@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+
 export default createGlobalStyle`
 :root {
     --soft-black: #363636;
@@ -15,7 +16,7 @@ export default createGlobalStyle`
 }
 
 body{
-    color: white;
+    color: var(--soft-black);
 }
 
 

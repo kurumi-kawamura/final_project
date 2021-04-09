@@ -4,5 +4,7 @@ export const ENabout = {
 
 export const ENsignIn = {
     signIn : "Sign In",
-    noAcc: "Do not have an account yet? Click below to create one."
+    noAcc: "Do not have an account yet? Click below to create one.",
+    createAcc: "Enter new username:",
+    createPass: "Enter new password:"
 }

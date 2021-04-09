@@ -5,6 +5,7 @@ import GlobalStyle from "./GlobalStyle";
 import About from "./components/about/index";
 import Map from "./components/map/index";
 import SignIn from "./components/signIn/index";
+import CreateAcc from "./components/signIn/CreateAcc";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/signIn">
           <SignIn />
+        </Route>
+        <Route exact path="/createAcc">
+          <CreateAcc />
         </Route>
       </Switch>
     </Router>

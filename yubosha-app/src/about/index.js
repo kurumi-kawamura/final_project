@@ -5,15 +5,16 @@ import styled from "styled-components";
 const About = () => {
   return (
     <>
-      <HeaderWrapper>
+      <Wrapper>
         <Header />
-      </HeaderWrapper>
-      <div>About</div>
+
+        <div>About</div>
+      </Wrapper>
     </>
   );
 };
 
-const HeaderWrapper = styled.div`
+const Wrapper = styled.div`
   color: var(--soft-black);
 `;
 

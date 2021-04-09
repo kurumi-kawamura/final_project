@@ -4,6 +4,7 @@ import Homepage from "./home/Homepage";
 import GlobalStyle from "./GlobalStyle";
 import About from "./about/index";
 import Map from "./map/index";
+import SignIn from "./signIn/index";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route exact path="/map">
           <Map />
+        </Route>
+        <Route exact path="/signIn">
+          <SignIn />
         </Route>
       </Switch>
     </Router>

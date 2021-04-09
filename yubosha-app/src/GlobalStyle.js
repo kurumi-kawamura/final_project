@@ -10,7 +10,13 @@ export default createGlobalStyle`
     margin: 0;
     padding:0;
     font-family: "Lexend", sans-serif;
-    color: white;
-    font-weight: 300;
+    
+    font-weight: 400;
 }
+
+body{
+    color: white;
+}
+
+
 `;

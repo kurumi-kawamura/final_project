@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  color: white;
 `;
 
 const Logo = styled.div`

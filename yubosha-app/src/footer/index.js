@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { AiOutlineYoutube } from "react-icons/ai";
 
 const Footer = () => {
@@ -9,8 +8,11 @@ const Footer = () => {
       <a
         href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"
         target="_blank"
+        rel="noreferrer"
       >
-        <AiOutlineYoutube style={{ width: "30px", height: "30px" }} />
+        <AiOutlineYoutube
+          style={{ width: "30px", height: "30px", fill: "var(--soft-gray)" }}
+        />
       </a>
     </>
   );

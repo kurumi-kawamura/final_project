@@ -6,7 +6,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import Header from "../header/index";
-import mapStyles from "./mapStyles";
+import {mapStyles} from "./mapStyles";
 import styled from "styled-components";
 
 const mapContainerStyle = {

@@ -6,7 +6,8 @@ const Header = () => {
   return (
     <>
       <NavWrapper>
-        <StyledNavLink exact to="/">EN/JP</StyledNavLink>
+        <Btn>EN/JP</Btn>
+        <StyledNavLink exact to="/">Home</StyledNavLink>
         <StyledNavLink exact to="/about">About</StyledNavLink>
         <StyledNavLink exact to="/map">Map</StyledNavLink>
       </NavWrapper>
@@ -23,7 +24,22 @@ const StyledNavLink = styled(NavLink)`
 padding: 5px 10px;
 text-decoration: none;
 position: relative;
-left: 1300px;
+left: 80%;
+
+
+&:hover{
+    text-decoration: underline;
+}
+`;
+
+const Btn = styled.button`
+background: none;
+border: none;
+position: relative;
+left: 80%;
+font-size: 15px;
+cursor: pointer;
+padding: 5px 10px;
 
 &:hover{
     text-decoration: underline;

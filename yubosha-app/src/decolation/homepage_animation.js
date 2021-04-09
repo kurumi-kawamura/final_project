@@ -51,9 +51,8 @@ const Square1 = styled.div`
   height: 100px;
   border: 1px solid;
   position: absolute;
-  left: 56%;
-
-  top: 44%;
+  left: 56.2%;
+  top: 43.9%;
 
   animation: ${move} 3s ease-in-out both;
 `;
@@ -63,8 +62,7 @@ const Square2 = styled.div`
   height: 100px;
   border: 1px solid;
   position: absolute;
-  left: 54%;
-
+  left: 53.5%;
   top: 48%;
 
   animation: ${move2} 3s ease-in-out both;
@@ -76,9 +74,8 @@ const Circle = styled.div`
   border: 1px solid;
   border-radius: 50%;
   position: absolute;
-  left: 55%;
-
-  top: 47.17%;
+  left: 55.2%;
+  top: 47%;
 `;
 
 export default HPAnimation;

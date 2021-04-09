@@ -1,16 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-
+import Header from "../header/index";
 import mapStyles from "./mapStyles";
+import styled from "styled-components";
 
 const mapContainerStyle = {
-  width: "700px",
-  height: "500px",
+  width: "1000px",
+  height: "700px",
 };
 
 const center = {
@@ -24,12 +25,16 @@ const options = {
   zoomControl: true,
 };
 
+require("dotenv").config();
+const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
+
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const [markers, setMarkers] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   const onMapClick = useCallback((e) => {
     setMarkers((current) => [
@@ -42,10 +47,13 @@ const Map = () => {
     ]);
   }, []);
 
-  
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   if (loadError) {
-    return "Eroor loading maps";
+    return "Error loading maps";
   }
   if (!isLoaded) {
     return "Loading maps";
@@ -53,12 +61,16 @@ const Map = () => {
 
   return (
     <>
+
+        <Header />
+<Wrapper>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={center}
         options={options}
         onClick={onMapClick}
+        onLoad={onMapLoad}
       >
         {markers.map((marker) => {
           return (
@@ -69,13 +81,34 @@ const Map = () => {
                 url: "../../public/assets/icons8-map-pin-64.png",
                 scaledSize: new window.google.maps.Size(20, 20),
               }}
+              onClick={() => {
+                setSelected(marker);
+              }}
             />
           );
         })}
+        {selected ? (
+          <InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div>
+              <p>info</p>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
-      <div>map</div>
+      </Wrapper>
     </>
   );
 };
+
+const Wrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`;
 
 export default Map;

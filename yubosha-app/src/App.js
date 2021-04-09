@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Homepage from "./home/Homepage";
+import Homepage from "./components/home/Homepage";
 import GlobalStyle from "./GlobalStyle";
-import About from "./about/index";
-import Map from "./map/index";
-import SignIn from "./signIn/index";
+import About from "./components/about/index";
+import Map from "./components/map/index";
+import SignIn from "./components/signIn/index";
 
 function App() {
   return (

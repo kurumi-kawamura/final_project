@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+
 export default createGlobalStyle`
 :root {
     --soft-black: #363636;
@@ -10,7 +11,13 @@ export default createGlobalStyle`
     margin: 0;
     padding:0;
     font-family: "Lexend", sans-serif;
-    color: white;
-    font-weight: 300;
+    
+    font-weight: 400;
 }
+
+body{
+    color: var(--soft-black);
+}
+
+
 `;

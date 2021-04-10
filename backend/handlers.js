@@ -75,6 +75,51 @@ const getUsers = async (req, res) => {
   client.close();
 };
 
+const updateStock = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { quantity, _id } = req.body;
+  const query = { _id };
+  const newValue = { $set: { stock: stock - quantity } };
+
+  try {
+    await client.connect();
+
+    const db = client.db();
+    const result = await db.collection("items").updateOne(query, newValue);
+    assert.equal(1, result.matchedCount);
+    assert.equal(1, result.modifiedCount);
+    res.status(200).json({ status: 200, msg: "success" });
+  } catch (err) {
+    res.status(404).json({ status: 404, msg: err.message });
+    console.log(err.stack);
+  }
+
+  client.close();
+};
+
+// const updateInventory = (req, res) => {
+//   const { id, num } = req.body;
+//   let newArr = [];
+//   data.find((item) => {
+//     for (let i = 0; i < id.length; i++) {
+//       if (item._id === Number(id[i])) {
+//         newArr.push(item);
+//       }
+//     }
+//   });
+//   if (newArr.length > 0) {
+//     for (let j = 0; j < newArr.length; j++) {
+//       for (let l = 0; l < num.length; l++) {
+//         if (j === l) {
+//           newArr[j].numInStock = newArr[j].numInStock - num[l];
+//         }
+//       }
+//     }
+
+//     res.status(200).json({ status: 200, success: true });
+//   }
+// };
+
 module.exports = {
   addingUser,
   getAll,

@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import {RiAccountPinCircleLine} from "react-icons/ri";
+import { RiAccountPinCircleLine } from "react-icons/ri";
 
 const Header = () => {
-  const { lang, setLang } = useContext(AppContext);
+  const { lang, setLang, currentUser } = useContext(AppContext);
 
   const change = () => {
     setLang(!lang);
@@ -13,6 +13,7 @@ const Header = () => {
   return (
     <>
       <NavWrapper>
+        {currentUser && <P>Hello {currentUser}</P>}
         <Btn onClick={change}>EN/JP</Btn>
         <StyledNavLink exact to="/">
           Home
@@ -24,7 +25,9 @@ const Header = () => {
           Map
         </StyledNavLink>
         <StyledNavLink exact to="/signIn">
-          <RiAccountPinCircleLine style={{fill: "var(--soft-gray)", width:"25px", height: "25px"}}/>
+          <RiAccountPinCircleLine
+            style={{ fill: "var(--soft-gray)", width: "25px", height: "25px" }}
+          />
         </StyledNavLink>
       </NavWrapper>
     </>
@@ -65,6 +68,10 @@ const Btn = styled.button`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const P = styled.p`
+  color: white;
 `;
 
 export default Header;

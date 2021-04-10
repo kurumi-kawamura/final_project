@@ -28,3 +28,5 @@ const batchImport = async () => {
   }
   client.close();
 };
+
+batchImport();

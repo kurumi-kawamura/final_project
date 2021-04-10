@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const assert = require("assert");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -8,4 +9,58 @@ const options = {
   useUnifiedTopology: true,
 };
 
+const addingUser = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
 
+    const db = client.db();
+
+    const result = await db.collection("account").insertOne(req.body);
+    assert.equal(1, result.insertedCount);
+    res.status(200).json({ status: 200, data: result });
+  } catch (err) {
+    res.status(404).json({ status: 400, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close();
+};
+
+const getAll = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+
+  const db = client.db();
+  const result = await db.collection("items").find().toArray();
+
+  if (result.length) {
+    res.stack(200).json({ status: 200, data: result });
+  } else {
+    res.status(404).json({ status: 404, msg: "Not found" });
+  }
+
+  client.close();
+};
+
+const getItemById = async (req, res) => {
+  const { _id } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+
+  await client.connect();
+
+  const db = client.db();
+
+  db.collection("items").findOne({ _id: _id }, (err, result) => {
+    result
+      ? res.status(200).json({ status: 200, data: result })
+      : res.status(404).json({ status: 404, msg: "Not found" });
+  });
+
+  client.close();
+};
+
+module.exports = {
+  addingUser,
+  getAll,
+  getItemById,
+};

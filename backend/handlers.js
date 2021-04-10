@@ -59,6 +59,22 @@ const getItemById = async (req, res) => {
   client.close();
 };
 
+const getUsers = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+
+  const db = client.db();
+  const result = await db.collection("account").find().toArray();
+
+  if (data.length) {
+    res.status(200).json({ status: 200, data: result });
+  } else {
+    res.status(404).json({ status: 404, msg: "No users yet" });
+  }
+
+  client.close();
+};
+
 module.exports = {
   addingUser,
   getAll,

@@ -1,13 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
 import Button from "../../decolation/Button";
+import { useHistory } from "react-router";
 
 const CreateAcc = () => {
-  const { lang, setUserName, setPassword } = useContext(AppContext);
+  const {
+    lang,
+    setUserName,
+    userName,
+    setPassword,
+    password,
+    setCurrentUser,
+  } = useContext(AppContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    fetch("/createAcc", {
+      method: "POST",
+      body: JSON.stringify({ userName: userName, password: password }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { status } = data;
+        if (status === 200) {
+          history.pus("/");
+          setCurrentUser(userName);
+        }
+      });
+  }, [setCurrentUser]);
 
   return (
     <>

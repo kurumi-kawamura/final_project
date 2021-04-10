@@ -7,7 +7,8 @@ import styled from "styled-components";
 import Button from "../../decolation/Button";
 
 const CreateAcc = () => {
-  const { lang } = useContext(AppContext);
+  const { lang, setUserName, setPassword } = useContext(AppContext);
+
   return (
     <>
       <Header />
@@ -15,9 +16,9 @@ const CreateAcc = () => {
         <FormWrapper>
           <H1>Create Account</H1>
           {lang ? <P>{ENsignIn.createAcc}</P> : <P>{JPsignIn.createAcc}</P>}
-          <Input />
+          <Input onChange={(e) => setUserName(e.target.value)} />
           {lang ? <P>{ENsignIn.createPass}</P> : <P>{JPsignIn.createPass}</P>}
-          <Input />
+          <Input onChange={(e) => setPassword(e.target.value)} />
         </FormWrapper>
         <BtnWrapper>
           <Button>Confirm</Button>
@@ -33,7 +34,7 @@ const H1 = styled.h1`
 `;
 
 const P = styled.p`
-margin-top: 40px;
+  margin-top: 40px;
 `;
 
 const Input = styled.input`

@@ -1,28 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../header/index";
 import styled from "styled-components";
 import Button from "../../decolation/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 
 const SignIn = () => {
-  const { lang } = useContext(AppContext);
+  const { lang, setCurrentUser, userName, password } = useContext(AppContext);
+  const [pass, setPass] = useState(null);
+  const [enteredUserName, setEnteredUserName] = useState(null);
+
+  const history = useHistory();
+
+  const signIn = () => {
+    if (password === pass && userName === enteredUserName) {
+      history.push("/");
+    }
+  };
+
   return (
     <>
       <Header />
       <Wrapper>
         <FormWrapper></FormWrapper>
         {lang ? <H1>{ENsignIn.signIn}</H1> : <H1>{JPsignIn.signIn}</H1>}
-        <Input placeholder="username:" />
-        <Input2 placeholder="password:" />
+        <Input
+          placeholder="username:"
+          onChange={(e) => setEnteredUserName(e.target.value)}
+        />
+        <Input2
+          placeholder="password:"
+          onChange={(e) => setPass(e.target.value)}
+        />
         <BtnWrapper>
-          <Button>Sign in</Button>
+          <Button onClick={signIn}>Sign in</Button>
         </BtnWrapper>
         {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
         <LinkWrapper>
-          <Link exact to="/CreateAcc">here</Link>
+          <Link exact to="/CreateAcc">
+            here
+          </Link>
         </LinkWrapper>
       </Wrapper>
     </>

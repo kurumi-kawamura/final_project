@@ -16,10 +16,10 @@ const SignIn = () => {
 
   const signIn = () => {
     if (password === pass && userName === enteredUserName) {
+      setCurrentUser(userName);
       history.push("/");
     }
   };
-  
 
   return (
     <>

@@ -32,7 +32,7 @@ const CreateAcc = () => {
         console.log(data);
         const { status } = data;
         if (status === 200) {
-          history.pus("/");
+          history.push("/");
           setCurrentUser(userName);
         }
       });
@@ -73,6 +73,8 @@ const Input = styled.input`
   border-radius: 5px;
   margin-bottom: 30px;
   margin-top: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const Wrapper = styled.div`

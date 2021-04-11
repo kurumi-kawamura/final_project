@@ -1,0 +1,58 @@
+[
+    {
+    "name": "Chochingoke",
+    "location": "Katano Osaka",
+    "imgSrc" : "./assets/chochingoke.jpg"
+},
+{
+    "name": "Houougoke",
+    "location": "Katano Osaka",
+    "imgSrc": "./assets/houougoke2.jpg"
+},
+{
+    "name": "Oshiragagoke",
+    "location": "Katano Osaka",
+    "imgSrc": "./assets/oshiragagoke.jpg"
+},
+{
+    "name": "Tamagoke",
+    "location": "Ritto Shiga",
+    "imgSrc": "./assets/tamagoke.jpg"
+},
+{
+    "name": "Umasugigoke",
+    "location": "Takano Wakayama",
+    "imgSrc": "./assets/umasugigoke.jpg"
+},
+{
+    "name": "Hinokigoke",
+    "location": "Takano Wakayama",
+    "imgSrc": "./assets/hinokigoke.jpg"
+},
+{
+    "name": "Houougoke",
+    "location": "Noto Osaka",
+    "imgSrc": "./assets/houougoke3.jpg"
+},
+{
+    "name": "Tsuyagoke",
+    "location": "Noto Osaka",
+    "imgSrc": "./assets/tsuyagoke.jpg"
+},
+{
+    "name": "Hudegoke",
+    "location": "Noto Osaka",
+    "imgSrc": "./assets/fudegoke.jpg"
+},
+{
+    "name": "Shinobugoke",
+    "location": "Noto Osaka",
+    "imgSrc": "./assets/shinobugoke.jpg"
+},
+{
+    "name": "Sunagoke",
+    "location": "Noto Osaka",
+    "imgSrc": "./assets/sunagoke.jpg"
+}
+
+]

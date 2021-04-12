@@ -4,7 +4,6 @@
 
 /node_modules
 */node_modules
-/.cac
 node_modules/**/*
 /.pnp
 .pnp.js

@@ -1,13 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
 import Button from "../../decolation/Button";
+import { useHistory } from "react-router";
 
 const CreateAcc = () => {
-  const { lang } = useContext(AppContext);
+  const {
+    lang,
+    setUserName,
+    userName,
+    setPassword,
+    password,
+    setCurrentUser,
+  } = useContext(AppContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    fetch("/createAcc", {
+      method: "POST",
+      body: JSON.stringify({ userName: userName, password: password }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { status } = data;
+        if (status === 200) {
+          history.push("/");
+          setCurrentUser(userName);
+        }
+      });
+  }, [setCurrentUser]);
+
   return (
     <>
       <Header />
@@ -15,9 +45,9 @@ const CreateAcc = () => {
         <FormWrapper>
           <H1>Create Account</H1>
           {lang ? <P>{ENsignIn.createAcc}</P> : <P>{JPsignIn.createAcc}</P>}
-          <Input />
+          <Input onChange={(e) => setUserName(e.target.value)} />
           {lang ? <P>{ENsignIn.createPass}</P> : <P>{JPsignIn.createPass}</P>}
-          <Input />
+          <Input onChange={(e) => setPassword(e.target.value)} />
         </FormWrapper>
         <BtnWrapper>
           <Button>Confirm</Button>
@@ -33,7 +63,7 @@ const H1 = styled.h1`
 `;
 
 const P = styled.p`
-margin-top: 40px;
+  margin-top: 40px;
 `;
 
 const Input = styled.input`
@@ -43,6 +73,8 @@ const Input = styled.input`
   border-radius: 5px;
   margin-bottom: 30px;
   margin-top: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const Wrapper = styled.div`

@@ -1,0 +1,80 @@
+[
+    {
+    "name": "Chochingoke",
+    "location": "Katano Osaka",
+    "latitude": 34.792144,
+    "longitude" : 135.678333,
+    "imgSrc" : "./assets/chochingoke.jpg"
+},
+{
+    "name": "Houougoke",
+    "location": "Katano Osaka",
+    "latitude": 34.792144,
+    "longitude" : 135.678333,
+    "imgSrc": "./assets/houougoke2.jpg"
+},
+{
+    "name": "Oshiragagoke",
+    "location": "Katano Osaka",
+    "latitude": 34.792144,
+    "longitude" : 135.678333,
+    "imgSrc": "./assets/oshiragagoke.jpg"
+},
+{
+    "name": "Tamagoke",
+    "location": "Ritto Shiga",
+    "latitude": 35.0257669,
+    "longitude" : 135.9836707,
+    "imgSrc": "./assets/tamagoke.jpg"
+},
+{
+    "name": "Umasugigoke",
+    "location": "Takano Wakayama",
+    "latitude": 33.6269566,
+    "longitude" : 135.8240166,
+    "imgSrc": "./assets/umasugigoke.jpg"
+},
+{
+    "name": "Hinokigoke",
+    "location": "Takano Wakayama",
+    "latitude": 33.6269566,
+    "longitude" : 135.8240166,
+    "imgSrc": "./assets/hinokigoke.jpg"
+},
+{
+    "name": "Houougoke",
+    "location": "Noto Osaka",
+    "latitude": 34.5588583,
+    "longitude" : 135.5426461,
+    "imgSrc": "./assets/houougoke3.jpg"
+},
+{
+    "name": "Tsuyagoke",
+    "location": "Noto Osaka",
+    "latitude": 34.5588583,
+    "longitude" : 135.5426461,
+    "imgSrc": "./assets/tsuyagoke.jpg"
+},
+{
+    "name": "Hudegoke",
+    "location": "Noto Osaka",
+    "latitude": 34.5588583,
+    "longitude" : 135.5426461,
+    "imgSrc": "./assets/fudegoke.jpg"
+},
+{
+    "name": "Shinobugoke",
+    "location": "Noto Osaka",
+    "latitude": 34.5588583,
+    "longitude" : 135.5426461,
+    "imgSrc": "./assets/shinobugoke.jpg"
+},
+{
+    "name": "Sunagoke",
+    "location": "Noto Osaka",
+    "latitude": 34.5588583,
+    "longitude" : 135.5426461,
+    "imgSrc": "./assets/sunagoke.jpg"
+}
+
+]

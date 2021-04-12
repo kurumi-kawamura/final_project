@@ -3,6 +3,7 @@ const assert = require("assert");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
+const bcrypt = require("bcrypt");
 
 const options = {
   useNewUrlParser: true,
@@ -16,7 +17,12 @@ const addingUser = async (req, res) => {
 
     const db = client.db();
 
-    const result = await db.collection("account").insertOne(req.body);
+    const salt = await bcrypt.genSalt();
+
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+      const user = { _id: req.body.name, password: hashedPassword };
+
+    const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);
     res.status(200).json({ status: 200, data: result });
   } catch (err) {
@@ -34,7 +40,7 @@ const getAll = async (req, res) => {
   const result = await db.collection("items").find().toArray();
 
   if (result.length) {
-    res.stack(200).json({ status: 200, data: result });
+    res.status(200).json({ status: 200, data: result });
   } else {
     res.status(404).json({ status: 404, msg: "Not found" });
   }
@@ -74,6 +80,48 @@ const getUsers = async (req, res) => {
 
   client.close();
 };
+
+const login = async (req,res) => {
+  const {name, password} = req.body;
+  const client = await MongoClient(MONGO_URI, options);
+
+  await client.connect();
+
+  const db = client.db();
+
+  db.collection("account").findOne({_id: name}, (err, result) => {
+    if(result){
+      if(await bcrypt.compare(password, result.password)){
+        res.status(200).json({status:200, msg: "sucess", data:result })
+      } else {
+        res.status(404).json({ status: 404, data: "Not allowed" });
+      }
+    } else {
+      res.status(404).json({ status: 404, data: "Not found" });
+    }
+
+    client.close();
+  })
+
+  // const user = users.find((user) => (user.name = req.body.name));
+  //   if (user === null) {
+  //     return res
+  //       .status(400)
+  //       .json({ status: 400, msg: "cannot find matched user" });
+  //   }
+
+  //   try{
+  //     if(await bcrypt.compare(req.body.password, user.password)){
+  //       res.status(200).json({status:200, msg: "sucess" })
+  //     } else {
+  //       res.send("Not allowed")
+  //     }
+
+  //   } catch (err){
+  //     res.status(500).json({ status: 500, meg: "error" });
+  //   }
+
+}
 
 const updateStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
@@ -119,6 +167,24 @@ const updateStock = async (req, res) => {
 //     res.status(200).json({ status: 200, success: true });
 //   }
 // };
+
+const getAllMossInfo = async () => {
+
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+
+  const db = client.db();
+  const result = await db.collection("moss").find().toArray();
+
+  if (result.length) {
+    res.status(200).json({ status: 200, data: result });
+  } else {
+    res.status(404).json({ status: 404, msg: "Not found" });
+  }
+
+  client.close();
+
+}
 
 module.exports = {
   addingUser,

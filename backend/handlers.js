@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectID } = require("mongodb");
 const assert = require("assert");
 
 require("dotenv").config();
@@ -12,15 +12,14 @@ const options = {
 
 const addingUser = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
+  const { name, password } = req.body;
   try {
     await client.connect();
 
     const db = client.db();
 
-    const salt = await bcrypt.genSalt();
-
-      const hashedPassword = await bcrypt.hash(req.body.password, salt);
-      const user = { _id: req.body.name, password: hashedPassword };
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = { _id: name, password: hashedPassword };
 
     const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);
@@ -51,16 +50,21 @@ const getAll = async (req, res) => {
 const getItemById = async (req, res) => {
   const { _id } = req.params;
   const client = await MongoClient(MONGO_URI, options);
+  const id = Number(_id);
+  console.log(id);
 
   await client.connect();
+  console.log("connected");
 
   const db = client.db();
 
-  db.collection("items").findOne({ _id: _id }, (err, result) => {
-    result
-      ? res.status(200).json({ status: 200, data: result })
-      : res.status(404).json({ status: 404, msg: "Not found" });
-  });
+  const result = db.collection("items").findOne({ _id: id });
+  if (result) {
+    const final = await result;
+    res.status(200).json({ status: 200, data: final });
+  } else {
+    res.status(404).json({ status: 404, id, msg: "Not found" });
+  }
 
   client.close();
 };
@@ -72,7 +76,7 @@ const getUsers = async (req, res) => {
   const db = client.db();
   const result = await db.collection("account").find().toArray();
 
-  if (data.length) {
+  if (result.length) {
     res.status(200).json({ status: 200, data: result });
   } else {
     res.status(404).json({ status: 404, msg: "No users yet" });
@@ -81,47 +85,28 @@ const getUsers = async (req, res) => {
   client.close();
 };
 
-const login = async (req,res) => {
-  const {name, password} = req.body;
+const login = async (req, res) => {
+  const { name, password } = req.body;
   const client = await MongoClient(MONGO_URI, options);
 
   await client.connect();
 
   const db = client.db();
 
-  db.collection("account").findOne({_id: name}, (err, result) => {
-    if(result){
-      if(await bcrypt.compare(password, result.password)){
-        res.status(200).json({status:200, msg: "sucess", data:result })
-      } else {
-        res.status(404).json({ status: 404, data: "Not allowed" });
-      }
+  const result = db.collection("account").findOne({ _id: name });
+  if (result) {
+    const final = await result;
+    if (await bcrypt.compare(password, final.password)) {
+      res.status(200).json({ status: 200, msg: "sucess", data: final });
     } else {
-      res.status(404).json({ status: 404, data: "Not found" });
+      res.status(404).json({ status: 404, data: "Not allowed" });
     }
+  } else {
+    res.status(404).json({ status: 404, data: "Not found" });
+  }
 
-    client.close();
-  })
-
-  // const user = users.find((user) => (user.name = req.body.name));
-  //   if (user === null) {
-  //     return res
-  //       .status(400)
-  //       .json({ status: 400, msg: "cannot find matched user" });
-  //   }
-
-  //   try{
-  //     if(await bcrypt.compare(req.body.password, user.password)){
-  //       res.status(200).json({status:200, msg: "sucess" })
-  //     } else {
-  //       res.send("Not allowed")
-  //     }
-
-  //   } catch (err){
-  //     res.status(500).json({ status: 500, meg: "error" });
-  //   }
-
-}
+  client.close();
+};
 
 const updateStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
@@ -168,8 +153,7 @@ const updateStock = async (req, res) => {
 //   }
 // };
 
-const getAllMossInfo = async () => {
-
+const getAllMossInfo = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
 
@@ -183,11 +167,14 @@ const getAllMossInfo = async () => {
   }
 
   client.close();
-
-}
+};
 
 module.exports = {
   addingUser,
   getAll,
   getItemById,
+  getUsers,
+  login,
+  getAllMossInfo,
+  updateStock,
 };

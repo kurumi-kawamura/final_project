@@ -1,10 +1,14 @@
 import React from "react";
 import { AiOutlineYoutube } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 const Footer = () => {
   return (
     <>
-      <div></div>
+      <StyledNavLink exact to="/contactUs">
+        Contact us
+      </StyledNavLink>
       <a
         href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"
         target="_blank"
@@ -17,5 +21,13 @@ const Footer = () => {
     </>
   );
 };
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: var(--soft-gray);
+  margin-right: 15px;
+position: relative;
+bottom: 10px;
+`;
 
 export default Footer;

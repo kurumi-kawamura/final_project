@@ -30,13 +30,15 @@ const batchImport = async () => {
   client.close();
 };
 
-batchImport();
+// batchImport();
 
 const mosInfos = JSON.parse(fs.readFileSync("./mossData.json"));
 
 const mossInfoImport = async () => {
   const client = await MongoClient(MONGO_URI, options);
   try {
+    await client.connect();
+    console.log("sucess")
     const db = client.db();
 
     const result = await db.collection("moss").insertMany(mosInfos);

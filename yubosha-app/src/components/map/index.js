@@ -24,6 +24,7 @@ import MossComponent from "./MossComponent";
 import "./tooltip.css";
 import AddNewMoss from "./AddNewMoss";
 import { AppContext } from "../../context";
+import { style } from "./template";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -83,22 +84,22 @@ const Map = () => {
                         <MarkerDirective
                           key={i._id}
                           visible={true}
+                          shape="Image"
+                          imageUrl="assets/icons8-map-pin-64.png"
                           tooltipSettings={{
                             visible: true,
                             valuePath: "name",
-                            fill: "pink",
+                            template: style.template
                           }}
-                          shape={"Balloon"}
                           colorValuePath={"color"}
-                          width={15}
-                          height={15}
+                          width={25}
+                          height={25}
                           dataSource={[
                             {
                               latitude: `${i.latitude}`,
                               longitude: `${i.longitude}`,
                               location: `${i.location}`,
                               name: `${i.name}`,
-                              color: "pink",
                               src: `${i.imgSrc}`,
                             },
                           ]}

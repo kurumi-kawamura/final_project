@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { AppContext } from "../../context";
 import { ENabout } from "../../sentence/English";
 import { JPabout } from "../../sentence/Japanese";
-// import Demo from "../map/demo";
+
 
 const About = () => {
   const { lang } = useContext(AppContext);
@@ -15,6 +15,7 @@ const About = () => {
         <H1>About us</H1>
         {lang ? <p>{ENabout.about}</p> : <p>{JPabout.about}</p>}
       </Wrapper>
+
     </>
   );
 };

@@ -5,12 +5,14 @@ import { JPsignIn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
 import { Btn, Wrapper } from "../../decolation/FormItem";
+import { useHistory } from "react-router";
 
 const CreateAcc = () => {
-  const { lang, setCurrentUser } = useContext(AppContext);
+  const { lang } = useContext(AppContext);
   const [name, setName] = useState(null);
   const [pass, setPass] = useState(null);
   const [sucsess, setSucsess] = useState("idle");
+  const history = useHistory();
 
   const submitNewUser = (e) => {
     e.preventDefault();
@@ -24,13 +26,17 @@ const CreateAcc = () => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          const { status } = data;
+        .then((json) => {
+          const { status, data } = json;
           if (status === 200) {
-            setCurrentUser(name);
             setSucsess("succsess");
+            setName(null);
+            setPass(null);
+            history.push("/signIn");
           } else {
             setSucsess("error");
+            setName(null);
+            setPass(null);
           }
         });
     }

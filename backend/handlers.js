@@ -23,7 +23,7 @@ const addingUser = async (req, res) => {
 
     const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);
-    res.status(200).json({ status: 200, data: result });
+    res.status(200).json({ status: 200, data: user });
   } catch (err) {
     res.status(404).json({ status: 400, msg: err.message });
     console.log(err.stack);

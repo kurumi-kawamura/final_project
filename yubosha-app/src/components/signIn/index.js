@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../header/index";
 import styled from "styled-components";
 import { Btn, FormWrapper, Wrapper } from "../../decolation/FormItem";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
@@ -12,9 +12,12 @@ const SignIn = () => {
   const [name, setName] = useState(null);
   const [pass, setPass] = useState(null);
   const [success, setSuccess] = useState("idle");
+  const history = useHistory();
+
 
   const logout = () => {
-    setCurrentUser(null);
+    setCurrentUser({});
+    localStorage.removeItem("currentUser");
   };
 
   const signIn = () => {
@@ -27,12 +30,12 @@ const SignIn = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const { status } = data;
-        if (status === 200) {
-          setCurrentUser(name);
+      .then((json) => {
+        console.log(json);
+        if (json.status === 200) {
+          localStorage.setItem("currentUser", JSON.stringify(json.data));
           setSuccess("success");
+          history.push("/");
         } else {
           setSuccess("error");
         }
@@ -68,7 +71,6 @@ const SignIn = () => {
     </>
   );
 };
-
 
 const H1 = styled.h1`
   position: absolute;

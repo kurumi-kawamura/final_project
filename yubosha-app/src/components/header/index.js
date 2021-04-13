@@ -6,6 +6,7 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 
 const Header = () => {
   const { lang, setLang, currentUser } = useContext(AppContext);
+  console.log(currentUser)
 
   const change = () => {
     setLang(!lang);
@@ -13,7 +14,7 @@ const Header = () => {
   return (
     <>
       <NavWrapper>
-        {currentUser ? <P>Hello {currentUser}!</P> : null}
+        {Object.keys(currentUser).length !== 0 ? <P>Hello {currentUser.userName}!</P> : null}
         <Btn onClick={change}>EN/JP</Btn>
         <StyledNavLink exact to="/">
           Home

@@ -6,7 +6,6 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 
 const Header = () => {
   const { lang, setLang, currentUser } = useContext(AppContext);
-  console.log(currentUser)
 
   const change = () => {
     setLang(!lang);

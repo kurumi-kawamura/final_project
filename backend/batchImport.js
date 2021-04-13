@@ -30,7 +30,7 @@ const batchImport = async () => {
   client.close();
 };
 
-// batchImport();
+batchImport();
 
 const mosInfos = JSON.parse(fs.readFileSync("./mossData.json"));
 

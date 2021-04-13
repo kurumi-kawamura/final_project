@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { world_map } from "./worldmap";
 import { japan_map } from "./japanMap";
 import {
@@ -24,6 +24,8 @@ import {
 const Map = () => {
   const dispatch = useDispatch();
   const info = useSelector((state) => state.map.info);
+  const [clicked, setClicked] = useState(null);
+  const [currentMoss, setCurrentMoss] = useState(null);
 
   useEffect(() => {
     dispatch(requestMapInfo());
@@ -37,7 +39,9 @@ const Map = () => {
   }, [dispatch]);
 
   const markerClick = (e) => {
-    console.log(e.data.name);
+    let res = e.data;
+    setCurrentMoss(res);
+    setClicked(true);
   };
 
   return (
@@ -63,10 +67,12 @@ const Map = () => {
                 <MarkersDirective>
                   {info.map((i) => {
                     return (
+                      
+
                       <MarkerDirective
                         key={i._id}
                         visible={true}
-                        tooltipSettings={{ visible: true, valuePath: "name" }}
+                        tooltipSettings={{ visible: true, valuePath: "name", fill:"pink" }}
                         shape={"Balloon"}
                         colorValuePath={"color"}
                         width={15}
@@ -78,9 +84,11 @@ const Map = () => {
                             location: `${i.location}`,
                             name: `${i.name}`,
                             color: "pink",
+                            src: `${i.imgSrc}`,
                           },
                         ]}
-                      ></MarkerDirective>
+                        ></MarkerDirective>
+                 
                     );
                   })}
                 </MarkersDirective>
@@ -91,6 +99,13 @@ const Map = () => {
           <div>Loading...</div>
         )}
       </Wrapper>
+      {clicked && (
+        <>
+          <div>{currentMoss.name}</div>
+          <div>{currentMoss.location}</div>
+          <Img src = {currentMoss.src} alt={currentMoss.name}/>
+        </>
+      )}
     </>
   );
 };
@@ -105,6 +120,11 @@ const Wrapper = styled.div`
 
 const H1 = styled.h1`
   margin-bottom: 40px;
+`;
+
+const Img = styled.img`
+width: 100px;
+height: 100px;
 `;
 
 export default Map;

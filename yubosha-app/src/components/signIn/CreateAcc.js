@@ -27,7 +27,7 @@ const CreateAcc = () => {
       })
         .then((res) => res.json())
         .then((json) => {
-          const { status, data } = json;
+          const { status } = json;
           if (status === 200) {
             setSucsess("succsess");
             setName(null);

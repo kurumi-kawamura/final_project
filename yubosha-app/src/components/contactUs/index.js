@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Header from "../header/index";
 import { Btn } from "../../decolation/FormItem";
+import { AppContext } from "../../context";
+import { ENContactUs } from "../../sentence/English";
+import { JPContactUs } from "../../sentence/Japanese";
 
 const ContactUs = () => {
+  const { lang } = useContext(AppContext);
   return (
     <>
       <Header />
       <Wrapper>
         <H1>Contact us</H1>
         <FormWrapper>
-          <Input placeholder="email address:" />
-          <TextArea placeholder="Ask us anything!" />
+          {lang ? (
+            <>
+              <Input placeholder={ENContactUs.email} />
+              <TextArea placeholder={ENContactUs.askus} />
+            </>
+          ) : (
+            <>
+              <Input placeholder={JPContactUs.email} />
+              <TextArea placeholder={JPContactUs.askus} />
+            </>
+          )}
         </FormWrapper>
         <BtnWrapper>
           <Btn>Submit</Btn>

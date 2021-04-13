@@ -8,3 +8,8 @@ export const ENsignIn = {
     createAcc: "Enter new username:",
     createPass: "Enter new password:"
 }
+
+export const ENContactUs = {
+    email: "email address:",
+    askus: "Ask us anything!"
+}

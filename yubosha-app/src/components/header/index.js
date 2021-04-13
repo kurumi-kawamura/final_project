@@ -13,7 +13,8 @@ const Header = () => {
   return (
     <>
       <NavWrapper>
-        {Object.keys(currentUser).length !== 0 ? <P>Hello {currentUser.userName}!</P> : null}
+        {Object.keys(currentUser).length !== 0 && lang ? <P>Hello {currentUser.userName}!</P> : null}
+        {Object.keys(currentUser).length !== 0 && !lang ? <P>こんにちは {currentUser.userName}さん!</P> : null}
         <Btn onClick={change}>EN/JP</Btn>
         <StyledNavLink exact to="/">
           Home

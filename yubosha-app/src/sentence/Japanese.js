@@ -8,3 +8,8 @@ export const JPsignIn = {
     createAcc: "ユーザー名を記入してください:",
     createPass: "パスワードを記入してください:"
 }
+
+export const JPContactUs = {
+    email: "メールアドレス:",
+    askus: "ご質問内容:"
+}

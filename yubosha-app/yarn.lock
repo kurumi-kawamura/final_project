@@ -1695,6 +1695,13 @@
   dependencies:
     "@syncfusion/ej2-icons" "~19.1.54"
 
+"@syncfusion/ej2-base@~19.1.56":
+  version "19.1.56"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-19.1.56.tgz#76b6a15a18715dccc0785717e431918c04ef5f48"
+  integrity sha512-qWJgSCbjc40WqKr0iwssvnFEiqz9qh3MpiJ3wcJsZzjmhKBwFKyw2aIEU4DObKzwQ55XiP9LTzPXQPoT/HCJFA==
+  dependencies:
+    "@syncfusion/ej2-icons" "~19.1.54"
+
 "@syncfusion/ej2-buttons@~19.1.54":
   version "19.1.54"
   resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-19.1.54.tgz#49b9e806f43301c7d5b0a2c50d9fd0a5e4964b15"
@@ -1746,6 +1753,14 @@
   dependencies:
     "@syncfusion/ej2-compression" "~19.1.54"
 
+"@syncfusion/ej2-popups@19.1.56":
+  version "19.1.56"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-19.1.56.tgz#e558daac516a74350cda2b8c5fdac95f760af79d"
+  integrity sha512-Fz+mQkAaNX351fOIK1mtGx8msqVFs1uu7X9ESBkxkjqOMlW6ExJXKgWeWppxBT0LtobTUE8M8BjTEsqvYc3+Zw==
+  dependencies:
+    "@syncfusion/ej2-base" "~19.1.56"
+    "@syncfusion/ej2-buttons" "~19.1.54"
+
 "@syncfusion/ej2-react-base@~19.1.54":
   version "19.1.54"
   resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-19.1.54.tgz#3b72ceb3b205c124047a8712347ea65f99ce303a"
@@ -1760,6 +1775,15 @@
   dependencies:
     "@syncfusion/ej2-base" "~19.1.54"
     "@syncfusion/ej2-maps" "19.1.54"
+    "@syncfusion/ej2-react-base" "~19.1.54"
+
+"@syncfusion/ej2-react-popups@^19.1.56":
+  version "19.1.56"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-popups/-/ej2-react-popups-19.1.56.tgz#02d9439bf2e985f3949a4b3d8f25173beaa64af5"
+  integrity sha512-/G2SFhs6iHDKVZSvKEAI8+67y8angj6ccXMEuuuvjrEd+uOOfjRHlzxlEszOAt55l5CKijclK70jKJKgNnkH6g==
+  dependencies:
+    "@syncfusion/ej2-base" "~19.1.56"
+    "@syncfusion/ej2-popups" "19.1.56"
     "@syncfusion/ej2-react-base" "~19.1.54"
 
 "@syncfusion/ej2-svg-base@~19.1.54":

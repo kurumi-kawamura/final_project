@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../header/index";
-import Button from "../../decolation/Button";
+import { Btn } from "../../decolation/FormItem";
 
 const ContactUs = () => {
   return (
@@ -14,7 +14,7 @@ const ContactUs = () => {
           <TextArea placeholder="Ask us anything!" />
         </FormWrapper>
         <BtnWrapper>
-          <Button>Submit</Button>
+          <Btn>Submit</Btn>
         </BtnWrapper>
       </Wrapper>
     </>

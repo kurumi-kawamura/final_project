@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID } = require("mongodb");
+const { MongoClient } = require("mongodb");
 const assert = require("assert");
 
 require("dotenv").config();
@@ -19,7 +19,7 @@ const addingUser = async (req, res) => {
     const db = client.db();
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = { _id: name, password: hashedPassword };
+    const user = { _id: name, userName: name, password: hashedPassword };
 
     const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);

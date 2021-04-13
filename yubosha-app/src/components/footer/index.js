@@ -26,8 +26,8 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: var(--soft-gray);
   margin-right: 15px;
-position: relative;
-bottom: 10px;
+  position: relative;
+  bottom: 10px;
 `;
 
 export default Footer;

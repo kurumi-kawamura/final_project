@@ -4,13 +4,13 @@ import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
-// import Button from "../../decolation/Button";
+import { Btn, Wrapper } from "../../decolation/FormItem";
 
 const CreateAcc = () => {
-  const { lang } = useContext(AppContext);
+  const { lang, setCurrentUser } = useContext(AppContext);
   const [name, setName] = useState(null);
   const [pass, setPass] = useState(null);
-  console.log(name, pass);
+  const [sucsess, setSucsess] = useState("idle");
 
   const submitNewUser = (e) => {
     e.preventDefault();
@@ -25,7 +25,13 @@ const CreateAcc = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          const { status } = data;
+          if (status === 200) {
+            setCurrentUser(name);
+            setSucsess("succsess");
+          } else {
+            setSucsess("error");
+          }
         });
     }
   };
@@ -44,20 +50,11 @@ const CreateAcc = () => {
           <Btn onClick={submitNewUser}>Confirm</Btn>
         </BtnWrapper>
       </Wrapper>
+      {sucsess === "succsess" && <Div>Success!</Div>}
+      {sucsess === "error" && <Div>Error! Please try again.</Div>}
     </>
   );
 };
-
-const Btn = styled.button`
-  background: none;
-  color: var(--soft-gray);
-  border-radius: 5px;
-  border: solid 2px var(--soft-gray);
-  width: 100px;
-  height: 30px;
-  cursor: pointer;
-  font-weight: 500;
-`;
 
 const H1 = styled.h1`
   color: white;
@@ -79,17 +76,9 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
   background-size: cover;
@@ -104,6 +93,10 @@ const FormWrapper = styled.div`
 
 const BtnWrapper = styled.div`
   margin-top: 20px;
+`;
+
+const Div = styled.div`
+  text-align: center;
 `;
 
 export default CreateAcc;

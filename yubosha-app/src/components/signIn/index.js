@@ -1,51 +1,74 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../header/index";
 import styled from "styled-components";
-import Button from "../../decolation/Button";
+import { Btn, FormWrapper, Wrapper } from "../../decolation/FormItem";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 
 const SignIn = () => {
-  const { lang } = useContext(AppContext);
+  const { lang, setCurrentUser } = useContext(AppContext);
+  const [name, setName] = useState(null);
+  const [pass, setPass] = useState(null);
+  const [success, setSuccess] = useState("idle");
+
+  const logout = () => {
+    setCurrentUser(null);
+  };
+
+  const signIn = () => {
+    fetch("/users/login", {
+      method: "POST",
+      body: JSON.stringify({ name: name, password: pass }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { status } = data;
+        if (status === 200) {
+          setCurrentUser(name);
+          setSuccess("success");
+        } else {
+          setSuccess("error");
+        }
+      });
+  };
   return (
     <>
       <Header />
       <Wrapper>
         <FormWrapper></FormWrapper>
         {lang ? <H1>{ENsignIn.signIn}</H1> : <H1>{JPsignIn.signIn}</H1>}
-        <Input placeholder="username:" />
-        <Input2 placeholder="password:" />
+        <Input
+          placeholder="username:"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input2
+          placeholder="password:"
+          onChange={(e) => setPass(e.target.value)}
+        />
         <BtnWrapper>
-          <Button>Sign in</Button>
+          <Btn onClick={signIn}>Sign in</Btn>
+          <LogoutBtn onClick={logout}>Log out</LogoutBtn>
         </BtnWrapper>
         {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
         <LinkWrapper>
-          <Link exact to="/CreateAcc">here</Link>
+          <Link exact to="/CreateAcc">
+            here
+          </Link>
         </LinkWrapper>
       </Wrapper>
+      {success === "success" && <Div>Success!</Div>}
+      {success === "error" && <Div>Not found!</Div>}
     </>
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FormWrapper = styled.div`
-  background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: blur(1.5px);
-  height: 400px;
-  width: 500px;
-  border-radius: 10px;
-  margin-top: 100px;
-`;
 
 const H1 = styled.h1`
   position: absolute;
@@ -72,6 +95,8 @@ const BtnWrapper = styled.div`
   position: absolute;
   top: 600px;
   color: var(--soft-gray);
+  display: flex;
+  flex-direction: column;
 `;
 
 const P = styled.p`
@@ -85,6 +110,22 @@ const LinkWrapper = styled.div`
   position: absolute;
   top: 575px;
   font-size: 10px;
+`;
+
+const LogoutBtn = styled.button`
+  border-radius: 5px;
+  background-color: var(--soft-gray);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 20px;
+`;
+
+const Div = styled.div`
+  text-align: center;
 `;
 
 export default SignIn;

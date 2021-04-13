@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { world_map } from "./worldmap";
 import { japan_map } from "./japanMap";
 import {
@@ -22,10 +22,12 @@ import {
 } from "../../actions";
 import MossComponent from "./MossComponent";
 import "./tooltip.css";
-
+import AddNewMoss from "./AddNewMoss";
+import { AppContext } from "../../context";
 
 const Map = () => {
   const dispatch = useDispatch();
+  const { currentUser } = useContext(AppContext);
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
@@ -43,17 +45,21 @@ const Map = () => {
 
   const markerClick = (e) => {
     let res = e.data;
-    setCurrentMoss(res);
-    setClicked(true);
+    if (res) {
+      setCurrentMoss(res);
+      setClicked(true);
+    }
   };
 
   return (
     <>
       <Header />
 
+      <H1>Moss Map</H1>
       <Container>
+        {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
+
         <Wrapper>
-          <H1>Moss Map</H1>
           {info !== null ? (
             <MapsComponent
               id="container"
@@ -109,13 +115,18 @@ const Map = () => {
         </Wrapper>
         {clicked && (
           <>
-            <MossWrapper>
-              <MossComponent
-                name={currentMoss.name}
-                location={currentMoss.location}
-                src={currentMoss.src}
-              />
-            </MossWrapper>
+            {currentMoss ? (
+              <MossWrapper>
+                <MossComponent
+                  name={currentMoss.name}
+                  location={currentMoss.location}
+                  src={currentMoss.src}
+                  setClicked={setClicked}
+                />
+              </MossWrapper>
+            ) : (
+              <div>Loading</div>
+            )}
           </>
         )}
       </Container>
@@ -139,7 +150,9 @@ const Wrapper = styled.div`
 `;
 
 const H1 = styled.h1`
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  text-align: center;
 `;
 
 const MossWrapper = styled.div``;

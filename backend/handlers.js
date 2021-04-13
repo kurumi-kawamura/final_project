@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 const assert = require("assert");
+const { changeAddress } = require("./apiHandlers");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -24,6 +25,32 @@ const addingUser = async (req, res) => {
     const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);
     res.status(200).json({ status: 200, data: user });
+  } catch (err) {
+    res.status(404).json({ status: 400, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close();
+};
+
+const addNewMoss = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { name, location, src } = req.body;
+  try {
+    await client.connect();
+
+    const db = client.db();
+    const latLng = await changeAddress(location);
+    const moss = {
+      name: name,
+      location: location,
+      latitude: latLng.lat,
+      longitude: latLng.lng,
+      imgSrc: src,
+    };
+
+    const result = await db.collection("moss").insertOne(moss);
+    assert.equal(1, result.insertedCount);
+    res.status(200).json({ status: 200, data: moss });
   } catch (err) {
     res.status(404).json({ status: 400, msg: err.message });
     console.log(err.stack);
@@ -177,4 +204,5 @@ module.exports = {
   login,
   getAllMossInfo,
   updateStock,
+  addNewMoss,
 };

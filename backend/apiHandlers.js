@@ -5,7 +5,7 @@ const {OPENCAGE_API_KEY} = process.env;
 
 const changeAddress = (address) => {
   const requestObj = {
-    key: '5ed289fbdbb74132aac58eee3596d6aa',
+    key: OPENCAGE_API_KEY,
     q: address,
   };
 

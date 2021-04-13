@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { GoLocation } from "react-icons/go";
-import { RiPlantLine } from "react-icons/ri";
+import { RiPlantLine, RiCloseCircleLine } from "react-icons/ri";
 
-const MossComponent = ({ name, location, src }) => {
+const MossComponent = ({ name, location, src, setClicked }) => {
+    console.log(src)
+  const close = () => {
+    setClicked(null);
+  };
   return (
     <>
       <Wrapper>
+        <IconWrapper>
+          <RiCloseCircleLine onClick={close} />
+        </IconWrapper>
         <Discription>
           <P>
             <RiPlantLine />
@@ -17,7 +24,8 @@ const MossComponent = ({ name, location, src }) => {
             {location}
           </P>
         </Discription>
-        <Img src={src} alt={name} />
+        {src ? <Img src={src} alt={name} /> : <div>No picture avilable</div>}
+        {/* <Img src={src} alt={name} /> */}
       </Wrapper>
     </>
   );
@@ -40,13 +48,20 @@ const Wrapper = styled.div`
 `;
 
 const P = styled.p`
-line-height: 30px;
+  line-height: 30px;
 `;
 
 const Img = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 50%;
+`;
+
+const IconWrapper = styled.div`
+  cursor: pointer;
+
+  &:hover {
+  }
 `;
 
 export default MossComponent;

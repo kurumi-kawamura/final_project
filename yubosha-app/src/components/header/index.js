@@ -25,6 +25,9 @@ const Header = () => {
         <StyledNavLink exact to="/map">
           Map
         </StyledNavLink>
+        <StyledNavLink exact to="/shop">
+          Shop
+        </StyledNavLink>
         <StyledNavLink exact to="/signIn">
           <RiAccountPinCircleLine
             style={{ fill: "var(--soft-gray)", width: "25px", height: "25px" }}

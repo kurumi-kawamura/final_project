@@ -7,6 +7,8 @@ import Map from "./components/map/index";
 import SignIn from "./components/signIn/index";
 import CreateAcc from "./components/signIn/CreateAcc";
 import ContactUs from "./components/contactUs/index";
+import Shop from "./components/shop/index";
+import Item from "./components/shop/Item";
 
 function App() {
   return (
@@ -27,6 +29,12 @@ function App() {
         </Route>
         <Route exact path="/createAcc">
           <CreateAcc />
+        </Route>
+        <Route exact path="/shop">
+          <Shop />
+        </Route>
+        <Route exact path="/shop/:_id">
+          <Item />
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />

@@ -33,6 +33,10 @@ const CreateAcc = () => {
             setName(null);
             setPass(null);
             history.push("/signIn");
+          } else if (status === 400) {
+            setSucsess("duplicate");
+            setName(null);
+            setPass(null);
           } else {
             setSucsess("error");
             setName(null);
@@ -58,6 +62,12 @@ const CreateAcc = () => {
       </Wrapper>
       {sucsess === "succsess" && <Div>Success!</Div>}
       {sucsess === "error" && <Div>Error! Please try again.</Div>}
+      {sucsess === "duplicate" && (
+        <Div>
+          Someone is using the username already. Please enter different
+          username.
+        </Div>
+      )}
     </>
   );
 };

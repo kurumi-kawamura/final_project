@@ -5,9 +5,8 @@ export const Btn = styled.button`
   color: var(--soft-gray);
   border-radius: 5px;
   border: solid 2px var(--soft-gray);
-  width: 100px;
-  height: 30px;
   cursor: pointer;
+  padding: 10px 10px;
   font-weight: 500;
 `;
 

@@ -21,7 +21,6 @@ import {
   receiveMapInfo,
 } from "../../actions";
 import MossComponent from "./MossComponent";
-import "./tooltip.css";
 import AddNewMoss from "./AddNewMoss";
 import { AppContext } from "../../context";
 import { style } from "./template";

@@ -75,6 +75,8 @@ const IconWrapper = styled.div`
 
 const P2 = styled(P)`
 text-align: center;
+color: rgba(54, 54, 54, 0.6);
+margin-top: 20px;
 `;
 
 export default MossComponent;

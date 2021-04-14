@@ -7,7 +7,7 @@ import { Btn } from "../../decolation/FormItem";
 
 const AddNewMoss = () => {
   const dispatch = useDispatch();
-  const {currentUser} = useContext(AppContext);
+  const { currentUser } = useContext(AppContext);
   const [pic, setPic] = useState(null);
   const [mossName, setMossName] = useState(null);
   const [location, setLocation] = useState(null);
@@ -34,7 +34,7 @@ const AddNewMoss = () => {
       });
   };
 
-  console.log(currentUser.userName)
+  console.log(currentUser.userName);
 
   const submit = () => {
     fetch("/addNewMoss", {
@@ -43,7 +43,7 @@ const AddNewMoss = () => {
         name: mossName,
         location: location,
         src: url,
-        submittedBy : currentUser.userName,
+        submittedBy: currentUser.userName,
       }),
       headers: {
         Accept: "application/json",
@@ -65,6 +65,7 @@ const AddNewMoss = () => {
   return (
     <>
       <Wrapper>
+        <H2>Add new moss:</H2>
         <Input
           placeholder="name"
           onChange={(e) => setMossName(e.target.value)}
@@ -91,6 +92,11 @@ const AddNewMoss = () => {
     </>
   );
 };
+
+const H2 = styled.h2`
+  font-size: 20px;
+  margin-bottom: 5px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -126,6 +132,11 @@ const Button = styled.button`
   font-size: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(54, 54, 54, 0.2);
+  }
 `;
 
 const P = styled.p`

@@ -8,6 +8,7 @@ import {
   requestItemsData,
 } from "../../actions";
 import Header from "../header/index";
+import CircleAnimation from "../../decolation/CircleAnimation";
 
 const Shop = () => {
   const dispacth = useDispatch();
@@ -26,7 +27,7 @@ const Shop = () => {
           dispacth(receiveItemsDataError());
         }
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
   return (
     <>
@@ -41,7 +42,9 @@ const Shop = () => {
                   <Div>
                     <Img src={item.imgSrc} alt={item.itemName} />
                     <StyledNavLink exact to={`/shop/${item._id}`}>
-                      <Btn>Click me</Btn>
+
+                        <Btn>Click me</Btn>
+                      {/* <CircleAnimation/> */}
                     </StyledNavLink>
                   </Div>
                   <ItemName>{item.ItemName}</ItemName>
@@ -105,13 +108,18 @@ const Btn = styled.button`
   position: absolute;
   font-size: 20px;
   background: none;
+  animation: 1s ease-in-out;
+
+  &:hover{
+    transform: scale(1.2);
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Shop;

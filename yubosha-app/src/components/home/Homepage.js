@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 const Logo = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
   width: 92px;
   height: 174px;
   left: 454px;

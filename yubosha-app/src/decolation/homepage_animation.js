@@ -4,7 +4,6 @@ import styled, { keyframes } from "styled-components";
 const HPAnimation = () => {
   return (
     <>
-      <div></div>
       <Square />
       <Square1 />
       <Square2 />

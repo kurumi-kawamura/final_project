@@ -14,6 +14,7 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "RECEIVE_MAP_INFO": {
+      console.log(action);
       return {
         ...state,
         info: action.data,
@@ -28,9 +29,17 @@ export default function mapReducer(state = initialState, action) {
       };
     }
 
+    case "ADD_NEW_MOSS_INFO": {
+      console.log(action);
+      console.log(state);
+      return {
+        ...state,
+        info: [...state.info, action.data],
+      };
+    }
+
     default: {
       return state;
     }
-
   }
 }

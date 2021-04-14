@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { addNewMossInfo } from "../../actions";
+import { AppContext } from "../../context";
 import { Btn } from "../../decolation/FormItem";
 
 const AddNewMoss = () => {
+  const dispatch = useDispatch();
+  const {currentUser} = useContext(AppContext);
   const [pic, setPic] = useState(null);
   const [mossName, setMossName] = useState(null);
   const [location, setLocation] = useState(null);
@@ -36,6 +41,7 @@ const AddNewMoss = () => {
         name: mossName,
         location: location,
         src: url,
+        submittedBy : currentUser.userName,
       }),
       headers: {
         Accept: "application/json",
@@ -47,6 +53,7 @@ const AddNewMoss = () => {
         console.log(json);
         const { status } = json;
         if (status === 200) {
+          dispatch(addNewMossInfo(json.data));
           setUpload("success");
         } else {
           setUpload("error");

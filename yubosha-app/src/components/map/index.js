@@ -31,18 +31,18 @@ const Map = () => {
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
-
+  
   useEffect(() => {
     dispatch(requestMapInfo());
-
+    
     fetch("/moss")
       .then((res) => res.json())
       .then((data) => {
         dispatch(receiveMapInfo(data.data));
       })
       .catch((err) => dispatch(receiveMapInfoError()));
-  }, [dispatch]);
-
+  }, [dispatch, receiveMapInfo]);
+  
   const markerClick = (e) => {
     let res = e.data;
     if (res) {
@@ -50,7 +50,8 @@ const Map = () => {
       setClicked(true);
     }
   };
-
+  
+  console.log(info)
   return (
     <>
       <Header />
@@ -122,6 +123,7 @@ const Map = () => {
                   location={currentMoss.location}
                   src={currentMoss.src}
                   setClicked={setClicked}
+                  submit={currentMoss.submittedBy}
                 />
               </MossWrapper>
             ) : (

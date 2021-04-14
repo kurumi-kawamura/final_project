@@ -10,6 +10,10 @@ export const receiveMapInfo = (data) => ({
 export const receiveMapInfoError = () => ({
   type: "RECEIVE_MAP_INFO_ERROR",
 });
+export const addNewMossInfo = (data) => ({
+  type: "ADD_NEW_MOSS_INFO",
+  data,
+});
 
 export const requestItemsData = () => ({
   type: "REQUEST_ITEMS_DATA",

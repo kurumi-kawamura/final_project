@@ -8,6 +8,14 @@ export const Btn = styled.button`
   cursor: pointer;
   padding: 10px 10px;
   font-weight: 500;
+
+  &:hover {
+    background-color: rgba(181, 181, 181, 0.7);
+  }
+`;
+
+export const DisabledBtn = styled(Btn)`
+  background-color: rgba(181, 181, 181, 0.7);
 `;
 
 export const FormWrapper = styled.div`

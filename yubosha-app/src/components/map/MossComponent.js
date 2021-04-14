@@ -27,7 +27,7 @@ const MossComponent = ({ name, location, src, setClicked, submit }) => {
           </Discription>
           {src ? <Img src={src} alt={name} /> : <div>No picture avilable</div>}
         </Wrapper>
-        <p>Submitted by {submit}</p>
+        <P2>Submitted by {submit}</P2>
       </Container>
     </>
   );
@@ -37,7 +37,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
   background: var(--soft-gray);
   border-radius: 5px;
   width: 400px;
@@ -71,6 +71,10 @@ const IconWrapper = styled.div`
 
   &:hover {
   }
+`;
+
+const P2 = styled(P)`
+text-align: center;
 `;
 
 export default MossComponent;

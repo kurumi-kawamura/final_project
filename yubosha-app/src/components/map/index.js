@@ -31,107 +31,115 @@ const Map = () => {
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
-  
+
   useEffect(() => {
     dispatch(requestMapInfo());
-    
-    fetch("/moss")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(receiveMapInfo(data.data));
-      })
-      .catch((err) => dispatch(receiveMapInfoError()));
-  }, [dispatch, receiveMapInfo]);
-  
+      fetch("/moss")
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch(receiveMapInfo(data.data));
+        })
+        .catch((err) => dispatch(receiveMapInfoError()));
+  }, [dispatch]);
+
   const markerClick = (e) => {
     let res = e.data;
     if (res) {
-      setCurrentMoss(res);
+      setCurrentMoss({ ...res });
       setClicked(true);
     }
   };
-  
-  console.log(info)
+
   return (
     <>
-      <Header />
+      {info ? (
+        <>
+          <Header />
 
-      <H1>Moss Map</H1>
-      <Container>
-        {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
+          <H1>Moss Map</H1>
+          <Container>
+            {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
 
-        <Wrapper>
-          {info !== null ? (
-            <MapsComponent
-              id="container"
-              zoomSettings={{ enable: true, enablePanning: true }}
-              markerClick={(e) => markerClick(e)}
-              width={"700"}
-              height={"600"}
-            >
-              <Inject services={[Marker, MapsTooltip, Zoom]} />
-              <LayersDirective>
-                <LayerDirective
-                  // layerType="Bing"
-                  // bingMapType="AerialWithLabel"
-                  // key="ArmPMVT_1cbRuMir9c5AUSYLs7AJ3Tv9bCvriTME7zEi6fZwMDtbzi39kW9tVUBs"
-                  shapeData={japan_map}
-                  shapeSettings={{ fill: "#4c7d62" }}
+            <Wrapper>
+              {info !== null ? (
+                <MapsComponent
+                  id="container"
+                  zoomSettings={{ enable: true, enablePanning: true }}
+                  markerClick={(e) => markerClick(e)}
+                  width={"700"}
+                  height={"600"}
                 >
-                  <MarkersDirective>
-                    {info.map((i) => {
-                      return (
-                        <MarkerDirective
-                          key={i._id}
-                          visible={true}
-                          shape="Image"
-                          imageUrl="assets/icons8-map-pin-64.png"
-                          tooltipSettings={{
-                            visible: true,
-                            valuePath: "name",
-                            template: style.template
-                          }}
-                          colorValuePath={"color"}
-                          width={25}
-                          height={25}
-                          dataSource={[
-                            {
-                              latitude: `${i.latitude}`,
-                              longitude: `${i.longitude}`,
-                              location: `${i.location}`,
-                              name: `${i.name}`,
-                              src: `${i.imgSrc}`,
-                            },
-                          ]}
-                        ></MarkerDirective>
-                      );
-                    })}
-                  </MarkersDirective>
-                </LayerDirective>
-              </LayersDirective>
-            </MapsComponent>
-          ) : (
-            <div>Loading...</div>
-          )}
-        </Wrapper>
-        {clicked && (
-          <>
-            {currentMoss ? (
-              <MossWrapper>
-                <MossComponent
-                  name={currentMoss.name}
-                  location={currentMoss.location}
-                  src={currentMoss.src}
-                  setClicked={setClicked}
-                  submit={currentMoss.submittedBy}
-                />
-              </MossWrapper>
-            ) : (
-              <div>Loading</div>
+                  <Inject services={[Marker, MapsTooltip, Zoom]} />
+                  <LayersDirective>
+                    <LayerDirective
+                      // layerType="Bing"
+                      // bingMapType="AerialWithLabel"
+                      // key="ArmPMVT_1cbRuMir9c5AUSYLs7AJ3Tv9bCvriTME7zEi6fZwMDtbzi39kW9tVUBs"
+                      shapeData={japan_map}
+                      shapeSettings={{ fill: "#4c7d62" }}
+                    >
+                      {info && (
+                        <MarkersDirective>
+                          {info.map((i) => {
+                            
+                            return (
+                              <MarkerDirective
+                                key={i._id}
+                                visible={true}
+                                shape="Image"
+                                imageUrl="assets/icons8-map-pin-64.png"
+                                tooltipSettings={{
+                                  visible: true,
+                                  valuePath: "name",
+                                  template: style.template,
+                                }}
+                                colorValuePath={"color"}
+                                width={25}
+                                height={25}
+                                dataSource={[
+                                  {
+                                    latitude: `${i.latitude}`,
+                                    longitude: `${i.longitude}`,
+                                    location: `${i.location}`,
+                                    name: `${i.name}`,
+                                    src: `${i.imgSrc}`,
+                                    submit: `${i.submittedBy}`
+                                  },
+                                ]}
+                              ></MarkerDirective>
+                            );
+                          })}
+                        </MarkersDirective>
+                      )}
+                    </LayerDirective>
+                  </LayersDirective>
+                </MapsComponent>
+              ) : (
+                <div>Loading...</div>
+              )}
+            </Wrapper>
+            {clicked && (
+              <>
+                {currentMoss ? (
+                  <MossWrapper>
+                    <MossComponent
+                      name={currentMoss.name}
+                      location={currentMoss.location}
+                      src={currentMoss.src}
+                      setClicked={setClicked}
+                      submit={currentMoss.submit}
+                    />
+                  </MossWrapper>
+                ) : (
+                  <div>Loading</div>
+                )}
+              </>
             )}
-          </>
-        )}
-      </Container>
+          </Container>
+        </>
+      ) : (
+        <div>Loading</div>
+      )}
     </>
   );
 };

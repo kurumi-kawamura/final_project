@@ -34,6 +34,8 @@ const AddNewMoss = () => {
       });
   };
 
+  console.log(currentUser.userName)
+
   const submit = () => {
     fetch("/addNewMoss", {
       method: "POST",

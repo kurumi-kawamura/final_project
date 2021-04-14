@@ -9,6 +9,7 @@ import CreateAcc from "./components/signIn/CreateAcc";
 import ContactUs from "./components/contactUs/index";
 import Shop from "./components/shop/index";
 import Item from "./components/shop/Item";
+import Cart from "./components/shop/Cart";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route exact path="/shop/:_id">
           <Item />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />

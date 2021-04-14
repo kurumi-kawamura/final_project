@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import {
+  addItemInCart,
   receiveItemsDataError,
   receiveSingleItemData,
   requestItemsData,
 } from "../../actions";
-import {Btn} from "../../decolation/FormItem";
+import { Btn, DisabledBtn } from "../../decolation/FormItem";
+import Header from "../header/index";
 
 const Item = () => {
   const dispacth = useDispatch();
@@ -31,13 +33,28 @@ const Item = () => {
   }, []);
   return (
     <>
+      <Header />
       {item ? (
         <Wrapper>
           <Img src={item.imgSrc} alt={item.ItemName} />
           <DeatilWrapper>
             <ItemName>{item.ItemName}</ItemName>
             <Detail>detail....</Detail>
-            <Btn>Add to cart</Btn>
+            <Price>{item.price} yen</Price>
+            {item.stock > 0 ? (
+              <Btn
+                onClick={() => {
+                  dispacth(addItemInCart(item));
+                }}
+              >
+                Add to cart
+              </Btn>
+            ) : (
+              <>
+                <DisabledBtn disabled={true}>Add to cart</DisabledBtn>
+                <P>Currently sold out.</P>
+              </>
+            )}
           </DeatilWrapper>
         </Wrapper>
       ) : (
@@ -63,18 +80,27 @@ const DeatilWrapper = styled.div`
 `;
 
 const ItemName = styled.h2`
-margin-bottom: 50px;
-
+  margin-bottom: 50px;
 `;
 
 const Detail = styled.p`
-margin-bottom: 300px;
+  margin-bottom: 200px;
 `;
 
 const Img = styled.img`
   width: 500px;
   height: 500px;
   margin-left: -200px;
+`;
+
+const P = styled.p`
+  margin-top: 10px;
+  font-size: 13px;
+`;
+
+const Price = styled.p`
+margin-bottom: 20px;
+font-size: 14px;
 `;
 
 export default Item;

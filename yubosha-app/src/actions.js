@@ -32,3 +32,30 @@ export const receiveSingleItemData = (data) => ({
   type: "RECEIVE_SINGLE_ITEM_DATA",
   data,
 });
+
+export const addItemInCart = (data) => ({
+  type: "ADD_ITEM_IN_CART",
+  data,
+});
+
+export const removeItem = (data) => ({
+  type: "REMOVE_ITEM",
+  data,
+});
+
+export const requestUserInfo = () => ({
+  type: "REQUEST_USER_INFO",
+});
+
+export const receiveUserInfo = (data) => ({
+  type: "RECEIVE_USER_INFO",
+  data,
+});
+
+export const receiveMapUserError = () => ({
+  type: "RECEIVE_USER_INFO_ERROR",
+});
+export const addNewUserInfo = (data) => ({
+  type: "ADD_NEW_USER_INFO",
+  data,
+});

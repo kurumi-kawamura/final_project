@@ -16,8 +16,11 @@ export const AppProvider = ({ children }) => {
   const [lang, setLang] = useState(true);
   const [currentUser, setCurrentUser] = useCurrent({}, "currentUser");
 
+
   return (
-    <AppContext.Provider value={{ lang, setLang, currentUser, setCurrentUser }}>
+    <AppContext.Provider
+      value={{ lang, setLang, currentUser, setCurrentUser,  }}
+    >
       {children}
     </AppContext.Provider>
   );

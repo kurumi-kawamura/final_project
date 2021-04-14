@@ -34,7 +34,7 @@ const addingUser = async (req, res) => {
 
 const addNewMoss = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
-  const { name, location, src } = req.body;
+  const { name, location, src, submittedBy } = req.body;
   try {
     await client.connect();
 
@@ -46,6 +46,7 @@ const addNewMoss = async (req, res) => {
       latitude: latLng.lat,
       longitude: latLng.lng,
       imgSrc: src,
+      submittedBy: submittedBy,
     };
 
     const result = await db.collection("moss").insertOne(moss);

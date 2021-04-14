@@ -2,6 +2,7 @@ const initialState = {
   items: null,
   status: "idle",
   error: null,
+  cart: {},
 };
 
 export default function mapReducer(state = initialState, action) {
@@ -33,6 +34,38 @@ export default function mapReducer(state = initialState, action) {
         ...state,
         item: action.data,
         status: "idle",
+      };
+    }
+
+    case "ADD_ITEM_IN_CART": {
+      console.log(action);
+      console.log(state.cart);
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          [action.data.ItemName]: {
+            ...action.data,
+            stock: state.cart[action.data.ItemName]
+              ? state.cart[action.data.ItemName].stock - 1
+              : action.data.stock - 1,
+            quantity: state.cart[action.data.ItemName]
+              ? state.cart[action.data.ItemName].quantity + 1
+              : 1,
+          },
+        },
+      };
+    }
+
+    case "REMOVE_ITEM": {
+      console.log(action);
+      const copy = { ...state };
+      delete copy.cart[action.data.ItemName];
+      return {
+        ...copy,
+        cart: {
+          ...copy.cart,
+        },
       };
     }
 

@@ -5,6 +5,7 @@ import HPAnimation from "../../decolation/homepage_animation";
 import Footer from "../footer/index";
 
 const Homepage = () => {
+
   return (
     <>
       <Wrapper>

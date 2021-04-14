@@ -1,26 +1,30 @@
 [
   {
-    "_id": 1,
+    "_id": 1001,
     "ItemName": "sample",
     "stock": 2,
-    "imgSrc": "/assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
+    "imgSrc": "/assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg",
+    "price": 2000
   },
   {
-    "_id": 2,
+    "_id": 1002,
     "ItemName": "sample2",
     "stock": 0,
-    "imgSrc": "/assets/meric-dagli-7NBO76G5JsE-unsplash.jpg"
+    "imgSrc": "/assets/meric-dagli-7NBO76G5JsE-unsplash.jpg",
+    "price": 1000
   },
   {
-    "_id": 3,
+    "_id": 1003,
     "ItemName": "sample3",
     "stock": 5,
-    "imgSrc": "/assets/su-san-lee-E_eWwM29wfU-unsplash.jpg"
+    "imgSrc": "/assets/su-san-lee-E_eWwM29wfU-unsplash.jpg",
+    "price": 2500
   },
   {
-    "_id": 4,
+    "_id": 1004,
     "ItemName": "sample4",
     "stock": 1,
-    "imgSrc": "/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg"
+    "imgSrc": "/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg",
+    "price": 3000
   }
 ]

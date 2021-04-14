@@ -6,14 +6,16 @@ import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
+import { useDispatch } from "react-redux";
+import { requestUserInfo } from "../../actions";
 
 const SignIn = () => {
+  const dispacth = useDispatch();
   const { lang, setCurrentUser } = useContext(AppContext);
   const [name, setName] = useState(null);
   const [pass, setPass] = useState(null);
   const [success, setSuccess] = useState("idle");
   const history = useHistory();
-
 
   const logout = () => {
     setCurrentUser({});
@@ -21,6 +23,7 @@ const SignIn = () => {
   };
 
   const signIn = () => {
+    dispacth(requestUserInfo());
     fetch("/users/login", {
       method: "POST",
       body: JSON.stringify({ name: name, password: pass }),
@@ -33,6 +36,7 @@ const SignIn = () => {
       .then((json) => {
         console.log(json);
         if (json.status === 200) {
+          setCurrentUser(json.data);
           localStorage.setItem("currentUser", JSON.stringify(json.data));
           setSuccess("success");
           history.push("/");

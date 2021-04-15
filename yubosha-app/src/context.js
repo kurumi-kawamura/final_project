@@ -15,11 +15,24 @@ export const AppProvider = ({ children }) => {
   };
   const [lang, setLang] = useState(true);
   const [currentUser, setCurrentUser] = useCurrent({}, "currentUser");
-
+  const [cartIds, setCartIds] = useCurrent({}, "ids");
+  const [cartQuantitys, setCartQuantitys] = useCurrent({}, "quantitys");
+  const [cartStocks, setCartStocks] = useCurrent({}, "stocks");
 
   return (
     <AppContext.Provider
-      value={{ lang, setLang, currentUser, setCurrentUser,  }}
+      value={{
+        lang,
+        setLang,
+        currentUser,
+        setCurrentUser,
+        cartIds,
+        setCartIds,
+        cartQuantitys,
+        setCartQuantitys,
+        cartStocks,
+        setCartStocks,
+      }}
     >
       {children}
     </AppContext.Provider>

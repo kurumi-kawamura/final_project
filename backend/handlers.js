@@ -79,10 +79,8 @@ const getItemById = async (req, res) => {
   const { _id } = req.params;
   const client = await MongoClient(MONGO_URI, options);
   const id = Number(_id);
-  console.log(id);
 
   await client.connect();
-  console.log("connected");
 
   const db = client.db();
 
@@ -143,7 +141,7 @@ const updateStock = async (req, res) => {
   for (let i = 0; i < _id.length; i++) {
     for (let j = 0; j < quantity.length; j++) {
       for (let l = 0; l < stock.length; l++) {
-        if (i === j && i === l) {
+        if (i === j && j === l) {
           newArr.push({ _id: _id[i], quantity: quantity[j], stock: stock[l] });
         }
       }
@@ -157,7 +155,7 @@ const updateStock = async (req, res) => {
     let result;
     for (let k = 0; k < newArr.length; k++) {
       const newValue = {
-        $set: { stock: newArr[k].stock - newArr[k].quantity },
+        $set: { stock: Number(newArr[k].stock) - Number(newArr[k].quantity) },
       };
       result = await db
         .collection("items")
@@ -173,7 +171,6 @@ const updateStock = async (req, res) => {
 
   client.close();
 };
-
 
 const getAllMossInfo = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);

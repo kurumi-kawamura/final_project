@@ -30,6 +30,7 @@ const Item = () => {
           dispacth(receiveItemsDataError());
         }
       });
+      // eslint-disable-next-line
   }, []);
   return (
     <>

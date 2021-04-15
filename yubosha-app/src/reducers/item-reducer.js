@@ -38,8 +38,6 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "ADD_ITEM_IN_CART": {
-      console.log(action);
-      console.log(state.cart);
       return {
         ...state,
         cart: {
@@ -58,7 +56,6 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "REMOVE_ITEM": {
-      console.log(action);
       const copy = { ...state };
       delete copy.cart[action.data.ItemName];
       return {

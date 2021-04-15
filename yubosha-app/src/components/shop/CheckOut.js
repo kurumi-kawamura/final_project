@@ -23,6 +23,7 @@ const CheckOut = () => {
     setIds(idArr);
     setQuantitys(quantityArr);
     setStocks(stockArr);
+    // eslint-disable-next-line
   }, [cart]);
 
   const placeOrder = () => {

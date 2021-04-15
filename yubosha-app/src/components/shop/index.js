@@ -8,6 +8,7 @@ import {
   requestItemsData,
 } from "../../actions";
 import Header from "../header/index";
+import { Loading } from "../../decolation/FormItem";
 
 const Shop = () => {
   const dispacth = useDispatch();
@@ -41,8 +42,7 @@ const Shop = () => {
                   <Div>
                     <Img src={item.imgSrc} alt={item.itemName} />
                     <StyledNavLink exact to={`/shop/${item._id}`}>
-
-                        <Btn>Click me</Btn>
+                      <Btn>Click me</Btn>
                       {/* <CircleAnimation/> */}
                     </StyledNavLink>
                   </Div>
@@ -51,7 +51,9 @@ const Shop = () => {
               );
             })
           ) : (
-            <div>Loading...</div>
+            <Loading>
+              <div>Loading...</div>
+            </Loading>
           )}
         </Wrapper>
       </Container>
@@ -110,7 +112,7 @@ const Btn = styled.button`
   background: none;
   animation: 1s ease-in-out;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
   }
 `;

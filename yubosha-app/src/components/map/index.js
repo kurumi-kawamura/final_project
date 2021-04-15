@@ -24,6 +24,8 @@ import MossComponent from "./MossComponent";
 import { AppContext } from "../../context";
 import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
+import { Loading } from "../../decolation/FormItem";
+
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -58,7 +60,7 @@ const Map = () => {
 
           <H1>Moss Map</H1>
           <Container>
-            {Object.keys(currentUser).length !== 0 && <AddNewMoss/>}
+            {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
 
             <Wrapper>
               {info !== null ? (
@@ -111,7 +113,9 @@ const Map = () => {
                   </LayersDirective>
                 </MapsComponent>
               ) : (
-                <div>Loading...</div>
+                <Loading>
+                  <div>Loading...</div>
+                </Loading>
               )}
             </Wrapper>
             {clicked && (
@@ -161,14 +165,8 @@ const Wrapper = styled.div`
 
 const H1 = styled.h1`
   margin-bottom: 20px;
-  margin-top: 50px;
+  margin-top: 70px;
   text-align: center;
-`;
-
-const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const MossWrapper = styled.div``;

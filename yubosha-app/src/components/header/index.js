@@ -48,7 +48,7 @@ const Header = () => {
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  position: absolute;
+  position: fixed;
   right: 2%;
   top: 1%;
 `;

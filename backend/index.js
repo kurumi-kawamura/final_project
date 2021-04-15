@@ -11,6 +11,7 @@ const {
   getAllMossInfo,
   login,
   addNewMoss,
+  updateStock,
 } = require("./handlers");
 
 const PORT = 8000;
@@ -26,5 +27,6 @@ express()
   .post("/users/login", login)
   .get("/users", getUsers)
   .post("/addNewMoss", addNewMoss)
+  .post("/updateStock", updateStock)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

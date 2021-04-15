@@ -138,18 +138,34 @@ const login = async (req, res) => {
 
 const updateStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
-  const { quantity, _id } = req.body;
-  const query = { _id };
-  const newValue = { $set: { stock: stock - quantity } };
+  const { quantity, _id, stock } = req.body;
+  let newArr = [];
+  for (let i = 0; i < _id.length; i++) {
+    for (let j = 0; j < quantity.length; j++) {
+      for (let l = 0; l < stock.length; l++) {
+        if (i === j && i === l) {
+          newArr.push({ _id: _id[i], quantity: quantity[j], stock: stock[l] });
+        }
+      }
+    }
+  }
 
   try {
     await client.connect();
 
     const db = client.db();
-    const result = await db.collection("items").updateOne(query, newValue);
+    let result;
+    for (let k = 0; k < newArr.length; k++) {
+      const newValue = {
+        $set: { stock: newArr[k].stock - newArr[k].quantity },
+      };
+      result = await db
+        .collection("items")
+        .updateOne({ _id: newArr[k]._id }, newValue);
+    }
     assert.equal(1, result.matchedCount);
     assert.equal(1, result.modifiedCount);
-    res.status(200).json({ status: 200, msg: "success" });
+    res.status(200).json({ status: 200, msg: "success", data: result });
   } catch (err) {
     res.status(404).json({ status: 404, msg: err.message });
     console.log(err.stack);
@@ -158,28 +174,6 @@ const updateStock = async (req, res) => {
   client.close();
 };
 
-// const updateInventory = (req, res) => {
-//   const { id, num } = req.body;
-//   let newArr = [];
-//   data.find((item) => {
-//     for (let i = 0; i < id.length; i++) {
-//       if (item._id === Number(id[i])) {
-//         newArr.push(item);
-//       }
-//     }
-//   });
-//   if (newArr.length > 0) {
-//     for (let j = 0; j < newArr.length; j++) {
-//       for (let l = 0; l < num.length; l++) {
-//         if (j === l) {
-//           newArr[j].numInStock = newArr[j].numInStock - num[l];
-//         }
-//       }
-//     }
-
-//     res.status(200).json({ status: 200, success: true });
-//   }
-// };
 
 const getAllMossInfo = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);

@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 `;
 
 const H1 = styled.h1`
-  margin: 10px;
+  margin: 70px;
 `;
 
 export default About;

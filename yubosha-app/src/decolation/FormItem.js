@@ -36,3 +36,9 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -132,7 +132,7 @@ const Map = () => {
                   </MossWrapper>
                 ) : (
                   <Loading>
-                    <div>Loading</div>
+                    <div>Loading...</div>
                   </Loading>
                 )}
               </>
@@ -141,7 +141,7 @@ const Map = () => {
         </>
       ) : (
         <Loading>
-          <div>Loading</div>
+          <div>Loading...</div>
         </Loading>
       )}
     </>

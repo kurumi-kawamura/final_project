@@ -4,6 +4,11 @@ import styled from "styled-components";
 import Header from "../header/index";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import CartItem from "./CartItem";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
+);
 
 const Cart = () => {
   const cart = useSelector((state) => state.item.cart);
@@ -17,14 +22,33 @@ const Cart = () => {
     });
     setTotal(sum);
   }, [cartItem]);
+
+  const createCheckout = async (e) => {
+    const stripe = await stripePromise;
+
+    const response = await fetch("/create-checkout-session", {
+      method: "POST",
+      body: JSON.stringify(),
+    });
+
+    const session = await response.json();
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
   return (
     <>
       <Header />
       <Container>
-          <ItemContainer>
-        {cartItem ? (
-          cartItem.map((item) => {
-            return (
+        <ItemContainer>
+          {cartItem ? (
+            cartItem.map((item) => {
+              return (
                 <CartItem
                   src={item.imgSrc}
                   name={item.ItemName}
@@ -33,16 +57,18 @@ const Cart = () => {
                   item={item}
                   price={item.price}
                 />
-                );
+              );
             })
-            ) : (
-                <div>Loading</div>
-                )}
-                </ItemContainer>
+          ) : (
+            <div>Loading</div>
+          )}
+        </ItemContainer>
         <BtnWrapper>
           <P>Total: {total} yen</P>
           {cartItem.length !== 0 ? (
-            <Btn>Proceed to check out</Btn>
+            <Btn role="link" onClick={createCheckout}>
+              Proceed to check out
+            </Btn>
           ) : (
             <DisabledBtn>Proceed to check out</DisabledBtn>
           )}

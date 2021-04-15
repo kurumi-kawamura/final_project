@@ -36,7 +36,7 @@ const MossComponent = ({ name, location, src, setClicked, submit }) => {
             <P2>Submitted by {submit}</P2>
           </>
         ) : (
-          <div>Loading</div>
+          <div>Loading/...</div>
         )}
       </Container>
     </>

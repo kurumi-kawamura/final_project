@@ -11,23 +11,33 @@ const MossComponent = ({ name, location, src, setClicked, submit }) => {
   return (
     <>
       <Container>
-        <Wrapper>
-          <IconWrapper>
-            <RiCloseCircleLine onClick={close} />
-          </IconWrapper>
-          <Discription>
-            <P>
-              <RiPlantLine />
-              {name}
-            </P>
-            <P>
-              <GoLocation />
-              {location}
-            </P>
-          </Discription>
-          {src ? <Img src={src} alt={name} /> : <div>No picture avilable</div>}
-        </Wrapper>
-        <P2>Submitted by {submit}</P2>
+        {name && location && src && submit ? (
+          <>
+            <Wrapper>
+              <IconWrapper>
+                <RiCloseCircleLine onClick={close} />
+              </IconWrapper>
+              <Discription>
+                <P>
+                  <RiPlantLine />
+                  {name}
+                </P>
+                <P>
+                  <GoLocation />
+                  {location}
+                </P>
+              </Discription>
+              {src ? (
+                <Img src={src} alt={name} />
+              ) : (
+                <div>No picture avilable</div>
+              )}
+            </Wrapper>
+            <P2>Submitted by {submit}</P2>
+          </>
+        ) : (
+          <div>Loading</div>
+        )}
       </Container>
     </>
   );
@@ -74,9 +84,9 @@ const IconWrapper = styled.div`
 `;
 
 const P2 = styled(P)`
-text-align: center;
-color: rgba(54, 54, 54, 0.6);
-margin-top: 20px;
+  text-align: center;
+  color: rgba(54, 54, 54, 0.6);
+  margin-top: 20px;
 `;
 
 export default MossComponent;

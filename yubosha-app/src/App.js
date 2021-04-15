@@ -10,6 +10,7 @@ import ContactUs from "./components/contactUs/index";
 import Shop from "./components/shop/index";
 import Item from "./components/shop/Item";
 import Cart from "./components/shop/Cart";
+import AddNewMoss from "./components/map/AddNewMoss";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/map">
           <Map />
+        </Route>
+        <Route exact path="/add">
+          <AddNewMoss />
         </Route>
         <Route exact path="/signIn">
           <SignIn />

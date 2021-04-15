@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { addNewMossInfo } from "../../actions";
 import { AppContext } from "../../context";
@@ -13,8 +14,10 @@ const AddNewMoss = () => {
   const [location, setLocation] = useState(null);
   const [url, setUrl] = useState(null);
   const [upload, setUpload] = useState("idle");
+  const history = useHistory();
 
-  const postDetails = () => {
+  const postDetails = (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("file", pic);
     data.append("upload_preset", "Yubosha");
@@ -34,9 +37,8 @@ const AddNewMoss = () => {
       });
   };
 
-  console.log(currentUser.userName);
-
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault();
     fetch("/addNewMoss", {
       method: "POST",
       body: JSON.stringify({
@@ -52,16 +54,24 @@ const AddNewMoss = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const { status } = json;
         if (status === 200) {
           dispatch(addNewMossInfo(json.data));
           setUpload("success");
+          history.push("/map");
         } else {
           setUpload("error");
         }
       });
   };
+
+  const clear = () => {
+    setUpload("idle");
+    setPic(null);
+    setLocation(null);
+    setMossName(null);
+  };
+
   return (
     <>
       <Wrapper>
@@ -69,21 +79,26 @@ const AddNewMoss = () => {
         <Input
           placeholder="name"
           onChange={(e) => setMossName(e.target.value)}
+          required
         />
         <Input
           placeholder="location"
           onChange={(e) => setLocation(e.target.value)}
+          required
         />
         <UploadWrapper>
           <P>Upload image</P>
           <ChooseFile type="file" onChange={(e) => setPic(e.target.files[0])} />
-          <Button onClick={() => postDetails()}>Confirm</Button>
+          <Button onClick={(e) => postDetails(e)}>Confirm</Button>
           {upload === "uploaded" && <div>Successfully uploaded!</div>}
           {upload === "notUploaded" && (
             <div>Something went wrong! Please try again.</div>
           )}
         </UploadWrapper>
-        <Btn onClick={submit}>Submit</Btn>
+        <Btn onClick={(e) => submit(e)}>Submit</Btn>
+        <Btn type="reset" onClick={clear}>
+          Clear
+        </Btn>
         {upload === "success" && <div>Success!</div>}
         {upload === "error" && (
           <div>Something went wrong! Please try again.</div>
@@ -98,7 +113,7 @@ const H2 = styled.h2`
   margin-bottom: 5px;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 300px;

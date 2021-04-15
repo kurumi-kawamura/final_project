@@ -1,4 +1,4 @@
-import Reat from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const CircleAnimation = () => {
@@ -23,7 +23,7 @@ const ping = keyframes`
 `;
 
 
-export const AnimationDiv = styled.div`
+const AnimationDiv = styled.div`
 border: white 1px solid;
   border-radius: 50%;
   cursor: pointer;

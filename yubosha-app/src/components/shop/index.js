@@ -8,7 +8,6 @@ import {
   requestItemsData,
 } from "../../actions";
 import Header from "../header/index";
-import CircleAnimation from "../../decolation/CircleAnimation";
 
 const Shop = () => {
   const dispacth = useDispatch();
@@ -79,6 +78,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  width: 800px;
 `;
 
 const Div = styled.div`
@@ -89,8 +89,8 @@ const Div = styled.div`
 `;
 
 const Img = styled.img`
-  width: 450px;
-  height: 450px;
+  width: 300px;
+  height: 300px;
   margin: 60px 30px 30px 20px;
 `;
 
@@ -101,12 +101,12 @@ const ItemName = styled.div`
 const Btn = styled.button`
   border: 2px solid white;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   color: white;
   cursor: pointer;
   position: absolute;
-  font-size: 20px;
+  font-size: 15px;
   background: none;
   animation: 1s ease-in-out;
 

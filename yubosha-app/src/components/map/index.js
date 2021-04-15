@@ -21,9 +21,9 @@ import {
   receiveMapInfo,
 } from "../../actions";
 import MossComponent from "./MossComponent";
-import AddNewMoss from "./AddNewMoss";
 import { AppContext } from "../../context";
 import { style } from "./template";
+import AddNewMoss from "./AddNewMoss";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -34,12 +34,12 @@ const Map = () => {
 
   useEffect(() => {
     dispatch(requestMapInfo());
-      fetch("/moss")
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch(receiveMapInfo(data.data));
-        })
-        .catch((err) => dispatch(receiveMapInfoError()));
+    fetch("/moss")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(receiveMapInfo(data.data));
+      })
+      .catch((err) => dispatch(receiveMapInfoError()));
   }, [dispatch]);
 
   const markerClick = (e) => {
@@ -58,7 +58,7 @@ const Map = () => {
 
           <H1>Moss Map</H1>
           <Container>
-            {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
+            {Object.keys(currentUser).length !== 0 && <AddNewMoss/>}
 
             <Wrapper>
               {info !== null ? (
@@ -72,22 +72,18 @@ const Map = () => {
                   <Inject services={[Marker, MapsTooltip, Zoom]} />
                   <LayersDirective>
                     <LayerDirective
-                      // layerType="Bing"
-                      // bingMapType="AerialWithLabel"
-                      // key="ArmPMVT_1cbRuMir9c5AUSYLs7AJ3Tv9bCvriTME7zEi6fZwMDtbzi39kW9tVUBs"
                       shapeData={japan_map}
                       shapeSettings={{ fill: "#4c7d62" }}
                     >
                       {info && (
                         <MarkersDirective>
                           {info.map((i) => {
-                            
                             return (
                               <MarkerDirective
                                 key={i._id}
                                 visible={true}
                                 shape="Image"
-                                imageUrl="assets/icons8-map-pin-64.png"
+                                imageUrl="assets/icons8-map-pin-40.png"
                                 tooltipSettings={{
                                   visible: true,
                                   valuePath: "name",
@@ -103,7 +99,7 @@ const Map = () => {
                                     location: `${i.location}`,
                                     name: `${i.name}`,
                                     src: `${i.imgSrc}`,
-                                    submit: `${i.submittedBy}`
+                                    submit: `${i.submittedBy}`,
                                   },
                                 ]}
                               ></MarkerDirective>
@@ -131,14 +127,18 @@ const Map = () => {
                     />
                   </MossWrapper>
                 ) : (
-                  <div>Loading</div>
+                  <Loading>
+                    <div>Loading</div>
+                  </Loading>
                 )}
               </>
             )}
           </Container>
         </>
       ) : (
-        <div>Loading</div>
+        <Loading>
+          <div>Loading</div>
+        </Loading>
       )}
     </>
   );
@@ -163,6 +163,12 @@ const H1 = styled.h1`
   margin-bottom: 20px;
   margin-top: 50px;
   text-align: center;
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MossWrapper = styled.div``;

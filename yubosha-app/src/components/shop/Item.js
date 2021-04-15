@@ -58,7 +58,9 @@ const Item = () => {
           </DeatilWrapper>
         </Wrapper>
       ) : (
-        <div>Loading...</div>
+        <Loading>
+          <div>Loading...</div>
+        </Loading>
       )}
     </>
   );
@@ -99,8 +101,14 @@ const P = styled.p`
 `;
 
 const Price = styled.p`
-margin-bottom: 20px;
-font-size: 14px;
+  margin-bottom: 20px;
+  font-size: 14px;
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Item;

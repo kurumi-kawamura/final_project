@@ -80,6 +80,9 @@ const ContactUs = () => {
         </FormWrapper>
         <BtnWrapper>
           <Btn onClick={(e) => submit(e)}>Submit</Btn>
+          <Btn type="reset" onClick={resetForm}>
+            Clear
+          </Btn>
         </BtnWrapper>
       </Wrapper>
     </>

@@ -57,6 +57,7 @@ const AddNewMoss = () => {
         const { status } = json;
         if (status === 200) {
           dispatch(addNewMossInfo(json.data));
+          alert("Successfully added!")
           setUpload("success");
           clear();
 

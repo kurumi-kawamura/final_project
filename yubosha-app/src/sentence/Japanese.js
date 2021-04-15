@@ -11,5 +11,6 @@ export const JPsignIn = {
 
 export const JPContactUs = {
     email: "メールアドレス:",
-    askus: "ご質問内容:"
+    askus: "ご質問内容:",
+    name: "お名前:"
 }

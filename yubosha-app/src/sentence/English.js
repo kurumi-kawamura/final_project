@@ -11,5 +11,6 @@ export const ENsignIn = {
 
 export const ENContactUs = {
     email: "email address:",
-    askus: "Ask us anything!"
+    askus: "Ask us anything!",
+    name: "name:"
 }

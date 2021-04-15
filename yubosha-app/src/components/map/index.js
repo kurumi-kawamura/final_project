@@ -26,7 +26,6 @@ import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
 
-
 const Map = () => {
   const dispatch = useDispatch();
   const { currentUser } = useContext(AppContext);
@@ -42,6 +41,7 @@ const Map = () => {
         dispatch(receiveMapInfo(data.data));
       })
       .catch((err) => dispatch(receiveMapInfoError()));
+    
   }, [dispatch]);
 
   const markerClick = (e) => {

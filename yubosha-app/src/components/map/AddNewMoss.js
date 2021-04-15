@@ -58,8 +58,8 @@ const AddNewMoss = () => {
         if (status === 200) {
           dispatch(addNewMossInfo(json.data));
           setUpload("success");
+          clear();
 
-          history.push("/map");
         } else {
           setUpload("error");
         }

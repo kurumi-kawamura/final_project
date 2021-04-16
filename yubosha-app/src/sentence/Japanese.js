@@ -3,7 +3,12 @@ export const JPabout = {
 }
 
 export const JPheader = {
-    header: "こんにちは"
+    header: "こんにちは",
+        home: "ホーム",
+        about: "アバウト",
+        map: "マップ",
+        shop: "ストア",
+    
 }
 
 export const JPsignIn = {
@@ -41,12 +46,16 @@ export const JPEachItem = {
     detail: "説明...",
     price: "円",
     soldout: "在庫切れ",
-    addCart: "カートに追加する"
+    addCart: "カートに追加"
 
 }
 
 export const JPCart  = {
     price: "円",
-    proceed: "チェックアウトに進む",
+    proceed: "チェックアウト",
     empty: "カートは空です。"
+}
+
+export const JPFooter = {
+    contactUs : "お問い合わせ",
 }

@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "../../context";
+import { ENFooter } from "../../sentence/English";
+import { JPFooter } from "../../sentence/Japanese";
 
 const Footer = () => {
+  const { lang } = useContext(AppContext);
   return (
     <>
-      <StyledNavLink exact to="/contactUs">
-        Contact us
-      </StyledNavLink>
+      {lang ? (
+        <StyledNavLink exact to="/contactUs">
+          {ENFooter.contactUs}
+        </StyledNavLink>
+      ) : (
+        <StyledNavLink exact to="/contactUs">
+          {JPFooter.contactUs}
+        </StyledNavLink>
+      )}
+
       <a
         href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"
         target="_blank"

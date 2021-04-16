@@ -5,6 +5,9 @@ import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
 import { ENContactUs, ENBtn } from "../../sentence/English";
 import { JPContactUs, JPBtn } from "../../sentence/Japanese";
+import { AiOutlineYoutube } from "react-icons/ai";
+import { BsCloud } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 const ContactUs = () => {
   const { lang } = useContext(AppContext);
@@ -57,75 +60,109 @@ const ContactUs = () => {
   return (
     <>
       <Header />
-      <Wrapper>
-        <H1>Contact us</H1>
-        <FormWrapper>
-          {lang ? (
-            <>
-              <Input
-                placeholder={ENContactUs.name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Input
-                placeholder={ENContactUs.email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {!emailValid && <P>{ENContactUs.emailValid}</P>}
-              <TextArea
-                placeholder={ENContactUs.askus}
-                onChange={(e) => setBody(e.target.value)}
-              />
-            </>
-          ) : (
-            <>
-              <Input
-                placeholder={JPContactUs.name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Input
-                placeholder={JPContactUs.email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {!emailValid && <P>{JPContactUs.emailValid}</P>}
-              <TextArea
-                placeholder={JPContactUs.askus}
-                onChange={(e) => setBody(e.target.value)}
-              />
-            </>
-          )}
-        </FormWrapper>
-        <BtnWrapper>
-          {lang ? (
-            <>
-              {name && emailValidation(email) && body ? (
-                <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
-              ) : (
-                <DisabledBtn>{ENBtn.submit}</DisabledBtn>
-              )}
-              <Btn type="reset" onClick={resetForm}>
-                {ENBtn.clear}
-              </Btn>
-            </>
-          ) : (
-            <>
-              {name && emailValidation(email) && body ? (
-                <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
-              ) : (
-                <DisabledBtn>{JPBtn.submit}</DisabledBtn>
-              )}
-              <Btn type="reset" onClick={resetForm}>
-                {JPBtn.clear}
-              </Btn>
-            </>
-          )}
-        </BtnWrapper>
-      </Wrapper>
+      <H1>Contact us</H1>
+      <Container>
+        <Wrapper>
+          <FormWrapper>
+            {lang ? (
+              <>
+                <Input
+                  placeholder={ENContactUs.name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Input
+                  placeholder={ENContactUs.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {!emailValid && <P>{ENContactUs.emailValid}</P>}
+                <TextArea
+                  placeholder={ENContactUs.askus}
+                  onChange={(e) => setBody(e.target.value)}
+                />
+              </>
+            ) : (
+              <>
+                <Input
+                  placeholder={JPContactUs.name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Input
+                  placeholder={JPContactUs.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {!emailValid && <P>{JPContactUs.emailValid}</P>}
+                <TextArea
+                  placeholder={JPContactUs.askus}
+                  onChange={(e) => setBody(e.target.value)}
+                />
+              </>
+            )}
+          </FormWrapper>
+          <BtnWrapper>
+            {lang ? (
+              <>
+                {name && emailValidation(email) && body ? (
+                  <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+                ) : (
+                  <DisabledBtn>{ENBtn.submit}</DisabledBtn>
+                )}
+                <Btn type="reset" onClick={resetForm}>
+                  {ENBtn.clear}
+                </Btn>
+              </>
+            ) : (
+              <>
+                {name && emailValidation(email) && body ? (
+                  <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+                ) : (
+                  <DisabledBtn>{JPBtn.submit}</DisabledBtn>
+                )}
+                <Btn type="reset" onClick={resetForm}>
+                  {JPBtn.clear}
+                </Btn>
+              </>
+            )}
+          </BtnWrapper>
+        </Wrapper>
+        <IconWrapper>
+          <a
+            href="https://camp-fire.jp/projects/view/404287"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <BsCloud
+              style={{
+                width: "50px",
+                height: "50px",
+                fill: "var(--soft-gray)",
+                marginRight: "20px",
+              }}
+            />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"
+            target="_black"
+            rel="noreferrer"
+          >
+            <AiOutlineYoutube
+              style={{
+                width: "50px",
+                height: "50px",
+                fill: "var(--soft-gray)",
+                marginLeft: "20px"
+              }}
+            />
+          </a>
+        </IconWrapper>
+      </Container>
     </>
   );
 };
 
 const H1 = styled.h1`
-  margin-top: 30px;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
 const Input = styled.input`
@@ -178,11 +215,24 @@ const BtnWrapper = styled.div`
   width: 300px;
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 const P = styled.p`
   font-size: 13px;
   position: relative;
   top: -15px;
   color: rgba(252, 252, 252, 0.6);
+`;
+
+const IconWrapper = styled.div`
+  width: 200px;
+  position: relative;
+  left: 150px;
 `;
 
 export default ContactUs;

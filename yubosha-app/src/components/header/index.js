@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { RiAccountPinCircleLine } from "react-icons/ri";
+import { FiShoppingCart } from "react-icons/fi";
+import { ENheader } from "../../sentence/English";
+import { JPheader } from "../../sentence/Japanese";
 
 const Header = () => {
   const { lang, setLang, currentUser } = useContext(AppContext);
@@ -20,26 +23,73 @@ const Header = () => {
           <P>こんにちは {currentUser.userName}さん!</P>
         ) : null}
         <Btn onClick={change}>EN/JP</Btn>
-        <StyledNavLink exact to="/">
-          Home
-        </StyledNavLink>
-        <StyledNavLink exact to="/about">
-          About
-        </StyledNavLink>
-        <StyledNavLink exact to="/map">
-          Map
-        </StyledNavLink>
-        <StyledNavLink exact to="/shop">
-          Shop
-        </StyledNavLink>
-        <StyledNavLink exact to="/cart">
-          Cart
-        </StyledNavLink>
-        <StyledNavLink exact to="/signIn">
-          <RiAccountPinCircleLine
-            style={{ fill: "var(--soft-gray)", width: "25px", height: "25px" }}
-          />
-        </StyledNavLink>
+        {lang ? (
+          <>
+            <StyledNavLink exact to="/">
+              {ENheader.home}
+            </StyledNavLink>
+            <StyledNavLink exact to="/about">
+              {ENheader.about}
+            </StyledNavLink>
+            <StyledNavLink exact to="/map">
+              {ENheader.map}
+            </StyledNavLink>
+            <StyledNavLink exact to="/shop">
+              {ENheader.shop}
+            </StyledNavLink>
+            <StyledNavLink exact to="/cart">
+              <FiShoppingCart
+                style={{
+                  color: "var(--soft-gray)",
+                  width: "25px",
+                  height: "25px",
+                }}
+              />
+            </StyledNavLink>
+            <StyledNavLink exact to="/signIn">
+              <RiAccountPinCircleLine
+                style={{
+                  fill: "var(--soft-gray)",
+                  width: "25px",
+                  height: "25px",
+                }}
+              />
+            </StyledNavLink>
+          </>
+        ) : (
+          <>
+            <StyledNavLink exact to="/">
+              {JPheader.home}
+            </StyledNavLink>
+            <StyledNavLink exact to="/about">
+              {JPheader.about}
+            </StyledNavLink>
+            <StyledNavLink exact to="/map">
+              {JPheader.map}
+            </StyledNavLink>
+            <StyledNavLink exact to="/shop">
+              {JPheader.shop}
+            </StyledNavLink>
+            <StyledNavLink exact to="/cart">
+              <FiShoppingCart
+                style={{
+                  color: "var(--soft-gray)",
+                  width: "25px",
+                  height: "25px",
+                }}
+              />
+            </StyledNavLink>
+            <StyledNavLink exact to="/signIn">
+              <RiAccountPinCircleLine
+                style={{
+                  fill: "var(--soft-gray)",
+                  width: "25px",
+                  height: "25px",
+                }}
+              />
+            </StyledNavLink>
+          </>
+        )}
       </NavWrapper>
     </>
   );

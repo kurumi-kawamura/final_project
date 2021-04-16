@@ -8,7 +8,7 @@ export const Btn = styled.button`
   cursor: pointer;
   padding: 10px 10px;
   font-weight: 500;
-  width: 100px;
+  width: 120px;
   height: 40px;
 
   &:hover {

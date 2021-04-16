@@ -137,7 +137,7 @@ const LogoutBtn = styled.button`
   background-color: var(--soft-gray);
   color: white;
   border: none;
-  width: 100px;
+  width: 120px;
   height: 40px;
   cursor: pointer;
   font-weight: 500;

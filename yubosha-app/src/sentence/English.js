@@ -3,7 +3,11 @@ export const ENabout = {
 }
 
 export const ENheader = {
-    header: "Hello"
+    header: "Hello",
+    home: "Home",
+    about: "About",
+    map: "Map",
+    shop: "shop",
 }
 
 export const ENsignIn = {
@@ -48,6 +52,10 @@ export const ENEachItem = {
 
 export const ENCart  = {
     price: "yen",
-    proceed: "Proceed to checkout",
+    proceed: "Checkout",
     empty: "Your cart is currently empty."
+}
+
+export const ENFooter = {
+    contactUs : "Contact us",
 }

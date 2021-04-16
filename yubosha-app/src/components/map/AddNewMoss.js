@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import styled from "styled-components";
 import { addNewMossInfo } from "../../actions";
 import { AppContext } from "../../context";
@@ -14,7 +13,6 @@ const AddNewMoss = () => {
   const [location, setLocation] = useState(null);
   const [url, setUrl] = useState(null);
   const [upload, setUpload] = useState("idle");
-  const history = useHistory();
 
   const postDetails = (e) => {
     e.preventDefault();

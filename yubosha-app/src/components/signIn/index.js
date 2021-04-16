@@ -3,14 +3,14 @@ import Header from "../header/index";
 import styled from "styled-components";
 import {
   Btn,
-  FormWrapper,
   Wrapper,
   DisabledBtn,
+  FormWrapper,
 } from "../../decolation/FormItem";
 import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
-import { ENsignIn } from "../../sentence/English";
-import { JPsignIn } from "../../sentence/Japanese";
+import { ENsignIn, ENBtn } from "../../sentence/English";
+import { JPsignIn, JPBtn } from "../../sentence/Japanese";
 import { useDispatch } from "react-redux";
 import { requestUserInfo } from "../../actions";
 
@@ -55,36 +55,68 @@ const SignIn = () => {
   return (
     <>
       <Header />
-      <Wrapper>
-        <FormWrapper></FormWrapper>
-        {lang ? <H1>{ENsignIn.signIn}</H1> : <H1>{JPsignIn.signIn}</H1>}
-        <Input
-          placeholder="username:"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input2
-          placeholder="password:"
-          onChange={(e) => setPass(e.target.value)}
-        />
-        <BtnWrapper>
-          {name && pass ? (
-            <Btn onClick={signIn}>Sign in</Btn>
-          ) : (
-            <DisabledBtn>Sign in</DisabledBtn>
-          )}
 
-          <LogoutBtn onClick={logout}>Log out</LogoutBtn>
-        </BtnWrapper>
-        {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
-        <LinkWrapper>
-          <Link to="/CreateAcc">
-            here
-          </Link>
-        </LinkWrapper>
-      </Wrapper>
-      {success === "success" && <Div>Success!</Div>}
-      {success === "error" && (
-        <Div>Username or password does not match! Please try again.</Div>
+      {lang ? (
+        <>
+          <Wrapper>
+            <FormWrapper></FormWrapper>
+            <H1>{ENsignIn.signIn}</H1>
+            <Input
+              placeholder="username:"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input2
+              placeholder="password:"
+              onChange={(e) => setPass(e.target.value)}
+            />
+
+            <BtnWrapper>
+              {name && pass ? (
+                <Btn onClick={signIn}>{ENBtn.signIn}</Btn>
+              ) : (
+                <DisabledBtn>{ENBtn.signIn}</DisabledBtn>
+              )}
+
+              <LogoutBtn onClick={logout}>{ENBtn.logOut}</LogoutBtn>
+            </BtnWrapper>
+            <P>{ENsignIn.noAcc}</P>
+            <LinkWrapper>
+              <Link to="/CreateAcc">here</Link>
+            </LinkWrapper>
+          </Wrapper>
+          {success === "success" && <Div>Success!</Div>}
+          {success === "error" && <Div>{ENsignIn.noMatch}</Div>}
+        </>
+      ) : (
+        <>
+          <Wrapper>
+            <FormWrapper></FormWrapper>
+            <H1>{JPsignIn.signIn}</H1>
+            <Input
+              placeholder="username:"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input2
+              placeholder="password:"
+              onChange={(e) => setPass(e.target.value)}
+            />
+            <BtnWrapper>
+              {name && pass ? (
+                <Btn onClick={signIn}>{JPBtn.signIn}</Btn>
+              ) : (
+                <DisabledBtn>{JPBtn.signIn}</DisabledBtn>
+              )}
+
+              <LogoutBtn onClick={logout}>{JPBtn.logOut}</LogoutBtn>
+            </BtnWrapper>
+            <P>{JPsignIn.noAcc}</P>
+            <LinkWrapper>
+              <Link to="/CreateAcc">here</Link>
+            </LinkWrapper>
+          </Wrapper>
+          {success === "success" && <Div>Success!</Div>}
+          {success === "error" && <Div>{JPsignIn.noMatch}</Div>}
+        </>
       )}
     </>
   );
@@ -92,7 +124,7 @@ const SignIn = () => {
 
 const H1 = styled.h1`
   position: absolute;
-  top: 200px;
+  top: 160px;
   color: white;
 `;
 
@@ -102,18 +134,18 @@ const Input = styled.input`
   position: absolute;
   border: none;
   border-radius: 5px;
-  top: 300px;
+  top: 260px;
   padding: 10px;
   box-sizing: border-box;
 `;
 
 const Input2 = styled(Input)`
-  top: 400px;
+  top: 360px;
 `;
 
 const BtnWrapper = styled.div`
   position: absolute;
-  top: 600px;
+  top: 570px;
   color: var(--soft-gray);
   display: flex;
   flex-direction: column;
@@ -121,14 +153,14 @@ const BtnWrapper = styled.div`
 
 const P = styled.p`
   position: absolute;
-  top: 560px;
+  top: 520px;
   font-size: 13px;
   color: var(--soft-black);
 `;
 
 const LinkWrapper = styled.div`
   position: absolute;
-  top: 575px;
+  top: 540px;
   font-size: 10px;
 `;
 

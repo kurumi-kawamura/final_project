@@ -15,7 +15,8 @@ export const JPsignIn = {
     signIn: "サインイン",
     noAcc: "アカウントがありませんか？　以下のリンクから作成してください。",
     createAcc: "ユーザー名を記入してください:",
-    createPass: "パスワードを記入してください:"
+    createPass: "パスワードを記入してください:",
+    noMatch: "ユーザー名またはパスワードに誤りがあります。再度お試しください。"
 }
 
 export const JPContactUs = {
@@ -28,7 +29,9 @@ export const JPContactUs = {
 export const JPBtn = {
     submit: "送信",
     clear: "クリア",
-    upload: "アップロード"
+    upload: "アップロード",
+    signIn: "サインイン",
+    logOut: "ログアウト"
 }
 
 export const JPAddMoss = {

@@ -46,10 +46,14 @@ const Map = () => {
   }, [dispatch]);
 
   const markerClick = (e) => {
-    let res = e.data;
-    if (res) {
-      setCurrentMoss({ ...res });
-      setClicked(true);
+    if (e) {
+      let res = e.data;
+      if (res) {
+        setCurrentMoss({ ...res });
+        setClicked(true);
+      } else {
+        history.push("/map");
+      }
     } else {
       history.push("/map");
     }

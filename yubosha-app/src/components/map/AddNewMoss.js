@@ -28,8 +28,13 @@ const AddNewMoss = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUrl(data.url);
-        setUpload("uploaded");
+        console.log(data.url);
+        if (data.url) {
+          setUrl(data.url);
+          setUpload("uploaded");
+        } else if (data.url === undefined) {
+          setUpload("pleaseSelect");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -95,20 +100,19 @@ const AddNewMoss = () => {
                 type="file"
                 onChange={(e) => setPic(e.target.files[0])}
               />
-              <Button onClick={(e) => postDetails(e)}>{ENAddMoss.confirmPic}</Button>
-              {upload === "uploaded" && <div>Successfully uploaded!</div>}
-              {upload === "notUploaded" && (
-                <div>Something went wrong! Please try again.</div>
-              )}
+              <Button onClick={(e) => postDetails(e)}>
+                {ENAddMoss.confirmPic}
+              </Button>
+
+              {upload === "uploaded" && <P>{ENAddMoss.uploadSuccess}</P>}
+              {upload === "notUploaded" && <P>{ENAddMoss.Unsuccess}</P>}
+              {upload === "pleaseSelect" && <P>{ENAddMoss.selectFile}</P>}
             </UploadWrapper>
             <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
             <Btn type="reset" onClick={clear}>
               {ENBtn.clear}
             </Btn>
-            {upload === "success" && <div>Success!</div>}
-            {upload === "error" && (
-              <div>Something went wrong! Please try again.</div>
-            )}
+            {upload === "error" && <P>{ENAddMoss.Unsuccess}</P>}
           </>
         ) : (
           <>
@@ -129,20 +133,18 @@ const AddNewMoss = () => {
                 type="file"
                 onChange={(e) => setPic(e.target.files[0])}
               />
-              <Button onClick={(e) => postDetails(e)}>{JPAddMoss.confirmPic}</Button>
-              {upload === "uploaded" && <div>Successfully uploaded!</div>}
-              {upload === "notUploaded" && (
-                <div>Something went wrong! Please try again.</div>
-              )}
+              <Button onClick={(e) => postDetails(e)}>
+                {JPAddMoss.confirmPic}
+              </Button>
+              {upload === "uploaded" && <P>{JPAddMoss.uploadSuccess}</P>}
+              {upload === "notUploaded" && <P>{JPAddMoss.Unsuccess}</P>}
+              {upload === "pleaseSelect" && <P>{JPAddMoss.selectFile}</P>}
             </UploadWrapper>
             <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
             <Btn type="reset" onClick={clear}>
-            {JPBtn.clear}
+              {JPBtn.clear}
             </Btn>
-            {upload === "success" && <div>Success!</div>}
-            {upload === "error" && (
-              <div>Something went wrong! Please try again.</div>
-            )}
+            {upload === "error" && <P>{JPAddMoss.Unsuccess}</P>}
           </>
         )}
       </Wrapper>

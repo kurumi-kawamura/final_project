@@ -33,6 +33,9 @@ export const ENAddMoss = {
     location: "location",
     upload: "Upload image:",
     confirmPic: "Confirm image",
+    uploadSuccess: "Successfully uploaded image.",
+    Unsuccess: "Something went wrong please try again",
+    selectFile: "Please select file."
 }
 
 export const ENEachItem = {

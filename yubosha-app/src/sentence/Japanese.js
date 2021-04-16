@@ -32,6 +32,9 @@ export const JPAddMoss = {
     location: "場所",
     upload: "写真をアップロード:",
     confirmPic: "写真を確定する",
+    uploadSuccess: "写真のアップロードに成功しました。",
+    Unsuccess: "エラーが起こりました。再度お試しください。",
+    selectFile: "アップロードするファイルを指定して下さい。"
 }
 
 export const JPEachItem = {

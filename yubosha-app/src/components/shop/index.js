@@ -43,7 +43,6 @@ const Shop = () => {
                     <Img src={item.imgSrc} alt={item.itemName} />
                     <StyledNavLink exact to={`/shop/${item._id}`}>
                       <Btn>Click me</Btn>
-                      {/* <CircleAnimation/> */}
                     </StyledNavLink>
                   </Div>
                   <ItemName>{item.ItemName}</ItemName>
@@ -67,6 +66,7 @@ const Container = styled.div`
 
   justify-content: center;
   align-items: center;
+  height: 80%;
 `;
 
 const H1 = styled.h1`
@@ -81,6 +81,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   width: 800px;
+  margin-bottom: 50px;
+  
 `;
 
 const Div = styled.div`

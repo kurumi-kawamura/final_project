@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { RiAccountPinCircleLine } from "react-icons/ri";
+import { ENheader } from "../../sentence/English";
+import { JPheader } from "../../sentence/Japanese";
 
 const Header = () => {
   const { lang, setLang, currentUser } = useContext(AppContext);

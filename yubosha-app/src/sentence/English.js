@@ -10,11 +10,27 @@ export const ENsignIn = {
     signIn : "Sign In",
     noAcc: "Do not have an account yet? Click below to create one.",
     createAcc: "Enter new username:",
-    createPass: "Enter new password:"
+    createPass: "Enter new password:",
+    
 }
 
 export const ENContactUs = {
     email: "email address:",
     askus: "Ask us anything!",
-    name: "name:"
+    name: "name:",
+    emailValid: `(Valid email should includes "@" and ".".)`
+}
+
+export const ENBtn = {
+    submit: "Submit",
+    clear: "Clear",
+    upload: "Upload"
+}
+
+export const ENAddMoss = {
+    add: "Add new moss:",
+    name: "name",
+    location: "location",
+    upload: "Upload image:",
+    confirmPic: "Confirm image",
 }

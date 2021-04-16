@@ -1,16 +1,17 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Header from "../header/index";
-import { Btn } from "../../decolation/FormItem";
+import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
-import { ENContactUs } from "../../sentence/English";
-import { JPContactUs } from "../../sentence/Japanese";
+import { ENContactUs, ENBtn } from "../../sentence/English";
+import { JPContactUs, JPBtn } from "../../sentence/Japanese";
 
 const ContactUs = () => {
   const { lang } = useContext(AppContext);
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [body, setBody] = useState(null);
+  const [emailValid, setEmailValid] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
@@ -39,6 +40,19 @@ const ContactUs = () => {
     setName(null);
     setEmail(null);
     setBody(null);
+    setEmailValid(false);
+  };
+
+  const emailValidation = (email) => {
+    if (email) {
+      const valid = email.includes("@") && email.includes(".");
+      if (valid) {
+        setEmailValid(true);
+        return true;
+      } else {
+        return false;
+      }
+    }
   };
   return (
     <>
@@ -56,6 +70,7 @@ const ContactUs = () => {
                 placeholder={ENContactUs.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {!emailValid && <P>{ENContactUs.emailValid}</P>}
               <TextArea
                 placeholder={ENContactUs.askus}
                 onChange={(e) => setBody(e.target.value)}
@@ -71,6 +86,7 @@ const ContactUs = () => {
                 placeholder={JPContactUs.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {!emailValid && <P>{JPContactUs.emailValid}</P>}
               <TextArea
                 placeholder={JPContactUs.askus}
                 onChange={(e) => setBody(e.target.value)}
@@ -79,10 +95,29 @@ const ContactUs = () => {
           )}
         </FormWrapper>
         <BtnWrapper>
-          <Btn onClick={(e) => submit(e)}>Submit</Btn>
-          <Btn type="reset" onClick={resetForm}>
-            Clear
-          </Btn>
+          {lang ? (
+            <>
+              {name && emailValidation(email) && body ? (
+                <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+              ) : (
+                <DisabledBtn>{ENBtn.submit}</DisabledBtn>
+              )}
+              <Btn type="reset" onClick={resetForm}>
+                {ENBtn.clear}
+              </Btn>
+            </>
+          ) : (
+            <>
+              {name && emailValidation(email) && body ? (
+                <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+              ) : (
+                <DisabledBtn>{JPBtn.submit}</DisabledBtn>
+              )}
+              <Btn type="reset" onClick={resetForm}>
+                {JPBtn.clear}
+              </Btn>
+            </>
+          )}
         </BtnWrapper>
       </Wrapper>
     </>
@@ -137,6 +172,13 @@ const FormWrapper = styled.div`
 
 const BtnWrapper = styled.div`
   margin-top: 20px;
+`;
+
+const P = styled.p`
+  font-size: 13px;
+  position: relative;
+  top: -15px;
+  color: rgba(252, 252, 252, 0.6);
 `;
 
 export default ContactUs;

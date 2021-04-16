@@ -44,6 +44,8 @@ const SignIn = () => {
           setCurrentUser(json.data);
           localStorage.setItem("currentUser", JSON.stringify(json.data));
           setSuccess("success");
+          setName(null);
+          setPass(null);
           history.push("/");
         } else {
           setSuccess("error");

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
@@ -10,10 +10,14 @@ import {
 } from "../../actions";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import Header from "../header/index";
+import { ENEachItem } from "../../sentence/English";
+import { JPEachItem } from "../../sentence/Japanese";
+import { AppContext } from "../../context";
 
 const Item = () => {
   const dispacth = useDispatch();
   const item = useSelector((state) => state.item.item);
+  const { lang } = useContext(AppContext);
 
   const { _id } = useParams();
 
@@ -30,39 +34,73 @@ const Item = () => {
           dispacth(receiveItemsDataError());
         }
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
   return (
     <>
       <Header />
-      {item ? (
-        <Wrapper>
-          <Img src={item.imgSrc} alt={item.ItemName} />
-          <DeatilWrapper>
-            <ItemName>{item.ItemName}</ItemName>
-            <Detail>detail....</Detail>
-            <Price>{item.price} yen</Price>
-            {item.stock > 0 ? (
-              <Btn
-                onClick={() => {
-                  dispacth(addItemInCart(item));
-                }}
-              >
-                Add to cart
-              </Btn>
-            ) : (
-              <>
-                <DisabledBtn disabled={true}>Add to cart</DisabledBtn>
-                <P>Currently sold out.</P>
-              </>
-            )}
-          </DeatilWrapper>
-        </Wrapper>
-      ) : (
-        <Loading>
-          <div>Loading...</div>
-        </Loading>
-      )}
+      <Wrapper>
+        {item ? (
+          <>
+            <Img src={item.imgSrc} alt={item.ItemName} />
+            <DeatilWrapper>
+              {lang ? (
+                <>
+                  <ItemName>{item.ItemName}</ItemName>
+                  <Detail>{ENEachItem.detail}</Detail>
+                  <Price>
+                    {item.price} {ENEachItem.price}
+                  </Price>
+                  {item.stock > 0 ? (
+                    <Btn
+                      onClick={() => {
+                        dispacth(addItemInCart(item));
+                      }}
+                    >
+                      {ENEachItem.addCart}
+                    </Btn>
+                  ) : (
+                    <>
+                      <DisabledBtn disabled={true}>
+                        {ENEachItem.addCart}
+                      </DisabledBtn>
+                      <P>{ENEachItem.soldout}</P>
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  <ItemName>{item.ItemName}</ItemName>
+                  <Detail>{JPEachItem.detail}</Detail>
+                  <Price>
+                    {item.price} {JPEachItem.price}
+                  </Price>
+                  {item.stock > 0 ? (
+                    <Btn
+                      onClick={() => {
+                        dispacth(addItemInCart(item));
+                      }}
+                    >
+                      {JPEachItem.addCart}
+                    </Btn>
+                  ) : (
+                    <>
+                      <DisabledBtn disabled={true}>
+                        {JPEachItem.addCart}
+                      </DisabledBtn>
+                      <P>{JPEachItem.soldout}</P>
+                    </>
+                  )}
+                </>
+              )}
+            </DeatilWrapper>
+          </>
+        ) : (
+          <Loading>
+            <div>Loading...</div>
+          </Loading>
+        )}
+      </Wrapper>
     </>
   );
 };

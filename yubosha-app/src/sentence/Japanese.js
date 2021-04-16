@@ -33,3 +33,17 @@ export const JPAddMoss = {
     upload: "写真をアップロード:",
     confirmPic: "写真を確定する",
 }
+
+export const JPEachItem = {
+    detail: "説明...",
+    price: "円",
+    soldout: "在庫切れ",
+    addCart: "カートに追加する"
+
+}
+
+export const JPCart  = {
+    price: "円",
+    proceed: "チェックアウトに進む",
+    empty: "カートは空です。"
+}

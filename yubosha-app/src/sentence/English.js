@@ -34,3 +34,17 @@ export const ENAddMoss = {
     upload: "Upload image:",
     confirmPic: "Confirm image",
 }
+
+export const ENEachItem = {
+    detail: "details...",
+    price: "yen",
+    soldout: "Currently out of stock.",
+    addCart: "Add to cart"
+
+}
+
+export const ENCart  = {
+    price: "yen",
+    proceed: "Proceed to checkout",
+    empty: "Your cart is currently empty."
+}

@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Header from "../header/index";
-import { Btn, DisabledBtn } from "../../decolation/FormItem";
+import { Btn, DisabledBtn, Loading } from "../../decolation/FormItem";
 import CartItem from "./CartItem";
 import { loadStripe } from "@stripe/stripe-js";
 import { AppContext } from "../../context";
+import { ENCart } from "../../sentence/English";
+import { JPCart } from "../../sentence/Japanese";
 
 const stripePromise = loadStripe(
   "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
@@ -17,7 +19,7 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   const [checkout, setCheckout] = useState(null);
 
-  const { setCartIds, setCartQuantitys, setCartStocks } = useContext(
+  const { setCartIds, setCartQuantitys, setCartStocks, lang } = useContext(
     AppContext
   );
 
@@ -52,8 +54,6 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart]);
 
-  console.log(checkout);
-
   const createCheckout = async (e) => {
     const stripe = await stripePromise;
 
@@ -81,6 +81,10 @@ const Cart = () => {
       <Header />
       <Container>
         <ItemContainer>
+          <Empty>
+            {lang && cartItem.length === 0 && <p>{ENCart.empty}</p>}
+            {!lang && cartItem.length === 0 && <p>{JPCart.empty}</p>}
+          </Empty>
           {cartItem ? (
             cartItem.map((item) => {
               return (
@@ -95,17 +99,38 @@ const Cart = () => {
               );
             })
           ) : (
-            <div>Loading</div>
+            <Loading>
+              <div>Loading...</div>
+            </Loading>
           )}
         </ItemContainer>
         <BtnWrapper>
-          <P>Total: {total} yen</P>
-          {cartItem.length !== 0 ? (
-            <Btn role="link" onClick={createCheckout}>
-              Proceed to check out
-            </Btn>
+          {lang ? (
+            <>
+              <P>
+                Total: {total} {ENCart.price}
+              </P>
+              {cartItem.length !== 0 ? (
+                <Btn role="link" onClick={createCheckout}>
+                  {ENCart.proceed}
+                </Btn>
+              ) : (
+                <DisabledBtn>{ENCart.proceed}</DisabledBtn>
+              )}
+            </>
           ) : (
-            <DisabledBtn>Proceed to check out</DisabledBtn>
+            <>
+              <P>
+                Total: {total} {JPCart.price}
+              </P>
+              {cartItem.length !== 0 ? (
+                <Btn role="link" onClick={createCheckout}>
+                  {JPCart.proceed}
+                </Btn>
+              ) : (
+                <DisabledBtn>{JPCart.proceed}</DisabledBtn>
+              )}
+            </>
           )}
         </BtnWrapper>
       </Container>
@@ -137,4 +162,10 @@ const P = styled.p`
   margin-bottom: 10px;
 `;
 
+const Empty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 export default Cart;

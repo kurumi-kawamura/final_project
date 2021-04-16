@@ -16,6 +16,7 @@ const About = () => {
         {lang ? <p>{ENabout.about}</p> : <p>{JPabout.about}</p>}
       </Wrapper>
 
+
     </>
   );
 };

@@ -10,7 +10,6 @@ import ContactUs from "./components/contactUs/index";
 import Shop from "./components/shop/index";
 import Item from "./components/shop/Item";
 import Cart from "./components/shop/Cart";
-import CheckOut from "./components/shop/CheckOut";
 import Sucess from "./components/shop/Sucess";
 import Cancel from "./components/shop/Cancel";
 
@@ -48,9 +47,6 @@ function App() {
         </Route>
         <Route exact path="/cancel">
           <Cancel />
-        </Route>
-        <Route exact path="/checkout">
-          <CheckOut />
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />

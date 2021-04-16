@@ -25,6 +25,7 @@ import { AppContext } from "../../context";
 import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
+import { useHistory } from "react-router";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Map = () => {
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(requestMapInfo());
@@ -41,7 +43,6 @@ const Map = () => {
         dispatch(receiveMapInfo(data.data));
       })
       .catch((err) => dispatch(receiveMapInfoError()));
-    
   }, [dispatch]);
 
   const markerClick = (e) => {
@@ -49,6 +50,8 @@ const Map = () => {
     if (res) {
       setCurrentMoss({ ...res });
       setClicked(true);
+    } else {
+      history.push("/map");
     }
   };
 
@@ -169,6 +172,29 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
-const MossWrapper = styled.div``;
+const MossWrapper = styled.div`
+  background-color: var(--soft-gray);
+  height: 400px;
+  width: 400px;
+  border-radius: 5px;
+  overflow-y: scroll;
+
+  /* &::-webkit-scrollbar {
+    width: 10px;
+    border: 0.5px solid white;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: white;
+  } */
+`;
 
 export default Map;

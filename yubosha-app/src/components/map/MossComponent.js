@@ -1,69 +1,86 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { GoLocation } from "react-icons/go";
 import { RiPlantLine, RiCloseCircleLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 const MossComponent = ({ name, location, src, setClicked, submit }) => {
-  console.log(src);
+  const moss = useSelector((state) => state.map.info);
+  console.log(moss);
   const close = () => {
     setClicked(null);
   };
+  const [mossArr, setMossArr] = useState(null);
+
+  let arr = [];
+  useEffect(() => {
+    moss.forEach((m) => {
+      if (m.location === location) {
+        arr.push(m);
+      }
+    });
+    setMossArr(arr);
+  }, [moss, location]);
   return (
     <>
-      <Container>
-        {name && location && src && submit ? (
-          <>
-            <Wrapper>
-              <IconWrapper>
-                <RiCloseCircleLine onClick={close} />
-              </IconWrapper>
-              <Discription>
-                <P>
-                  <RiPlantLine />
-                  {name}
-                </P>
-                <P>
-                  <GoLocation />
-                  {location}
-                </P>
-              </Discription>
-              {src ? (
-                <Img src={src} alt={name} />
-              ) : (
-                <div>No picture avilable</div>
-              )}
-            </Wrapper>
-            <P2>Submitted by {submit}</P2>
-          </>
-        ) : (
-          <div>Loading/...</div>
-        )}
-      </Container>
+        <Wrapper>
+          <IconWrapper>
+            <RiCloseCircleLine onClick={close} />
+          </IconWrapper>
+          {mossArr ? (
+            mossArr.map((moss) => {
+              return (
+                <MossWrapper key={moss._id}>
+                  <Discription>
+                    <P>
+                      <RiPlantLine />
+                      {moss.name}
+                    </P>
+                    <P>
+                      <GoLocation />
+                      {moss.location}
+                    </P>
+                  </Discription>
+                  {moss.imgSrc ? (
+                    <Img src={moss.imgSrc} alt={moss.name} />
+                  ) : (
+                    <div>No picture avilable</div>
+                  )}
+                  <div>
+                    <P2>Submitted by {moss.submittedBy}</P2>
+                  </div>
+                </MossWrapper>
+              );
+            })
+          ) : (
+            <div>Loading/...</div>
+          )}
+        </Wrapper>
     </>
   );
 };
 
-const Container = styled.div`
+
+const MossWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  background: var(--soft-gray);
-  border-radius: 5px;
-  width: 400px;
-  height: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px 0;
 `;
 
 const Discription = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
 `;
 
 const P = styled.p`
@@ -78,6 +95,7 @@ const Img = styled.img`
 
 const IconWrapper = styled.div`
   cursor: pointer;
+  margin-top: 10px;
 
   &:hover {
   }

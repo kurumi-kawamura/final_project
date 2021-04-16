@@ -172,6 +172,10 @@ const FormWrapper = styled.div`
 
 const BtnWrapper = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 300px;
 `;
 
 const P = styled.p`

@@ -51,12 +51,10 @@ const Map = () => {
       if (res) {
         setCurrentMoss({ ...res });
         setClicked(true);
+        return true;
       } else {
-        history.push("/map");
       }
-    } else {
-      history.push("/map");
-    }
+    } 
   };
 
   return (

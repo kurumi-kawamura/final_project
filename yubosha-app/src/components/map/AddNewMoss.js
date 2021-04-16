@@ -108,7 +108,9 @@ const AddNewMoss = () => {
               {upload === "notUploaded" && <P>{ENAddMoss.Unsuccess}</P>}
               {upload === "pleaseSelect" && <P>{ENAddMoss.selectFile}</P>}
             </UploadWrapper>
-            <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+            <BtnWrapper>
+              <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+            </BtnWrapper>
             <Btn type="reset" onClick={clear}>
               {ENBtn.clear}
             </Btn>
@@ -140,7 +142,10 @@ const AddNewMoss = () => {
               {upload === "notUploaded" && <P>{JPAddMoss.Unsuccess}</P>}
               {upload === "pleaseSelect" && <P>{JPAddMoss.selectFile}</P>}
             </UploadWrapper>
-            <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+            <BtnWrapper>
+              <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+            </BtnWrapper>
+
             <Btn type="reset" onClick={clear}>
               {JPBtn.clear}
             </Btn>
@@ -209,6 +214,10 @@ const UploadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+`;
+
+const BtnWrapper = styled.div`
+  margin-bottom: 10px;
 `;
 
 export default AddNewMoss;

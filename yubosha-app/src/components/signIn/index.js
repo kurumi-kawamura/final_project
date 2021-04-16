@@ -77,7 +77,7 @@ const SignIn = () => {
         </BtnWrapper>
         {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
         <LinkWrapper>
-          <Link exact to="/CreateAcc">
+          <Link to="/CreateAcc">
             here
           </Link>
         </LinkWrapper>
@@ -138,7 +138,7 @@ const LogoutBtn = styled.button`
   color: white;
   border: none;
   width: 100px;
-  height: 30px;
+  height: 40px;
   cursor: pointer;
   font-weight: 500;
   margin-top: 20px;

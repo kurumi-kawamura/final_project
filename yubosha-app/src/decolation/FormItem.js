@@ -8,6 +8,8 @@ export const Btn = styled.button`
   cursor: pointer;
   padding: 10px 10px;
   font-weight: 500;
+  width: 100px;
+  height: 40px;
 
   &:hover {
     background-color: rgba(181, 181, 181, 0.7);

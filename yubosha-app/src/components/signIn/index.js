@@ -1,7 +1,12 @@
 import React, { useContext, useState } from "react";
 import Header from "../header/index";
 import styled from "styled-components";
-import { Btn, FormWrapper, Wrapper } from "../../decolation/FormItem";
+import {
+  Btn,
+  FormWrapper,
+  Wrapper,
+  DisabledBtn,
+} from "../../decolation/FormItem";
 import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
 import { ENsignIn } from "../../sentence/English";
@@ -60,7 +65,12 @@ const SignIn = () => {
           onChange={(e) => setPass(e.target.value)}
         />
         <BtnWrapper>
-          <Btn onClick={signIn}>Sign in</Btn>
+          {name && pass ? (
+            <Btn onClick={signIn}>Sign in</Btn>
+          ) : (
+            <DisabledBtn>Sign in</DisabledBtn>
+          )}
+
           <LogoutBtn onClick={logout}>Log out</LogoutBtn>
         </BtnWrapper>
         {lang ? <P>{ENsignIn.noAcc}</P> : <P>{JPsignIn.noAcc}</P>}
@@ -71,7 +81,9 @@ const SignIn = () => {
         </LinkWrapper>
       </Wrapper>
       {success === "success" && <Div>Success!</Div>}
-      {success === "error" && <Div>Not found!</Div>}
+      {success === "error" && (
+        <Div>Username or password does not match! Please try again.</Div>
+      )}
     </>
   );
 };

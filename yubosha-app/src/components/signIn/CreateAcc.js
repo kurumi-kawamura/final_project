@@ -4,13 +4,14 @@ import { ENsignIn } from "../../sentence/English";
 import { JPsignIn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
-import { Btn, Wrapper } from "../../decolation/FormItem";
+import { Btn, Wrapper, DisabledBtn } from "../../decolation/FormItem";
 import { useHistory } from "react-router";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const CreateAcc = () => {
   const { lang } = useContext(AppContext);
-  const [name, setName] = useState(null);
-  const [pass, setPass] = useState(null);
+  const [name, setName] = useState("");
+  const [pass, setPass] = useState("");
   const [sucsess, setSucsess] = useState("idle");
   const history = useHistory();
 
@@ -54,10 +55,20 @@ const CreateAcc = () => {
           {lang ? <P>{ENsignIn.createAcc}</P> : <P>{JPsignIn.createAcc}</P>}
           <Input onChange={(e) => setName(e.target.value)} />
           {lang ? <P>{ENsignIn.createPass}</P> : <P>{JPsignIn.createPass}</P>}
-          <Input onChange={(e) => setPass(e.target.value)} />
+          <Input type="password" onChange={(e) => setPass(e.target.value)} />
+          <Warning>
+            <IconWrapper>
+              <RiErrorWarningLine />
+            </IconWrapper>
+            <p>minimum 6 charactors</p>
+          </Warning>
         </FormWrapper>
         <BtnWrapper>
-          <Btn onClick={submitNewUser}>Confirm</Btn>
+          {name.length > 0 && pass.length > 5 ? (
+            <Btn onClick={submitNewUser}>Confirm</Btn>
+          ) : (
+            <DisabledBtn>Confirm</DisabledBtn>
+          )}
         </BtnWrapper>
       </Wrapper>
       {sucsess === "succsess" && <Div>Success!</Div>}
@@ -86,7 +97,7 @@ const Input = styled.input`
   width: 200px;
   height: 30px;
   border-radius: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 10px;
   box-sizing: border-box;
   padding: 10px;
@@ -113,6 +124,18 @@ const BtnWrapper = styled.div`
 
 const Div = styled.div`
   text-align: center;
+`;
+
+const Warning = styled.div`
+  font-size: 15px;
+  display:flex;
+  flex-direction: row;
+
+`;
+
+const IconWrapper = styled.span`
+  padding-top: 2px;
+  margin-right: 3px;
 `;
 
 export default CreateAcc;

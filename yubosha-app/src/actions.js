@@ -15,6 +15,11 @@ export const addNewMossInfo = (data) => ({
   data,
 });
 
+export const addNewComment = (data) => ({
+  type: "ADD_NEW_COMMENT",
+  data,
+});
+
 export const requestItemsData = () => ({
   type: "REQUEST_ITEMS_DATA",
 });

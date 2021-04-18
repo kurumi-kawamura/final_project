@@ -29,12 +29,31 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "ADD_NEW_MOSS_INFO": {
-      console.log(state);
       const newInfo = [...state.info];
       newInfo.push({ ...action.data });
       return {
         ...state,
         info: newInfo,
+      };
+    }
+
+    case "ADD_NEW_COMMENT": {
+      console.log(state);
+      console.log(action);
+      const find = state.info.find((i) => {
+        return action.data._id === i._id;
+      });
+      const newComment = [...find.comments];
+      newComment.push({ msg: action.data.msg, by: action.data.by });
+      console.log("***********", state.info);
+      return {
+        ...state,
+        info: [
+          ...state.info,
+          {
+            comments: newComment,
+          },
+        ],
       };
     }
 

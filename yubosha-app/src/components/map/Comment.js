@@ -4,12 +4,12 @@ const Comment = ({ show, comments }) => {
   return (
     <>
       {show
-        ? comments.map((c) => {
+        ? comments.map((c, index) => {
             return (
-              <>
-                <div>{c.msg}</div>
+              <div key={index}>
+                <div >{c.msg}</div>
                 <div>by: {c.by}</div>
-              </>
+              </div>
             );
           })
         : null}

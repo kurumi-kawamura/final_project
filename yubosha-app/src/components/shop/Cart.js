@@ -11,7 +11,9 @@ import { JPCart } from "../../sentence/Japanese";
 require("dotenv").config();
 const { TEST_PK_KEY } = process.env;
 
-const stripePromise = loadStripe(TEST_PK_KEY);
+const stripePromise = loadStripe(
+  "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
+);
 
 const Cart = () => {
   const cart = useSelector((state) => state.item.cart);

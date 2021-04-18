@@ -5,6 +5,8 @@ import { RiPlantLine, RiCloseCircleLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { FaRegComment } from "react-icons/fa";
 import Comment from "./Comment";
+import AddComment from "./AddComment";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const MossComponent = ({ location, setClicked }) => {
   const moss = useSelector((state) => state.map.info);
@@ -13,6 +15,7 @@ const MossComponent = ({ location, setClicked }) => {
   };
   const [mossArr, setMossArr] = useState(null);
   const [show, setShow] = useState(false);
+  const [inputShow, setInputShow] = useState(false);
 
   let arr = [];
   useEffect(() => {
@@ -55,6 +58,10 @@ const MossComponent = ({ location, setClicked }) => {
                   <FaRegComment onClick={() => setShow(!show)} />
                 </IconWrapper>
                 <Comment show={show} comments={moss.comments} />
+                <IconWrapper>
+                  <AiOutlinePlus onClick={() => setInputShow(!inputShow)} />
+                </IconWrapper>
+                {inputShow ? <AddComment id={moss._id} /> : null}
               </MossWrapper>
             );
           })

@@ -11,7 +11,6 @@ import Shop from "./components/shop/index";
 import Item from "./components/shop/Item";
 import Cart from "./components/shop/Cart";
 import Sucess from "./components/shop/Sucess";
-import Cancel from "./components/shop/Cancel";
 
 function App() {
   return (
@@ -44,9 +43,6 @@ function App() {
         </Route>
         <Route exact path="/success">
           <Sucess />
-        </Route>
-        <Route exact path="/cancel">
-          <Cancel />
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />

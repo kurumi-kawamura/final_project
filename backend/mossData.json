@@ -1,91 +1,101 @@
 [
-    {
+  {
     "name": "Chochingoke",
     "location": "Katano Osaka",
     "latitude": 34.792144,
-    "longitude" : 135.678333,
-    "imgSrc" : "/assets/chochingoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "longitude": 135.678333,
+    "imgSrc": "/assets/chochingoke.jpg",
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Houougoke",
     "location": "Katano Osaka",
     "latitude": 34.792144,
-    "longitude" : 135.678333,
+    "longitude": 135.678333,
     "imgSrc": "/assets/houougoke2.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Oshiragagoke",
     "location": "Katano Osaka",
     "latitude": 34.792144,
-    "longitude" : 135.678333,
+    "longitude": 135.678333,
     "imgSrc": "/assets/oshiragagoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Tamagoke",
     "location": "Ritto Shiga",
     "latitude": 35.0257669,
-    "longitude" : 135.9836707,
+    "longitude": 135.9836707,
     "imgSrc": "/assets/tamagoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Umasugigoke",
     "location": "Takano Wakayama",
     "latitude": 33.6269566,
-    "longitude" : 135.8240166,
+    "longitude": 135.8240166,
     "imgSrc": "/assets/umasugigoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Hinokigoke",
     "location": "Takano Wakayama",
     "latitude": 33.6269566,
-    "longitude" : 135.8240166,
+    "longitude": 135.8240166,
     "imgSrc": "/assets/hinokigoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Houougoke",
     "location": "Noto Osaka",
     "latitude": 34.5588583,
-    "longitude" : 135.5426461,
+    "longitude": 135.5426461,
     "imgSrc": "/assets/houougoke3.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Tsuyagoke",
     "location": "Noto Osaka",
     "latitude": 34.5588583,
-    "longitude" : 135.5426461,
+    "longitude": 135.5426461,
     "imgSrc": "/assets/tsuyagoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Hudegoke",
     "location": "Noto Osaka",
     "latitude": 34.5588583,
-    "longitude" : 135.5426461,
+    "longitude": 135.5426461,
     "imgSrc": "/assets/fudegoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Shinobugoke",
     "location": "Noto Osaka",
     "latitude": 34.5588583,
-    "longitude" : 135.5426461,
+    "longitude": 135.5426461,
     "imgSrc": "/assets/shinobugoke.jpg",
-    "submittedBy" : "owner"
-},
-{
+    "submittedBy": "owner",
+    "comments": []
+  },
+  {
     "name": "Sunagoke",
     "location": "Noto Osaka",
     "latitude": 34.5588583,
-    "longitude" : 135.5426461,
+    "longitude": 135.5426461,
     "imgSrc": "/assets/sunagoke.jpg",
-    "submittedBy" : "owner"
-}
-
+    "submittedBy": "owner",
+    "comments": []
+  }
 ]

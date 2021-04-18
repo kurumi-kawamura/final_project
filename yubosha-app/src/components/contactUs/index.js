@@ -7,7 +7,6 @@ import { ENContactUs, ENBtn } from "../../sentence/English";
 import { JPContactUs, JPBtn } from "../../sentence/Japanese";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { BsCloud } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
 
 const ContactUs = () => {
   const { lang } = useContext(AppContext);

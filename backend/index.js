@@ -1,12 +1,10 @@
 "use strict";
 
-const stripe = require("stripe")(
-  "sk_test_51IgXFuKRpDc8HQiOpLXOpLzzs2qEQMi79MOdx5i8Pcq1OcfXDePDCcUsSxbvthplObsGJ2jIUiTNkVxJZKsS7M0T00TkJ0aBKB"
-);
 const express = require("express");
 const morgan = require("morgan");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+
 const router = express.Router();
 const bodyParser = require("body-parser");
 const {
@@ -18,10 +16,12 @@ const {
   login,
   addNewMoss,
   updateStock,
+  AddComment,
 } = require("./handlers");
 
 require("dotenv").config();
-const { USER, PASS } = process.env;
+const { USER, PASS, TEST_SK_KEY } = process.env;
+const stripe = require("stripe")(TEST_SK_KEY);
 
 const PORT = 8000;
 
@@ -82,13 +82,14 @@ express()
   .get("/users", getUsers)
   .post("/addNewMoss", addNewMoss)
   .post("/updateStock", updateStock)
+  .post("/addComment", AddComment)
   .post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: req.body,
       mode: "payment",
       success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      cancel_url: "http://localhost:3000/home",
     });
     res.json({ id: session.id });
   })

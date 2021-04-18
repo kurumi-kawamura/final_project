@@ -25,7 +25,7 @@ import { AppContext } from "../../context";
 import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Map = () => {
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     dispatch(requestMapInfo());
@@ -54,7 +54,7 @@ const Map = () => {
         return true;
       } else {
       }
-    } 
+    }
   };
 
   return (
@@ -105,8 +105,6 @@ const Map = () => {
                                     longitude: `${i.longitude}`,
                                     location: `${i.location}`,
                                     name: `${i.name}`,
-                                    src: `${i.imgSrc}`,
-                                    submit: `${i.submittedBy}`,
                                   },
                                 ]}
                               ></MarkerDirective>
@@ -128,11 +126,8 @@ const Map = () => {
                 {currentMoss ? (
                   <MossWrapper>
                     <MossComponent
-                      name={currentMoss.name}
                       location={currentMoss.location}
-                      src={currentMoss.src}
                       setClicked={setClicked}
-                      submit={currentMoss.submit}
                     />
                   </MossWrapper>
                 ) : (

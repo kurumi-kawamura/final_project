@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const assert = require("assert");
 const { changeAddress } = require("./apiHandlers");
 
@@ -57,6 +57,35 @@ const addNewMoss = async (req, res) => {
     console.log(err.stack);
   }
   client.close();
+};
+
+const AddComment = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { msg, by, _id } = req.body;
+  try {
+    await client.connect();
+
+    const db = client.db();
+    const comment = {
+      msg: msg,
+      by: by,
+    };
+
+    const result = await db
+      .collection("moss")
+      .updateOne(
+        { _id: ObjectId(_id) },
+        { $push: { comments: comment } }
+      );
+
+    assert.equal(1, result.matchedCount);
+    assert.equal(1, result.modifiedCount);
+    res.status(200).json({ status: 200, data: comment });
+  } catch (err) {
+    res.status(404).json({ status: 400, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close()
 };
 
 const getAll = async (req, res) => {
@@ -197,4 +226,5 @@ module.exports = {
   getAllMossInfo,
   updateStock,
   addNewMoss,
+  AddComment,
 };

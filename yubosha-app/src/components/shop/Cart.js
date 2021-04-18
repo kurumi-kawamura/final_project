@@ -8,10 +8,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { AppContext } from "../../context";
 import { ENCart } from "../../sentence/English";
 import { JPCart } from "../../sentence/Japanese";
+require("dotenv").config();
+const { TEST_PK_KEY } = process.env;
 
-const stripePromise = loadStripe(
-  "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
-);
+const stripePromise = loadStripe(TEST_PK_KEY);
 
 const Cart = () => {
   const cart = useSelector((state) => state.item.cart);
@@ -76,15 +76,23 @@ const Cart = () => {
       alert(result.error.message);
     }
   };
+
   return (
     <>
       <Header />
       <Container>
         <ItemContainer>
-          <Empty>
-            {lang && cartItem.length === 0 && <p>{ENCart.empty}</p>}
-            {!lang && cartItem.length === 0 && <p>{JPCart.empty}</p>}
-          </Empty>
+          {lang && cartItem.length === 0 && (
+            <Empty>
+              <p>{ENCart.empty}</p>
+            </Empty>
+          )}
+          {!lang && cartItem.length === 0 && (
+            <Empty>
+              <p>{JPCart.empty}</p>
+            </Empty>
+          )}
+
           {cartItem ? (
             cartItem.map((item) => {
               return (

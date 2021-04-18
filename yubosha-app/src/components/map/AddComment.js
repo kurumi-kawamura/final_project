@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewComment } from "../../actions";
 import { AppContext } from "../../context";
+import styled from "styled-components";
 
 const AddComment = ({ id }) => {
   const [body, setBody] = useState(null);
@@ -19,21 +20,48 @@ const AddComment = ({ id }) => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const { status } = json;
         if (status === 200) {
           dispatch(
             addNewComment({ msg: body, by: currentUser.userName, _id: id })
           );
+          setBody(null);
         }
       });
+    document.querySelector(".inputFeild").value = "";
   };
   return (
     <>
-      <input onChange={(e) => setBody(e.target.value)} />
-      <button onClick={submit}>Submit</button>
+      <Wrapper>
+        <Input
+          onChange={(e) => setBody(e.target.value)}
+          className="inputFeild"
+        />
+        <Button onClick={submit}>Post</Button>
+      </Wrapper>
     </>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 5px;
+`;
+
+const Input = styled.input`
+  border-radius: 5px;
+  border: none;
+  width: 150px;
+  margin-right: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+`;
 
 export default AddComment;

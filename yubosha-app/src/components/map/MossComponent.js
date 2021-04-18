@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GoLocation } from "react-icons/go";
 import { RiPlantLine, RiCloseCircleLine } from "react-icons/ri";
@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
 import { AiOutlinePlus } from "react-icons/ai";
+import { AppContext } from "../../context";
 
 const MossComponent = ({ location, setClicked }) => {
   const moss = useSelector((state) => state.map.info);
@@ -16,6 +17,8 @@ const MossComponent = ({ location, setClicked }) => {
   const [mossArr, setMossArr] = useState(null);
   const [show, setShow] = useState(false);
   const [inputShow, setInputShow] = useState(false);
+
+  const { currentUser } = useContext(AppContext);
 
   let arr = [];
   useEffect(() => {
@@ -58,10 +61,14 @@ const MossComponent = ({ location, setClicked }) => {
                   <FaRegComment onClick={() => setShow(!show)} />
                 </IconWrapper>
                 <Comment show={show} comments={moss.comments} />
-                <IconWrapper>
-                  <AiOutlinePlus onClick={() => setInputShow(!inputShow)} />
-                </IconWrapper>
-                {inputShow ? <AddComment id={moss._id} /> : null}
+                {currentUser ? (
+                  <>
+                    <IconWrapper>
+                      <AiOutlinePlus onClick={() => setInputShow(!inputShow)} />
+                    </IconWrapper>
+                    {inputShow ? <AddComment id={moss._id} /> : null}
+                  </>
+                ) : null}
               </MossWrapper>
             );
           })

@@ -26,7 +26,7 @@ import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
 
-// import { useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Map = () => {
   const info = useSelector((state) => state.map.info);
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(requestMapInfo());
@@ -54,6 +54,7 @@ const Map = () => {
         setClicked(true);
         return true;
       } else {
+        history.push("/error")
       }
     }
   };

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AiOutlineYoutube } from "react-icons/ai";
+import { AiOutlineYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
@@ -26,6 +26,15 @@ const Footer = () => {
         rel="noreferrer"
       >
         <AiOutlineYoutube
+          style={{ width: "30px", height: "30px", fill: "var(--soft-gray)", marginRight:"10px" }}
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/yu_bo_sha/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <AiOutlineInstagram
           style={{ width: "30px", height: "30px", fill: "var(--soft-gray)" }}
         />
       </a>

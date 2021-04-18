@@ -5,7 +5,7 @@ import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
 import { ENContactUs, ENBtn } from "../../sentence/English";
 import { JPContactUs, JPBtn } from "../../sentence/Japanese";
-import { AiOutlineYoutube } from "react-icons/ai";
+import { AiOutlineYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { BsCloud } from "react-icons/bs";
 
 const ContactUs = () => {
@@ -123,6 +123,7 @@ const ContactUs = () => {
             )}
           </BtnWrapper>
         </Wrapper>
+         
         <IconWrapper>
           <a
             href="https://camp-fire.jp/projects/view/404287"
@@ -134,13 +135,12 @@ const ContactUs = () => {
                 width: "50px",
                 height: "50px",
                 fill: "var(--soft-gray)",
-                marginRight: "20px",
               }}
             />
           </a>
           <a
             href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"
-            target="_black"
+            target="_blank"
             rel="noreferrer"
           >
             <AiOutlineYoutube
@@ -148,12 +148,24 @@ const ContactUs = () => {
                 width: "50px",
                 height: "50px",
                 fill: "var(--soft-gray)",
-                marginLeft: "20px"
+              }}
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/yu_bo_sha/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <AiOutlineInstagram
+              style={{
+                width: "50px",
+                height: "50px",
+                fill: "var(--soft-gray)",
               }}
             />
           </a>
         </IconWrapper>
-      </Container>
+        </Container>
     </>
   );
 };
@@ -229,9 +241,12 @@ const P = styled.p`
 `;
 
 const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   width: 200px;
-  position: relative;
-  left: 150px;
+  margin-left: 20px;
 `;
 
 export default ContactUs;

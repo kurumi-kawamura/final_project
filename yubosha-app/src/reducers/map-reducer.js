@@ -38,22 +38,15 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "ADD_NEW_COMMENT": {
-      console.log(state);
-      console.log(action);
-      const find = state.info.find((i) => {
-        return action.data._id === i._id;
+      const newInfo = [...state.info];
+      newInfo.map((i) => {
+        if (i._id === action.data._id) {
+          i.comments.push({ msg: action.data.msg, by: action.data.by });
+        }
       });
-      const newComment = [...find.comments];
-      newComment.push({ msg: action.data.msg, by: action.data.by });
-      console.log("***********", state.info);
       return {
         ...state,
-        info: [
-          ...state.info,
-          {
-            comments: newComment,
-          },
-        ],
+        info: newInfo,
       };
     }
 

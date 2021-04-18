@@ -11,6 +11,7 @@ import Shop from "./components/shop/index";
 import Item from "./components/shop/Item";
 import Cart from "./components/shop/Cart";
 import Sucess from "./components/shop/Sucess";
+import ErrorPage from "./Error";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />
+        </Route>
+        <Route exact path="/error">
+          <ErrorPage />
         </Route>
       </Switch>
     </Router>

@@ -10,20 +10,27 @@ const About = () => {
   return (
     <>
       <Header />
-      <H1>About us</H1>
+
+      <Banner>
+        <H1>About us</H1>
+      </Banner>
       <Wrapper>
         {lang ? (
           <ExWrapper>
-            <p>{ENabout.about1}</p>
+            <H2>About Yubosha</H2>
+            <P>{ENabout.about1}</P>
+            <H2>Activity</H2>
+            <P>{ENabout.about2}</P>
             <Img src="./assets/yubosha_activity.jpg" alt="yubosha activity" />
-            <p>{ENabout.about2}</p>
             <Img src="./assets/yubosha_activity_2.jpg" alt="yubosha activity" />
           </ExWrapper>
         ) : (
           <ExWrapper>
-            <p>{JPabout.about1}</p>
+            <H2>About Yubosha</H2>
+            <P>{JPabout.about1}</P>
+            <H2>Activity</H2>
+            <P>{JPabout.about2}</P>
             <Img src="./assets/yubosha_activity.jpg" alt="yubosha activity" />
-            <p>{JPabout.sbout2}</p>
             <Img src="./assets/yubosha_activity_2.jpg" alt="yubosha activity" />
           </ExWrapper>
         )}
@@ -38,6 +45,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Banner = styled.div`
+  background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  color: white;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 `;
 
 const ExWrapper = styled.div`
@@ -58,6 +78,14 @@ const Img = styled.img`
   height: 300px;
   margin: 50px;
   border-radius: 10px;
+`;
+
+const P = styled.p`
+  margin-top: 30px;
+`;
+
+const H2 = styled.h2`
+  margin-top: 30px;
 `;
 
 export default About;

@@ -172,7 +172,7 @@ const H1 = styled.h1`
 `;
 
 const MossWrapper = styled.div`
-  background-color: var(--soft-gray);
+  background-color: rgba(198, 204, 204, 0.5);
   height: 400px;
   width: 400px;
   border-radius: 5px;

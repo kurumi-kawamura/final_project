@@ -56,7 +56,6 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "REMOVE_STOCK": {
-      console.log(action);
       const newItems = [...state.items];
       // eslint-disable-next-line
       newItems.map((item) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -13,6 +13,8 @@ import { Loading } from "../../decolation/FormItem";
 const Shop = () => {
   const dispacth = useDispatch();
   const items = useSelector((state) => state.item.items);
+  const status = useSelector((state) => state.item.status);
+  const [imgStatus, setImgStatus] = useState("loading");
 
   useEffect(() => {
     dispacth(requestItemsData());
@@ -29,6 +31,14 @@ const Shop = () => {
       });
     // eslint-disable-next-line
   }, []);
+
+  console.log(status);
+
+  const handleImgLoad = () => {
+    setImgStatus("loaded");
+  };
+
+  // console.log(imgStatus);
   return (
     <>
       <Header />
@@ -39,13 +49,23 @@ const Shop = () => {
             items.map((item) => {
               return (
                 <div key={item._id}>
-                  <Div>
-                    <Img src={item.imgSrc} alt={item.itemName} />
-                    <StyledNavLink exact to={`/shop/${item._id}`}>
-                      <Btn>Click me</Btn>
-                    </StyledNavLink>
-                  </Div>
-                  <ItemName>{item.ItemName}</ItemName>
+                  {/* {imgStatus === "loaded" ? ( */}
+                    <>
+                      <Div>
+                        <Img
+                          src={item.imgSrc}
+                          alt={item.itemName}
+                          // onLoad={handleImgLoad}
+                        />
+                        <StyledNavLink exact to={`/shop/${item._id}`}>
+                          <Btn>Click me</Btn>
+                        </StyledNavLink>
+                      </Div>
+                      <ItemName>{item.ItemName}</ItemName>
+                    </>
+                  {/* ) : (
+                    <div>Loading</div>
+                  )} */}
                 </div>
               );
             })
@@ -82,7 +102,6 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 800px;
   margin-bottom: 50px;
-  
 `;
 
 const Div = styled.div`

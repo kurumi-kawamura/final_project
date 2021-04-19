@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Comment = ({ show, comments }) => {
   return (
     <>
-      {show
+      {show && comments
         ? comments.map((c, index) => {
             return (
               <>
@@ -29,8 +29,7 @@ const Wrapper = styled.div`
   width: 200px;
 `;
 
-const P = styled.p`
-`;
+const P = styled.p``;
 
 const P2 = styled.p`
   font-size: 14px;

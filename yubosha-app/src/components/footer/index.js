@@ -48,6 +48,10 @@ const StyledNavLink = styled(NavLink)`
   margin-right: 15px;
   position: relative;
   bottom: 10px;
+
+  &:hover{
+    text-decoration: underline;
+  }
 `;
 
 export default Footer;

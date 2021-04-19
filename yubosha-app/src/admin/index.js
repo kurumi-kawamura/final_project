@@ -52,48 +52,52 @@ const Admin = () => {
     <>
       <Header />
       <H1>Admin</H1>
-      {request ? (
-        <>
-          <RequestWrapper>
-            {request.map((req, index) => {
-              return (
-                <div key={req._id}>
-                  <Request
-                    index={index}
-                    name={req.name}
-                    location={req.location}
-                    by={req.submittedBy}
-                    src={req.imgSrc}
-                  />
-                </div>
-              );
-            })}
-          </RequestWrapper>
-        </>
-      ) : (
-        <div>No request.</div>
-      )}
-      {stock ? (
-        <>
-          <StockWrapper>
-            {stock.map((s) => {
-              return (
-                <div key={s._id}>
-                  <UpdateStock
-                  id={s._id}
-                  name={s.ItemName}
-                  src={s.imgSrc}
-                  price={s.price}
-                  inventory={s.stock}
-                  />
-                </div>
-              );
-            })}
-          </StockWrapper>
-        </>
-      ) : (
-        <Loading>Loading...</Loading>
-      )}
+      <Container>
+        {stock ? (
+          <>
+              <H2>Stock</H2>
+            <StockWrapper>
+              {stock.map((s) => {
+                return (
+                  <Div key={s._id}>
+                    <UpdateStock
+                      id={s._id}
+                      name={s.ItemName}
+                      src={s.imgSrc}
+                      price={s.price}
+                      inventory={s.stock}
+                    />
+                  </Div>
+                );
+              })}
+            </StockWrapper>
+          </>
+        ) : (
+          <Loading>Loading...</Loading>
+        )}
+          <H2>Request</H2>
+        <RequestWrapper>
+          {request ? (
+            <>
+              {request.map((req, index) => {
+                return (
+                  <div key={req._id}>
+                    <Request
+                      index={index}
+                      name={req.name}
+                      location={req.location}
+                      by={req.submittedBy}
+                      src={req.imgSrc}
+                    />
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <div>No request.</div>
+          )}
+        </RequestWrapper>
+      </Container>
     </>
   );
 };
@@ -103,6 +107,16 @@ const H1 = styled.h1`
   text-align: center;
 `;
 
+const H2 = styled.h2`
+margin-top: 50px;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const RequestWrapper = styled.div`
   display: flex;
@@ -110,14 +124,27 @@ const RequestWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin: 20px;
+  height: 400px;
 `;
 
 const StockWrapper = styled(RequestWrapper)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  margin: 20px;
+  height: 500px;
+`;
+
+const Div = styled.div`
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  line-height: 30px;
 `;
 
 export default Admin;

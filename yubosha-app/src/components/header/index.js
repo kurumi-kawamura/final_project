@@ -6,9 +6,11 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 import { ENheader } from "../../sentence/English";
 import { JPheader } from "../../sentence/Japanese";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const { lang, setLang, currentUser } = useContext(AppContext);
+  const cart = useSelector((state) => state.item.cart);
 
   const change = () => {
     setLang(!lang);
@@ -43,6 +45,7 @@ const Header = () => {
               {ENheader.shop}
             </StyledNavLink>
             <StyledNavLink exact to="/cart">
+              {Object.values(cart).length > 0 ? <Circle></Circle> : null}
               <FiShoppingCart
                 style={{
                   color: "var(--soft-gray)",
@@ -113,7 +116,6 @@ const StyledNavLink = styled(NavLink)`
   margin-top: 5px;
   text-decoration: none;
   position: relative;
-  /* left: 80%; */
   color: var(--soft-gray);
 
   &:hover {
@@ -125,7 +127,6 @@ const Btn = styled.button`
   background: none;
   border: none;
   position: relative;
-  /* left: 79%; */
   margin-top: 13px;
   font-size: 15px;
   cursor: pointer;
@@ -144,6 +145,16 @@ const P = styled.p`
   position: relative;
   margin-top: 5px;
   padding: 7px 10px;
+`;
+
+const Circle = styled.div`
+  width: 12px;
+  height: 12px;
+  background-color: var(--soft-gray);
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  left: -2px;
 `;
 
 export default Header;

@@ -4,7 +4,7 @@ import { Btn } from "../decolation/FormItem";
 import { useDispatch, useSelector } from "react-redux";
 import { removeStockItem, addStockItem } from "../actions";
 
-const UpdateStock = ({id, name, src, price, inventory}) => {
+const UpdateStock = ({ id, name, src, price, inventory }) => {
   const dispatch = useDispatch();
   const [removeNum, setRemoveNum] = useState(null);
   const [addNum, setAddNum] = useState(null);
@@ -80,23 +80,52 @@ const UpdateStock = ({id, name, src, price, inventory}) => {
       <Img src={src} alt={name} />
       <div>Price: {price}yen</div>
       <div>Stock: {inventory}</div>
-      <div>
-        <input onChange={(e) => setRemoveNum(e.target.value)} />
-        <p>Remove stock for:</p>
-        <Btn onClick={(e) => removeStock(e.target.innerHTML)}>{id}</Btn>
-      </div>
-      <div>
-        <input onChange={(e) => setAddNum(e.target.value)} />
-        <p>Add stock for:</p>
-        <Btn onClick={(e) => addStock(e.target.innerHTML)}>{id}</Btn>
-      </div>
+      <InputWrapper>
+        <Input onChange={(e) => setRemoveNum(e.target.value)} />
+        <Div>
+          <p>Remove stock for:</p>
+          <Btn onClick={(e) => removeStock(e.target.innerHTML)}>{id}</Btn>
+        </Div>
+      </InputWrapper>
+      <InputWrapper>
+        <Input onChange={(e) => setAddNum(e.target.value)} />
+        <Div>
+          <p>Add stock for:</p>
+          <Btn onClick={(e) => addStock(e.target.innerHTML)}>{id}</Btn>
+        </Div>
+      </InputWrapper>
     </>
   );
 };
 
 const Img = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+`;
+
+const Input = styled.input`
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default UpdateStock;

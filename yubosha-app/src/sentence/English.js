@@ -7,7 +7,7 @@ export const ENheader = {
   home: "Home",
   about: "About",
   map: "Map",
-  shop: "shop",
+  shop: "Shop",
 };
 
 export const ENsignIn = {

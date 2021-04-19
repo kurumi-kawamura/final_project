@@ -55,6 +55,35 @@ export default function mapReducer(state = initialState, action) {
       };
     }
 
+    case "REMOVE_STOCK": {
+      console.log(action);
+      const newItems = [...state.items];
+      // eslint-disable-next-line
+      newItems.map((item) => {
+        if (item._id === action.data._id) {
+          item.stock = item.stock - action.data.quantity;
+        }
+      });
+      return {
+        ...state,
+        items: newItems,
+      };
+    }
+
+    case "ADD_STOCK": {
+      const newItems = [...state.items];
+      // eslint-disable-next-line
+      newItems.map((item) => {
+        if (item._id === action.data._id) {
+          item.stock = item.stock + action.data.quantity;
+        }
+      });
+      return {
+        ...state,
+        items: newItems,
+      };
+    }
+
     case "REMOVE_ITEM": {
       const copy = { ...state };
       delete copy.cart[action.data.ItemName];

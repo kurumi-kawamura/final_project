@@ -48,6 +48,16 @@ export const removeItem = (data) => ({
   data,
 });
 
+export const removeStockItem = (data) => ({
+  type: "REMOVE_STOCK",
+  data,
+})
+
+export const addStockItem = (data) => ({
+  type: "ADD_STOCK",
+  data,
+})
+
 export const requestUserInfo = () => ({
   type: "REQUEST_USER_INFO",
 });

@@ -11,6 +11,8 @@ import {
   requestItemsData,
   receiveItemsData,
   receiveItemsDataError,
+  removeStockItem,
+  addStockItem,
 } from "../actions";
 import { Btn, Loading } from "../decolation/FormItem";
 
@@ -26,20 +28,21 @@ const Admin = () => {
     fetch("/getRequest")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const { status } = json;
         if (status === 200) {
           dispatch(receiveRequestInfo(json.data));
-        } else {
+        } else if(status===404) {
           dispatch(receiveRequestError());
         }
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
 
     dispatch(requestItemsData());
     fetch("/items")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const { status, data } = json;
         if (status === 200) {
           dispatch(receiveItemsData(data));
@@ -78,8 +81,6 @@ const Admin = () => {
       });
   };
 
-  console.log("########", stock);
-
   const removeStock = (id) => {
     const find = stock.find((item) => {
       return Number(item._id) === Number(id);
@@ -100,6 +101,9 @@ const Admin = () => {
       .then((json) => {
         const { status } = json;
         if (status === 200) {
+          dispatch(
+            removeStockItem({ _id: Number(id), quantity: Number(removeNum) })
+          );
           alert("success");
           setRemoveNum(null);
         }
@@ -129,8 +133,11 @@ const Admin = () => {
       .then((json) => {
         const { status } = json;
         if (status === 200) {
+          dispatch(addStockItem({ _id: Number(id), quantity: Number(addNum) }));
           alert("success");
           setAddNum(null);
+        } else {
+
         }
       })
       .catch((err) => {
@@ -144,52 +151,56 @@ const Admin = () => {
       <H1>Admin</H1>
       {request ? (
         <>
-          {request.map((req, index) => {
-            return (
-              <div key={req._id}>
-                <span className="index">{index + 1}</span>
-                <div>{req.name}</div>
-                <div>{req.location}</div>
-                <div>{req.submittedBy}</div>
-                <Img src={req.imgSrc} alt={request.name} />
-                <p>Approve for:</p>
-                <Btn onClick={(e) => approve(e.target.innerHTML)}>
-                  {index + 1}
-                </Btn>
-              </div>
-            );
-          })}
+          <RequestWrapper>
+            {request.map((req, index) => {
+              return (
+                <div key={req._id}>
+                  <span className="index">{index + 1}</span>
+                  <div>{req.name}</div>
+                  <div>{req.location}</div>
+                  <div>{req.submittedBy}</div>
+                  <Img src={req.imgSrc} alt={request.name} />
+                  <p>Approve for:</p>
+                  <Btn onClick={(e) => approve(e.target.innerHTML)}>
+                    {index + 1}
+                  </Btn>
+                </div>
+              );
+            })}
+          </RequestWrapper>
         </>
       ) : (
         <div>No request.</div>
       )}
       {stock ? (
         <>
-          {stock.map((s, index) => {
-            return (
-              <div key={s._id}>
-                <div>Id: {s._id}</div>
-                <div>{s.ItemName}</div>
-                <Img src={s.imgSrc} alt={s.ItemName} />
-                <div>Price: {s.price}yen</div>
-                <div>Stock: {s.stock}</div>
-                <div>
-                  <input onChange={(e) => setRemoveNum(e.target.value)} />
-                  <p>Remove stock for:</p>
-                  <Btn onClick={(e) => removeStock(e.target.innerHTML)}>
-                    {s._id}
-                  </Btn>
+          <StockWrapper>
+            {stock.map((s, index) => {
+              return (
+                <div key={s._id}>
+                  <div>Id: {s._id}</div>
+                  <div>{s.ItemName}</div>
+                  <Img src={s.imgSrc} alt={s.ItemName} />
+                  <div>Price: {s.price}yen</div>
+                  <div>Stock: {s.stock}</div>
+                  <div>
+                    <input onChange={(e) => setRemoveNum(e.target.value)} />
+                    <p>Remove stock for:</p>
+                    <Btn onClick={(e) => removeStock(e.target.innerHTML)}>
+                      {s._id}
+                    </Btn>
+                  </div>
+                  <div>
+                    <input onChange={(e) => setAddNum(e.target.value)} />
+                    <p>Add stock for:</p>
+                    <Btn onClick={(e) => addStock(e.target.innerHTML)}>
+                      {s._id}
+                    </Btn>
+                  </div>
                 </div>
-                <div>
-                  <input onChange={(e) => setAddNum(e.target.value)} />
-                  <p>Add stock for:</p>
-                  <Btn onClick={(e) => addStock(e.target.innerHTML)}>
-                    {s._id}
-                  </Btn>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </StockWrapper>
         </>
       ) : (
         <Loading>Loading...</Loading>
@@ -206,6 +217,22 @@ const H1 = styled.h1`
 const Img = styled.img`
   width: 150px;
   height: 150px;
+`;
+
+const RequestWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StockWrapper = styled(RequestWrapper)`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Admin;

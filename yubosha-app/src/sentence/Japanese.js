@@ -1,5 +1,8 @@
 export const JPabout = {
-    about: "説明"
+    about: "説明",
+    about1 : "説明　説明　説明　説明　説明　説明　説明　説明　説明　説明",
+    about2: "説明　説明　説明　説明　説明　説明　説明　説明　説明　説明"
+
 }
 
 export const JPheader = {

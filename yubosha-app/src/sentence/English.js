@@ -1,5 +1,7 @@
 export const ENabout = {
   about: "explanation",
+  about1 : "explanation explanation explanation explanation explanation explanation explanation explanation explanation",
+  about2: "explanation explanation explanation explanation explanation explanation explanation explanation explanation"
 };
 
 export const ENheader = {
@@ -9,6 +11,7 @@ export const ENheader = {
   map: "Map",
   shop: "Shop",
 };
+
 
 export const ENsignIn = {
   signIn: "Sign In",

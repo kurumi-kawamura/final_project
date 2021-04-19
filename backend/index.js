@@ -89,7 +89,7 @@ express()
       line_items: req.body,
       mode: "payment",
       success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/home",
+      cancel_url: "http://localhost:3000/",
     });
     res.json({ id: session.id });
   })

@@ -12,6 +12,7 @@ import Item from "./components/shop/Item";
 import Cart from "./components/shop/Cart";
 import Sucess from "./components/shop/Sucess";
 import ErrorPage from "./Error";
+import Admin from "./admin/index";
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route exact path="/contactUs">
           <ContactUs />
+        </Route>
+        <Route exact path="/admin">
+          <Admin />
         </Route>
         <Route exact path="/error">
           <ErrorPage />

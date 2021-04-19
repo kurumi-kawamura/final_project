@@ -22,6 +22,11 @@ const Header = () => {
         {Object.keys(currentUser).length !== 0 && !lang ? (
           <P>こんにちは {currentUser.userName}さん!</P>
         ) : null}
+        {currentUser.admin ? (
+          <StyledNavLink exact to="/admin">
+            Admin
+          </StyledNavLink>
+        ) : null}
         <Btn onClick={change}>EN/JP</Btn>
         {lang ? (
           <>

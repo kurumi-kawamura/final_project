@@ -31,8 +31,8 @@ const CreateAcc = () => {
           const { status } = json;
           if (status === 200) {
             setSucsess("succsess");
-            setName(null);
-            setPass(null);
+            // setName(null);
+            // setPass(null);
             history.push("/signIn");
           } else if (status === 400) {
             setSucsess("duplicate");

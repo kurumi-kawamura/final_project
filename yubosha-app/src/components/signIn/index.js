@@ -67,6 +67,7 @@ const SignIn = () => {
             />
             <Input2
               placeholder="password:"
+              type="password"
               onChange={(e) => setPass(e.target.value)}
             />
 

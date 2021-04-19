@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { addNewMossInfo } from "../../actions";
 import { AppContext } from "../../context";
 import { Btn } from "../../decolation/FormItem";
 import { ENAddMoss, ENBtn } from "../../sentence/English";
 import { JPAddMoss, JPBtn } from "../../sentence/Japanese";
 
 const AddNewMoss = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { currentUser, lang } = useContext(AppContext);
   const [pic, setPic] = useState(null);
   const [mossName, setMossName] = useState(null);
@@ -44,7 +43,7 @@ const AddNewMoss = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    fetch("/addNewMoss", {
+    fetch("/addRequest", {
       method: "POST",
       body: JSON.stringify({
         name: mossName,
@@ -61,8 +60,8 @@ const AddNewMoss = () => {
       .then((json) => {
         const { status } = json;
         if (status === 200) {
-          dispatch(addNewMossInfo(json.data));
-          alert("Successfully added!");
+          // dispatch(addNewMossInfo(json.data));
+          alert("Request sent!");
           setUpload("success");
           clear();
         } else {

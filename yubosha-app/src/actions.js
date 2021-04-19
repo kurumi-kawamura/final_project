@@ -64,3 +64,21 @@ export const addNewUserInfo = (data) => ({
   type: "ADD_NEW_USER_INFO",
   data,
 });
+
+export const requestRequestInfo = () => ({
+  type: "REQUEST_REQUEST_INFO",
+});
+
+export const receiveRequestInfo = (data) => ({
+  type: "RECEIVE_REQUEST_INFO",
+  data,
+});
+
+export const receiveRequestError = () => ({
+  type: "RECEIVE_REQUEST_ERROR",
+});
+
+export const deleteRequest = (data) => ({
+  type: "DELETE_REQUEST",
+  data,
+})

@@ -17,6 +17,9 @@ const {
   addNewMoss,
   updateStock,
   AddComment,
+  addRequest,
+  getRequest,
+  AddStock,
 } = require("./handlers");
 
 require("dotenv").config();
@@ -81,7 +84,10 @@ express()
   .post("/users/login", login)
   .get("/users", getUsers)
   .post("/addNewMoss", addNewMoss)
+  .post("/addRequest", addRequest)
+  .get("/getRequest", getRequest)
   .post("/updateStock", updateStock)
+  .post("/addStock", AddStock)
   .post("/addComment", AddComment)
   .post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({

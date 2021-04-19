@@ -32,7 +32,7 @@ const addingUser = async (req, res) => {
   client.close();
 };
 
-const addNewMoss = async (req, res) => {
+const addRequest = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   const { name, location, src, submittedBy } = req.body;
   try {
@@ -49,8 +49,55 @@ const addNewMoss = async (req, res) => {
       submittedBy: submittedBy,
     };
 
+    const result = await db.collection("request").insertOne(moss);
+    assert.equal(1, result.insertedCount);
+    res.status(200).json({ status: 200, data: moss });
+  } catch (err) {
+    res.status(404).json({ status: 400, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close();
+};
+
+const getRequest = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+
+  const db = client.db();
+  const result = await db.collection("request").find().toArray();
+
+  if (result.length) {
+    res.status(200).json({ status: 200, data: result });
+  } else {
+    res.status(404).json({ status: 404, msg: "Not found" });
+  }
+
+  client.close();
+};
+
+const addNewMoss = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { name, location, src, submittedBy, _id } = req.body;
+  try {
+    await client.connect();
+
+    const db = client.db();
+    const latLng = await changeAddress(location);
+    const moss = {
+      name: name,
+      location: location,
+      latitude: latLng.lat,
+      longitude: latLng.lng,
+      imgSrc: src,
+      submittedBy: submittedBy,
+    };
+
     const result = await db.collection("moss").insertOne(moss);
     assert.equal(1, result.insertedCount);
+    const result2 = await db
+      .collection("request")
+      .deleteOne({ _id: ObjectId(_id) });
+    assert.equal(1, result2.deletedCount);
     res.status(200).json({ status: 200, data: moss });
   } catch (err) {
     res.status(404).json({ status: 400, msg: err.message });
@@ -73,10 +120,7 @@ const AddComment = async (req, res) => {
 
     const result = await db
       .collection("moss")
-      .updateOne(
-        { _id: ObjectId(_id) },
-        { $push: { comments: comment } }
-      );
+      .updateOne({ _id: ObjectId(_id) }, { $push: { comments: comment } });
 
     assert.equal(1, result.matchedCount);
     assert.equal(1, result.modifiedCount);
@@ -85,7 +129,7 @@ const AddComment = async (req, res) => {
     res.status(404).json({ status: 400, msg: err.message });
     console.log(err.stack);
   }
-  client.close()
+  client.close();
 };
 
 const getAll = async (req, res) => {
@@ -166,6 +210,7 @@ const login = async (req, res) => {
 const updateStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   const { quantity, _id, stock } = req.body;
+  console.log(req.body);
   let newArr = [];
   for (let i = 0; i < _id.length; i++) {
     for (let j = 0; j < quantity.length; j++) {
@@ -185,6 +230,44 @@ const updateStock = async (req, res) => {
     for (let k = 0; k < newArr.length; k++) {
       const newValue = {
         $set: { stock: Number(newArr[k].stock) - Number(newArr[k].quantity) },
+      };
+      result = await db
+        .collection("items")
+        .updateOne({ _id: newArr[k]._id }, newValue);
+    }
+    assert.equal(1, result.matchedCount);
+    assert.equal(1, result.modifiedCount);
+    res.status(200).json({ status: 200, msg: "success", data: result });
+  } catch (err) {
+    res.status(404).json({ status: 404, msg: err.message });
+    console.log(err.stack);
+  }
+
+  client.close();
+};
+
+const AddStock = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { quantity, _id, stock } = req.body;
+  let newArr = [];
+  for (let i = 0; i < _id.length; i++) {
+    for (let j = 0; j < quantity.length; j++) {
+      for (let l = 0; l < stock.length; l++) {
+        if (i === j && j === l) {
+          newArr.push({ _id: _id[i], quantity: quantity[j], stock: stock[l] });
+        }
+      }
+    }
+  }
+
+  try {
+    await client.connect();
+
+    const db = client.db();
+    let result;
+    for (let k = 0; k < newArr.length; k++) {
+      const newValue = {
+        $set: { stock: Number(newArr[k].stock) + Number(newArr[k].quantity) },
       };
       result = await db
         .collection("items")
@@ -227,4 +310,7 @@ module.exports = {
   updateStock,
   addNewMoss,
   AddComment,
+  addRequest,
+  getRequest,
+  AddStock,
 };

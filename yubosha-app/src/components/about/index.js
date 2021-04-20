@@ -6,6 +6,7 @@ import { ENabout } from "../../sentence/English";
 import { JPabout } from "../../sentence/Japanese";
 import { gsap, Power3 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Footer from "../footer/index";
 
 const About = () => {
   const { lang } = useContext(AppContext);
@@ -21,7 +22,7 @@ const About = () => {
       opacity: 1,
       y: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: item, markers: true },
+      scrollTrigger: { trigger: item },
     });
 
     gsap.to(secondArticle, 3, {
@@ -30,9 +31,6 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: secondArticle,
-        markers: true,
-        start: "top center",
-        end: "bottom top",
       },
     });
 
@@ -40,21 +38,21 @@ const About = () => {
       opacity: 1,
       x: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic1, markers: true },
+      scrollTrigger: { trigger: pic1 },
     });
 
     gsap.to(pic2, 3, {
       opacity: 1,
-      x: -30,
+      x: 30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic2, markers: true },
+      scrollTrigger: { trigger: pic2 },
     });
 
     gsap.to(pic3, 3, {
       opacity: 1,
       x: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic3, markers: true },
+      scrollTrigger: { trigger: pic3 },
     });
   }, []);
 
@@ -69,21 +67,23 @@ const About = () => {
         {lang ? (
           <ExWrapper>
             <H2>About Yubosha</H2>
-            <P
-              ref={(el) => {
-                item = el;
-              }}
-              id="firstArticle"
-            >
-              {ENabout.about1}
-            </P>
-            <Img
-              ref={(e) => {
-                pic1 = e;
-              }}
-              src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
-              alt="yubosha about"
-            />
+            <Div>
+              <P
+                ref={(el) => {
+                  item = el;
+                }}
+                id="firstArticle"
+              >
+                {ENabout.about1}
+              </P>
+              <Img
+                ref={(e) => {
+                  pic1 = e;
+                }}
+                src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
+                alt="yubosha about"
+              />
+            </Div>
             <H2>Activity</H2>
             <P
               ref={(e) => {
@@ -93,23 +93,26 @@ const About = () => {
             >
               {ENabout.about2}
             </P>
-            <Img
-              ref={(e) => {
-                pic2 = e;
-              }}
-              src="./assets/yubosha_activity.jpg"
-              alt="yubosha activity"
-            />
-            <Img
-              ref={(e) => {
-                pic3 = e;
-              }}
-              src="./assets/yubosha_activity_2.jpg"
-              alt="yubosha activity"
-            />
+            <Div2>
+              <Img
+                ref={(e) => {
+                  pic2 = e;
+                }}
+                src="./assets/yubosha_activity.jpg"
+                alt="yubosha activity"
+              />
+              <Img
+                ref={(e) => {
+                  pic3 = e;
+                }}
+                src="./assets/yubosha_activity_2.jpg"
+                alt="yubosha activity"
+              />
+            </Div2>
           </ExWrapper>
         ) : (
           <ExWrapper>
+            <Div></Div>
             <H2>About Yubosha</H2>
             <P>{JPabout.about1}</P>
             <H2>Activity</H2>
@@ -119,9 +122,22 @@ const About = () => {
           </ExWrapper>
         )}
       </Wrapper>
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
     </>
   );
 };
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+`;
+
+const Div2 = styled(Div)`
+margin-top: 10px;
+`;
 
 const Wrapper = styled.div`
   color: var(--soft-black);
@@ -145,7 +161,7 @@ const Banner = styled.div`
 `;
 
 const ExWrapper = styled.div`
-  width: 400px;
+  width: 700px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -169,11 +185,16 @@ const Img = styled.img`
 const P = styled.p`
   margin-top: 70px;
   opacity: 0;
-  line-height: 30px;
+  line-height: 40px;
 `;
 
 const H2 = styled.h2`
-  margin-top: 30px;
+  margin-top: 70px;
+`;
+
+const FooterWrapper = styled.div`
+  text-align: center;
+  margin-top: 50px;
 `;
 
 export default About;

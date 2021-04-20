@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Header from "../header/index";
-import HPAnimation from "../../decolation/homepage_animation";
-import Footer from "../footer/index";
+// import HPAnimation from "../../decolation/homepage_animation";
+// import Footer from "../footer/index";
 import { gsap } from "gsap";
+import About from "../about/index";
+import { TiArrowSortedDown } from "react-icons/ti";
 
 const Homepage = () => {
+  let tl = gsap.timeline();
   useEffect(() => {
-    gsap.to(".YU", { duration: 1, x: -100 });
-    gsap.to(".BO", { duration: 1, x: 100 });
-    gsap.to(".SHA", { duration: 1, x: -100 });
+    tl.to(".YU", { duration: 1, y: -50, opacity: 1 });
+    tl.to(".BO", { duration: 1, y: -50, opacity: 1 });
+    tl.to(".SHA", { duration: 1, y: -50, opacity: 1 });
   }, []);
   return (
     <>
@@ -17,18 +20,30 @@ const Homepage = () => {
         <Header />
         <Container>
           <Logo>
-            <span className="YU">YU</span>
-            <span className="BO">BO</span>
-            <span className="SHA">SHA</span>
+            <YU className="YU">YU</YU>
+            <BO className="BO">BO</BO>
+            <SHA className="SHA">SHA</SHA>
           </Logo>
           {/* <AnimationWrapper>
             <HPAnimation />
           </AnimationWrapper> */}
         </Container>
-        <FooterWrapper>
+        <Arrow>
+          <TiArrowSortedDown
+            style={{
+              fiil: "white",
+              textAlign: "center",
+              width: "50px",
+              height: "50px",
+              zIndex: 10,
+            }}
+          />
+        </Arrow>
+        {/* <FooterWrapper>
           <Footer />
-        </FooterWrapper>
+        </FooterWrapper> */}
       </Wrapper>
+      <About />
     </>
   );
 };
@@ -39,35 +54,48 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `;
 
-const AnimationWrapper = styled.div``;
+const bounce = keyframes`
+   0% { transform: translateY(-12px);}
+    50% {  transform: translateY(0px); }
+    100% { transform: translateY(-12px); }
+  
+  `;
+
+const Arrow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 70px;
+  animation: ${bounce} 1s infinite;
+`;
 
 const Wrapper = styled.div`
   background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
-  height: 100%;
+  height: 900px;
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
+  margin-bottom: 160px;
 `;
+
+const YU = styled.span`
+  opacity: 0;
+`;
+
+const BO = styled(YU)``;
+
+const SHA = styled(YU)``;
 
 const Logo = styled.div`
   display: flex;
   flex-direction: column;
-  /* position: absolute;
-  width: 92px;
-  height: 174px;
-  left: 454px;
-  top: 330px; */
   font-size: 60px;
-`;
-
-const FooterWrapper = styled.div`
-  position: absolute;
-  bottom: 1%;
-  right: 2%;
 `;
 
 export default Homepage;

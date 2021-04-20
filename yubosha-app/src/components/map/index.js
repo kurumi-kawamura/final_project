@@ -25,7 +25,7 @@ import { AppContext } from "../../context";
 import { style } from "./template";
 import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
-
+import Footer from "../footer/index";
 import { useHistory } from "react-router";
 
 const Map = () => {
@@ -54,16 +54,16 @@ const Map = () => {
         setClicked(true);
         return true;
       } else {
-        history.push("/error")
+        history.push("/error");
       }
     }
   };
 
   return (
     <>
+          <Header />
       {info ? (
         <>
-          <Header />
 
           <H1>Moss Map</H1>
           <Container>
@@ -71,52 +71,56 @@ const Map = () => {
 
             <Wrapper>
               {info !== null ? (
-                <MapsComponent
-                  id="container"
-                  zoomSettings={{ enable: true, enablePanning: true }}
-                  markerClick={(e) => markerClick(e)}
-                  width={"700"}
-                  height={"600"}
-                >
-                  <Inject services={[Marker, MapsTooltip, Zoom]} />
-                  <LayersDirective>
-                    <LayerDirective
-                      shapeData={japan_map}
-                      shapeSettings={{ fill: "#4c7d62" }}
-                    >
-                      {info && (
-                        <MarkersDirective>
-                          {info.map((i) => {
-                            return (
-                              <MarkerDirective
-                                key={i._id}
-                                visible={true}
-                                shape="Image"
-                                imageUrl="assets/icons8-map-pin-40.png"
-                                tooltipSettings={{
-                                  visible: true,
-                                  valuePath: "name",
-                                  template: style.template,
-                                }}
-                                colorValuePath={"color"}
-                                width={25}
-                                height={25}
-                                dataSource={[
-                                  {
-                                    latitude: `${i.latitude}`,
-                                    longitude: `${i.longitude}`,
-                                    location: `${i.location}`,
-                                    name: `${i.name}`,
-                                  },
-                                ]}
-                              ></MarkerDirective>
-                            );
-                          })}
-                        </MarkersDirective>
-                      )}
-                    </LayerDirective>
-                  </LayersDirective>
-                </MapsComponent>
+                <>
+                  <MapsComponent
+                    id="container"
+                    zoomSettings={{ enable: true, enablePanning: true }}
+                    markerClick={(e) => markerClick(e)}
+                    width={"700"}
+                    height={"600"}
+                  >
+                    <Inject services={[Marker, MapsTooltip, Zoom]} />
+                    <LayersDirective>
+                      <LayerDirective
+                        shapeData={japan_map}
+                        shapeSettings={{
+                          fill: "#547a6d",
+                        }}
+                      >
+                        {info && (
+                          <MarkersDirective>
+                            {info.map((i) => {
+                              return (
+                                <MarkerDirective
+                                  key={i._id}
+                                  visible={true}
+                                  shape="Image"
+                                  imageUrl="assets/icons8-map-pin-40.png"
+                                  tooltipSettings={{
+                                    visible: true,
+                                    valuePath: "name",
+                                    template: style.template,
+                                  }}
+                                  colorValuePath={"color"}
+                                  width={25}
+                                  height={25}
+                                  dataSource={[
+                                    {
+                                      latitude: `${i.latitude}`,
+                                      longitude: `${i.longitude}`,
+                                      location: `${i.location}`,
+                                      name: `${i.name}`,
+                                    },
+                                  ]}
+                                ></MarkerDirective>
+                              );
+                            })}
+                          </MarkersDirective>
+                        )}
+                      </LayerDirective>
+                    </LayersDirective>
+                  </MapsComponent>
+                </>
               ) : (
                 <Loading>
                   <div>Loading...</div>
@@ -146,6 +150,10 @@ const Map = () => {
           <div>Loading...</div>
         </Loading>
       )}
+      
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
     </>
   );
 };
@@ -153,8 +161,9 @@ const Map = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  /* background-color: skyblue; */
 `;
 
 const Wrapper = styled.div`
@@ -175,25 +184,29 @@ const MossWrapper = styled.div`
   background-color: rgba(198, 204, 204, 0.5);
   height: 400px;
   width: 400px;
-  border-radius: 5px;
-  overflow-y: scroll;
+  border-radius: 50%;
+  overflow-y: auto;
 
-  /* &::-webkit-scrollbar {
-    width: 10px;
+  &::-webkit-scrollbar {
+    width: 7px;
+
     border: 0.5px solid white;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: black;
+    background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: white;
+    background-color: gray;
+    border-radius: 15px;
+    height: 7px;
   }
+`;
 
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: white;
-  } */
+const FooterWrapper = styled.div`
+  text-align: center;
+  margin-top: 55px;
 `;
 
 export default Map;

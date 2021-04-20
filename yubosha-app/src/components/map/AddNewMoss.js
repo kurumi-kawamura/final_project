@@ -164,9 +164,9 @@ const H2 = styled.h2`
 const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   height: 400px;
-  border-radius: 5px;
+  border-radius: 50%;
   justify-content: center;
   align-items: center;
   background-color: rgba(198, 204, 204, 0.5);

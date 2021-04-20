@@ -112,13 +112,49 @@ const About = () => {
           </ExWrapper>
         ) : (
           <ExWrapper>
-            <Div></Div>
             <H2>About Yubosha</H2>
-            <P>{JPabout.about1}</P>
+            <Div>
+              <P
+                ref={(el) => {
+                  item = el;
+                }}
+                id="firstArticle"
+              >
+                {JPabout.about1}
+              </P>
+              <Img
+                ref={(e) => {
+                  pic1 = e;
+                }}
+                src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
+                alt="yubosha about"
+              />
+            </Div>
             <H2>Activity</H2>
-            <P>{JPabout.about2}</P>
-            <Img src="./assets/yubosha_activity.jpg" alt="yubosha activity" />
-            <Img src="./assets/yubosha_activity_2.jpg" alt="yubosha activity" />
+            <P
+              ref={(e) => {
+                secondArticle = e;
+              }}
+              id="secondAriticle"
+            >
+              {JPabout.about2}
+            </P>
+            <Div2>
+              <Img
+                ref={(e) => {
+                  pic2 = e;
+                }}
+                src="./assets/yubosha_activity.jpg"
+                alt="yubosha activity"
+              />
+              <Img
+                ref={(e) => {
+                  pic3 = e;
+                }}
+                src="./assets/yubosha_activity_2.jpg"
+                alt="yubosha activity"
+              />
+            </Div2>
           </ExWrapper>
         )}
       </Wrapper>
@@ -136,7 +172,7 @@ const Div = styled.div`
 `;
 
 const Div2 = styled(Div)`
-margin-top: 10px;
+  margin-top: 10px;
 `;
 
 const Wrapper = styled.div`

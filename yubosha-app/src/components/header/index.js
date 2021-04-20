@@ -3,18 +3,25 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { RiAccountPinCircleLine } from "react-icons/ri";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiLogOut } from "react-icons/fi";
 import { ENheader } from "../../sentence/English";
 import { JPheader } from "../../sentence/Japanese";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { lang, setLang, currentUser } = useContext(AppContext);
+  const { lang, setLang, currentUser, setCurrentUser } = useContext(AppContext);
   const cart = useSelector((state) => state.item.cart);
 
   const change = () => {
     setLang(!lang);
   };
+
+  const logout = () => {
+    setCurrentUser({});
+    localStorage.removeItem("currentUser");
+  };
+
+  console.log(Object.keys(currentUser).length);
   return (
     <>
       <NavWrapper>
@@ -54,15 +61,29 @@ const Header = () => {
                 }}
               />
             </StyledNavLink>
-            <StyledNavLink exact to="/signIn">
-              <RiAccountPinCircleLine
-                style={{
-                  fill: "var(--soft-gray)",
-                  width: "25px",
-                  height: "25px",
-                }}
-              />
-            </StyledNavLink>
+            {Object.keys(currentUser).length !== 0 ? (
+              <Div>
+                <FiLogOut
+                  onClick={logout}
+                  style={{
+                    color: "var(--soft-gray)",
+                    width: "25px",
+                    height: "25px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Div>
+            ) : (
+              <StyledNavLink exact to="/signIn">
+                <RiAccountPinCircleLine
+                  style={{
+                    fill: "var(--soft-gray)",
+                    width: "25px",
+                    height: "25px",
+                  }}
+                />
+              </StyledNavLink>
+            )}
           </>
         ) : (
           <>
@@ -87,15 +108,29 @@ const Header = () => {
                 }}
               />
             </StyledNavLink>
-            <StyledNavLink exact to="/signIn">
-              <RiAccountPinCircleLine
-                style={{
-                  fill: "var(--soft-gray)",
-                  width: "25px",
-                  height: "25px",
-                }}
-              />
-            </StyledNavLink>
+            {Object.keys(currentUser).length !== 0 ? (
+              <Div>
+                <FiLogOut
+                  onClick={logout}
+                  style={{
+                    color: "var(--soft-gray)",
+                    width: "25px",
+                    height: "25px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Div>
+            ) : (
+              <StyledNavLink exact to="/signIn">
+                <RiAccountPinCircleLine
+                  style={{
+                    fill: "var(--soft-gray)",
+                    width: "25px",
+                    height: "25px",
+                  }}
+                />
+              </StyledNavLink>
+            )}
           </>
         )}
       </NavWrapper>
@@ -121,6 +156,14 @@ const StyledNavLink = styled(NavLink)`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const Div = styled.div`
+  padding: 7px 10px;
+  margin-top: 5px;
+  text-decoration: none;
+  position: relative;
+  color: var(--soft-gray);
 `;
 
 const Btn = styled.button`

@@ -51,14 +51,13 @@ const Wrapper = styled.div`
 const Button = styled.button`
   background: none;
   border: none;
-  color: white;
   margin-left: 5px;
 `;
 
 const Input = styled.input`
   border-radius: 5px;
   border: none;
-  width: 150px;
+  width: 120px;
   margin-right: 5px;
   box-sizing: border-box;
   padding: 5px;

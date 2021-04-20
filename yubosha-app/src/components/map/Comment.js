@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 200px;
+  width: 160px;
 `;
 
 const P = styled.p``;

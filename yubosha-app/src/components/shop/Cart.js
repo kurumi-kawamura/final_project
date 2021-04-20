@@ -80,6 +80,7 @@ const Cart = () => {
   return (
     <>
       <Header />
+      <H1>Cart</H1>
       <Container>
         <ItemContainer>
           {lang && cartItem.length === 0 && (
@@ -146,6 +147,11 @@ const Cart = () => {
   );
 };
 
+const H1 = styled.h1`
+margin-top: 70px;
+text-align: center;
+`;
+
 const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -155,15 +161,16 @@ const ItemContainer = styled.div`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
 const BtnWrapper = styled.div`
-  position: absolute;
-  top: 300px;
-  right: 300px;
+  /* position: absolute;
+  top: 400px;
+  right: 300px; */
+  margin-top: 90px;
 `;
 
 const P = styled.p`

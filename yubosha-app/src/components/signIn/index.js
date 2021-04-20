@@ -22,11 +22,6 @@ const SignIn = () => {
   const [success, setSuccess] = useState("idle");
   const history = useHistory();
 
-  const logout = () => {
-    setCurrentUser({});
-    localStorage.removeItem("currentUser");
-  };
-
   const signIn = () => {
     dispacth(requestUserInfo());
     fetch("/users/login", {
@@ -77,8 +72,6 @@ const SignIn = () => {
               ) : (
                 <DisabledBtn>{ENBtn.signIn}</DisabledBtn>
               )}
-
-              <LogoutBtn onClick={logout}>{ENBtn.logOut}</LogoutBtn>
             </BtnWrapper>
             <P>{ENsignIn.noAcc}</P>
             <LinkWrapper>
@@ -107,8 +100,6 @@ const SignIn = () => {
               ) : (
                 <DisabledBtn>{JPBtn.signIn}</DisabledBtn>
               )}
-
-              <LogoutBtn onClick={logout}>{JPBtn.logOut}</LogoutBtn>
             </BtnWrapper>
             <P>{JPsignIn.noAcc}</P>
             <LinkWrapper>
@@ -165,17 +156,6 @@ const LinkWrapper = styled.div`
   font-size: 10px;
 `;
 
-const LogoutBtn = styled.button`
-  border-radius: 5px;
-  background-color: var(--soft-gray);
-  color: white;
-  border: none;
-  width: 120px;
-  height: 40px;
-  cursor: pointer;
-  font-weight: 500;
-  margin-top: 20px;
-`;
 
 const Div = styled.div`
   text-align: center;

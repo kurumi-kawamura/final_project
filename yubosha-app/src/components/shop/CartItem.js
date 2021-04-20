@@ -35,15 +35,15 @@ const P = styled.p`
 
 const IconWrapper = styled.div`
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 50px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 80px;
 `;
 
 const Div = styled.div`
@@ -51,6 +51,7 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   box-sizing: border-box;
+  margin-left: 50px;
 `;
 
 const Img = styled.img`

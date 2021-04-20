@@ -175,9 +175,6 @@ const Container = styled.div`
 `;
 
 const BtnWrapper = styled.div`
-  /* position: absolute;
-  top: 400px;
-  right: 300px; */
   margin-top: 90px;
 `;
 
@@ -193,9 +190,7 @@ const Empty = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  position: fixed;
-  bottom: 1%;
-  right: 45%;
+  margin-top: 20px;
   text-align: center;
 `;
 export default Cart;

@@ -149,6 +149,9 @@ const Map = () => {
               </>
             )}
           </Container>
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
         </>
       ) : (
         <Loading>
@@ -159,9 +162,6 @@ const Map = () => {
         </Loading>
       )}
 
-      <FooterWrapper>
-        <Footer />
-      </FooterWrapper>
     </>
   );
 };
@@ -217,9 +217,10 @@ const MossWrapper = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  position: absolute;
-  bottom: 1%;
-  right: 45%;
+text-align: center;
+  /* position: relative;
+  top: 10%;
+  right: -45%; */
 `;
 
 export default Map;

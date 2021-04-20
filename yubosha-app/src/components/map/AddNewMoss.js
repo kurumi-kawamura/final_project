@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 // import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import { Btn } from "../../decolation/FormItem";
+import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { ENAddMoss, ENBtn } from "../../sentence/English";
 import { JPAddMoss, JPBtn } from "../../sentence/Japanese";
 
@@ -17,6 +17,7 @@ const AddNewMoss = () => {
 
   const postDetails = (e) => {
     e.preventDefault();
+    setUpload("loadingPic");
     const data = new FormData();
     data.append("file", pic);
     data.append("upload_preset", "Yubosha");
@@ -104,11 +105,18 @@ const AddNewMoss = () => {
               </Button>
 
               {upload === "uploaded" && <P>{ENAddMoss.uploadSuccess}</P>}
+              {upload === "loadingPic" && <P>uploading...</P>}
               {upload === "notUploaded" && <P>{ENAddMoss.Unsuccess}</P>}
               {upload === "pleaseSelect" && <P>{ENAddMoss.selectFile}</P>}
             </UploadWrapper>
             <BtnWrapper>
-              <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+              {location && mossName ? (
+                <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+              ) : (
+                <DisabledBtn disabled={true} onClick={(e) => submit(e)}>
+                  {ENBtn.submit}
+                </DisabledBtn>
+              )}
             </BtnWrapper>
             <Btn type="reset" onClick={clear}>
               {ENBtn.clear}
@@ -142,7 +150,13 @@ const AddNewMoss = () => {
               {upload === "pleaseSelect" && <P>{JPAddMoss.selectFile}</P>}
             </UploadWrapper>
             <BtnWrapper>
-              <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+              {location && mossName ? (
+                <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+              ) : (
+                <DisabledBtn disabled={true} onClick={(e) => submit(e)}>
+                  {JPBtn.submit}
+                </DisabledBtn>
+              )}
             </BtnWrapper>
 
             <Btn type="reset" onClick={clear}>

@@ -9,6 +9,9 @@ import {
   requestItemsData,
   receiveItemsData,
   receiveItemsDataError,
+  requestMapInfo,
+  receiveMapInfo,
+  receiveMapInfoError,
 } from "../actions";
 import { Loading } from "../decolation/FormItem";
 import Request from "./Request";
@@ -47,7 +50,15 @@ const Admin = () => {
         }
       });
 
-      // eslint-disable-next-line 
+    dispatch(requestMapInfo());
+    fetch("/moss")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(receiveMapInfo(data.data));
+      })
+      .catch((err) => dispatch(receiveMapInfoError()));
+
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -57,7 +68,7 @@ const Admin = () => {
       <Container>
         {stock ? (
           <>
-              <H2>Stock</H2>
+            <H2>Stock</H2>
             <StockWrapper>
               {stock.map((s) => {
                 return (
@@ -77,7 +88,7 @@ const Admin = () => {
         ) : (
           <Loading>Loading...</Loading>
         )}
-          <H2>Request</H2>
+        <H2>Request</H2>
         <RequestWrapper>
           {request ? (
             <>
@@ -110,7 +121,7 @@ const H1 = styled.h1`
 `;
 
 const H2 = styled.h2`
-margin-top: 50px;
+  margin-top: 50px;
 `;
 
 const Container = styled.div`
@@ -138,11 +149,11 @@ const StockWrapper = styled(RequestWrapper)`
   align-items: center;
   margin: 20px;
   height: 500px;
-  @media (max-width: 860px){
+  @media (max-width: 860px) {
     height: 1100px;
   }
 
-  @media (max-width: 460px){
+  @media (max-width: 460px) {
     height: 2200px;
   }
 `;

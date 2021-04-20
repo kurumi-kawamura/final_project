@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { AppContext } from "../../context";
 import { ENCart } from "../../sentence/English";
 import { JPCart } from "../../sentence/Japanese";
+import Footer from "../footer/index";
 
 const stripePromise = loadStripe(
   "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
@@ -143,13 +144,16 @@ const Cart = () => {
           )}
         </BtnWrapper>
       </Container>
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
     </>
   );
 };
 
 const H1 = styled.h1`
-margin-top: 70px;
-text-align: center;
+  margin-top: 70px;
+  text-align: center;
 `;
 
 const ItemContainer = styled.div`
@@ -181,6 +185,13 @@ const Empty = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 60vh;
+`;
+
+const FooterWrapper = styled.div`
+position: fixed;
+bottom: 1%;
+right: 45%;
+  text-align: center;
 `;
 export default Cart;

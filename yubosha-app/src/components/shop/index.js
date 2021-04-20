@@ -9,6 +9,7 @@ import {
 } from "../../actions";
 import Header from "../header/index";
 import { Loading } from "../../decolation/FormItem";
+import Footer from "../footer/index";
 
 const Shop = () => {
   const dispacth = useDispatch();
@@ -32,8 +33,6 @@ const Shop = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log(status);
-
   const handleImgLoad = () => {
     setImgStatus("loaded");
   };
@@ -50,19 +49,19 @@ const Shop = () => {
               return (
                 <div key={item._id}>
                   {/* {imgStatus === "loaded" ? ( */}
-                    <>
-                      <Div>
-                        <Img
-                          src={item.imgSrc}
-                          alt={item.itemName}
-                          // onLoad={handleImgLoad}
-                        />
-                        <StyledNavLink exact to={`/shop/${item._id}`}>
-                          <Btn>Click me</Btn>
-                        </StyledNavLink>
-                      </Div>
-                      <ItemName>{item.ItemName}</ItemName>
-                    </>
+                  <>
+                    <Div>
+                      <Img
+                        src={item.imgSrc}
+                        alt={item.itemName}
+                        // onLoad={handleImgLoad}
+                      />
+                      <StyledNavLink exact to={`/shop/${item._id}`}>
+                        <Btn>Click me</Btn>
+                      </StyledNavLink>
+                    </Div>
+                    <ItemName>{item.ItemName}</ItemName>
+                  </>
                   {/* ) : (
                     <div>Loading</div>
                   )} */}
@@ -76,6 +75,9 @@ const Shop = () => {
           )}
         </Wrapper>
       </Container>
+      <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
     </>
   );
 };
@@ -136,6 +138,10 @@ const Btn = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+const FooterWrapper = styled.div`
+  text-align: center;
 `;
 
 const StyledNavLink = styled(NavLink)`

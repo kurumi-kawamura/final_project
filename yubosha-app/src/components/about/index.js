@@ -54,6 +54,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: { trigger: pic3 },
     });
+    // eslint-disable-next-line
   }, []);
 
   return (

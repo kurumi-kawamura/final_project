@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Header from "../header/index";
-// import HPAnimation from "../../decolation/homepage_animation";
-// import Footer from "../footer/index";
 import { gsap } from "gsap";
 import About from "../about/index";
 import { TiArrowSortedDown } from "react-icons/ti";
@@ -13,6 +11,7 @@ const Homepage = () => {
     tl.to(".YU", { duration: 1, y: -50, opacity: 1 });
     tl.to(".BO", { duration: 1, y: -50, opacity: 1 });
     tl.to(".SHA", { duration: 1, y: -50, opacity: 1 });
+    // eslint-disable-next-line
   }, []);
   return (
     <>
@@ -24,9 +23,6 @@ const Homepage = () => {
             <BO className="BO">BO</BO>
             <SHA className="SHA">SHA</SHA>
           </Logo>
-          {/* <AnimationWrapper>
-            <HPAnimation />
-          </AnimationWrapper> */}
         </Container>
         <Arrow>
           <TiArrowSortedDown
@@ -39,9 +35,6 @@ const Homepage = () => {
             }}
           />
         </Arrow>
-        {/* <FooterWrapper>
-          <Footer />
-        </FooterWrapper> */}
       </Wrapper>
       <About />
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -9,19 +9,27 @@ import {
 } from "../../actions";
 import { Loading } from "../../decolation/FormItem";
 import Footer from "../footer/index";
+import Spinner from "../../decolation/spinner";
 
 const Shop = () => {
   const dispacth = useDispatch();
   const items = useSelector((state) => state.item.items);
-  const status = useSelector((state) => state.item.status);
-  const [imgStatus, setImgStatus] = useState("loading");
+  const [loading, setLoading] = useState(true);
+
+  const counter = useRef(0);
+
+  const imageLoaded = () => {
+    counter.current += 1;
+    if (counter.current >= items.length) {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     dispacth(requestItemsData());
     fetch("/items")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const { status, data } = json;
         if (status === 200) {
           dispacth(receiveItemsData(data));
@@ -30,47 +38,42 @@ const Shop = () => {
         }
       });
     // eslint-disable-next-line
-  }, []);
-
-  const handleImgLoad = () => {
-    setImgStatus("loaded");
-  };
-
-  // console.log(imgStatus);
+  }, [loading]);
   return (
     <>
       <H1>Shop</H1>
       <Container>
         <Wrapper>
-          {items ? (
-            items.map((item) => {
-              return (
-                <div key={item._id}>
-                  {/* {imgStatus === "loaded" ? ( */}
-                  <>
-                    <Div>
-                      <Img
-                        src={item.imgSrc}
-                        alt={item.itemName}
-                        // onLoad={handleImgLoad}
-                      />
-                      <StyledNavLink exact to={`/shop/${item._id}`}>
-                        <Btn>Click me</Btn>
-                      </StyledNavLink>
-                    </Div>
-                    <ItemName>{item.ItemName}</ItemName>
-                  </>
-                  {/* ) : (
-                    <div>Loading</div>
-                  )} */}
-                </div>
-              );
-            })
-          ) : (
-            <Loading>
-              <div>Loading...</div>
-            </Loading>
-          )}
+          <Loading>
+            <div style={{ display: loading ? "block" : "none" }}>
+              <Spinner />
+              Loading...
+            </div>
+          </Loading>
+          {items
+            ? items.map((item) => {
+                return (
+                  <div
+                    key={item._id}
+                    style={{ display: loading ? "none" : "block" }}
+                  >
+                    <>
+                      <Div>
+                        <Img
+                          src={item.imgSrc}
+                          alt={item.itemName}
+                          onLoad={imageLoaded}
+                        />
+                        <StyledNavLink exact to={`/shop/${item._id}`}>
+                          <Btn>Click me</Btn>
+                        </StyledNavLink>
+                      </Div>
+                      <ItemName>{item.ItemName}</ItemName>
+                    </>
+                  </div>
+                );
+              })
+            : null}
         </Wrapper>
       </Container>
       <FooterWrapper>
@@ -86,7 +89,8 @@ const Container = styled.div`
 
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 70%;
+  margin-bottom: 20px;
 `;
 
 const H1 = styled.h1`
@@ -139,7 +143,9 @@ const Btn = styled.button`
 `;
 
 const FooterWrapper = styled.div`
-  text-align: center;
+  position: absolute;
+  bottom: -18%;
+  right: 45%;
 `;
 
 const StyledNavLink = styled(NavLink)`

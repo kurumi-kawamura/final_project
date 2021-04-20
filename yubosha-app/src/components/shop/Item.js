@@ -12,7 +12,7 @@ import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { ENEachItem } from "../../sentence/English";
 import { JPEachItem } from "../../sentence/Japanese";
 import { AppContext } from "../../context";
-
+import Spinner from "../../decolation/spinner";
 const Item = () => {
   const dispacth = useDispatch();
   const item = useSelector((state) => state.item.item);
@@ -95,7 +95,10 @@ const Item = () => {
           </>
         ) : (
           <Loading>
-            <div>Loading...</div>
+            <div>
+              <Spinner />
+              Loading...
+            </div>
           </Loading>
         )}
       </Wrapper>
@@ -110,7 +113,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 150px;
 
-  @media (max-width: 950px){
+  @media (max-width: 950px) {
     flex-direction: column;
   }
 `;
@@ -122,7 +125,7 @@ const DeatilWrapper = styled.div`
   align-items: center;
   margin-left: 100px;
 
-  @media (max-width: 950px){
+  @media (max-width: 950px) {
     margin-top: 50px;
     margin-bottom: 30px;
     margin-left: 0;

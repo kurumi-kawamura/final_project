@@ -14,6 +14,7 @@ const Homepage = () => {
   }, []);
   return (
     <>
+      <Div></Div>
       <Wrapper>
         <Container>
           <Logo>
@@ -39,12 +40,18 @@ const Homepage = () => {
   );
 };
 
+const Div = styled.div`
+width: 100%;
+height: 65px;
+background-color: rgba(214, 214, 214, 0.6);
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 900px;
   width: 100%;
 `;
 
@@ -60,7 +67,7 @@ const Arrow = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  bottom: 70px;
+  bottom: 140px;
   animation: ${bounce} 1s infinite;
 `;
 

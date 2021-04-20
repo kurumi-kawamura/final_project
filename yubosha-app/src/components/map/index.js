@@ -26,6 +26,7 @@ import AddNewMoss from "./AddNewMoss";
 import { Loading } from "../../decolation/FormItem";
 import Footer from "../footer/index";
 import { useHistory } from "react-router";
+import Spinner from "../../decolation/spinner";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -121,7 +122,10 @@ const Map = () => {
                 </>
               ) : (
                 <Loading>
-                  <div>Loading...</div>
+                  <div>
+                    <Spinner />
+                    Loading...
+                  </div>
                 </Loading>
               )}
             </Wrapper>
@@ -136,7 +140,10 @@ const Map = () => {
                   </MossWrapper>
                 ) : (
                   <Loading>
-                    <div>Loading...</div>
+                    <div>
+                      <Spinner />
+                      Loading...
+                    </div>
                   </Loading>
                 )}
               </>
@@ -145,7 +152,10 @@ const Map = () => {
         </>
       ) : (
         <Loading>
-          <div>Loading...</div>
+          <div>
+            <Spinner />
+            Loading...
+          </div>
         </Loading>
       )}
 
@@ -207,8 +217,9 @@ const MossWrapper = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  text-align: center;
-  margin-top: 55px;
+  position: absolute;
+  bottom: 1%;
+  right: 45%;
 `;
 
 export default Map;

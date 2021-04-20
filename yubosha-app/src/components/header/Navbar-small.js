@@ -86,6 +86,7 @@ const NavbarSmall = () => {
                       color: "var(--soft-black)",
                       width: "25px",
                       height: "25px",
+                      zIndex: 5,
                     }}
                   />
                 </Div>
@@ -100,6 +101,7 @@ const NavbarSmall = () => {
                       width: "25px",
                       height: "25px",
                       cursor: "pointer",
+                      zIndex: 5,
                     }}
                   />
                 </Div>
@@ -146,6 +148,7 @@ const NavbarSmall = () => {
                     color: "var(--soft-black)",
                     width: "25px",
                     height: "25px",
+                    zIndex: 5,
                   }}
                 />
                 </Div>
@@ -160,6 +163,7 @@ const NavbarSmall = () => {
                       width: "25px",
                       height: "25px",
                       cursor: "pointer",
+                      zIndex: 5,
                     }}
                   />
                 </Div>
@@ -186,6 +190,7 @@ const NavbarSmall = () => {
 const Wrapper = styled.div`
   position: fixed;
   top: 3px;
+  z-index: 100;
 `;
 
 const ItemWrapper = styled.div`
@@ -199,16 +204,19 @@ const ItemWrapper = styled.div`
   align-items: center;
   line-height: 35px;
   color: var(--soft-black);
+  z-index: 100;
 `;
 
 const P = styled.p`
   color: var(--soft-black);
+  z-index: 100;
 `;
 
 const Line = styled.div`
   background-color: rgba(66, 66, 66, 0.6);
   width: 60%;
   height: 0.5px;
+  z-index: 100;
 `;
 
 const Btn = styled.button`
@@ -220,12 +228,14 @@ const Btn = styled.button`
   color: var(--soft-black);
   font-size: 15px;
   text-align: center;
+  z-index: 100;
 `;
 
 const StyledNavLink = styled(NavLink)`
   position: relative;
   text-decoration: none;
   color: var(--soft-black);
+  z-index: 100;
 `;
 
 const Div = styled.div`
@@ -233,12 +243,14 @@ const Div = styled.div`
   align-items: center;
   justify-content: center;
   padding: 5px;
+  z-index: 100;
 `;
 
 const Circle = styled.div`
   position: absolute;
   top: 0px;
   left: 12px;
+  z-index: 100;
 `;
 
 export default NavbarSmall;

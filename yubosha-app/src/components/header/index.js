@@ -156,6 +156,8 @@ const NavWrapper = styled.div`
   position: fixed;
   right: 2%;
   top: 1%;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  color: var(--soft-black);
 
   @media (max-width: 650px) {
     display: none;

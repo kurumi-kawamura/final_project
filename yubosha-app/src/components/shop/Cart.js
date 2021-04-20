@@ -9,6 +9,7 @@ import { AppContext } from "../../context";
 import { ENCart } from "../../sentence/English";
 import { JPCart } from "../../sentence/Japanese";
 import Footer from "../footer/index";
+import Spinner from "../../decolation/spinner";
 
 const stripePromise = loadStripe(
   "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
@@ -110,7 +111,10 @@ const Cart = () => {
             })
           ) : (
             <Loading>
-              <div>Loading...</div>
+              <div>
+                <Spinner />
+                Loading...
+              </div>
             </Loading>
           )}
         </ItemContainer>
@@ -189,9 +193,9 @@ const Empty = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-position: fixed;
-bottom: 1%;
-right: 45%;
+  position: fixed;
+  bottom: 1%;
+  right: 45%;
   text-align: center;
 `;
 export default Cart;

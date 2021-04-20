@@ -21,7 +21,10 @@ const About = () => {
       opacity: 1,
       y: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: item },
+      scrollTrigger: {
+        trigger: item,
+        start: "top center",
+      },
     });
 
     gsap.to(secondArticle, 3, {
@@ -30,6 +33,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: secondArticle,
+        start: "top center",
       },
     });
 
@@ -37,28 +41,36 @@ const About = () => {
       opacity: 1,
       x: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic1 },
+      scrollTrigger: {
+        trigger: pic1,
+        start: "20px 80%",
+      },
     });
 
     gsap.to(pic2, 3, {
       opacity: 1,
       x: 30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic2 },
+      scrollTrigger: {
+        trigger: pic2,
+        start: "60px 80%",
+      },
     });
 
     gsap.to(pic3, 3, {
       opacity: 1,
       x: -30,
       ease: Power3.easeOut,
-      scrollTrigger: { trigger: pic3 },
+      scrollTrigger: {
+        trigger: pic3,
+        start: "60px 80%",
+      },
     });
     // eslint-disable-next-line
   }, []);
 
   return (
     <>
-
       <Banner>
         <H1>About us</H1>
       </Banner>

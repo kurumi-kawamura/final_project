@@ -30,6 +30,10 @@ export const FormWrapper = styled.div`
   width: 500px;
   border-radius: 10px;
   margin-top: 100px;
+
+  @media (max-width: 540px){
+    width: 400px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -37,6 +41,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 540px){
+    width: 400px;
+  }
 `;
 
 export const Loading = styled.div`

@@ -170,6 +170,10 @@ const Div = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 30px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const Div2 = styled(Div)`
@@ -204,6 +208,17 @@ const ExWrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 500px;
+  }
+  @media (max-width: 650px) {
+    width: 400px;
+  }
+
+  @media (max-width: 450px) {
+    width: 250px;
+  }
 `;
 
 const H1 = styled.h1`

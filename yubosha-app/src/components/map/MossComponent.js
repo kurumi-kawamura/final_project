@@ -28,6 +28,7 @@ const MossComponent = ({ location, setClicked }) => {
       }
     });
     setMossArr(arr);
+    // eslint-disable-next-line 
   }, [moss, location]);
   return (
     <>

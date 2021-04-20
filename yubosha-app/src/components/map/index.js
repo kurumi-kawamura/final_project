@@ -61,10 +61,9 @@ const Map = () => {
 
   return (
     <>
-          <Header />
+      <Header />
       {info ? (
         <>
-
           <H1>Moss Map</H1>
           <Container>
             {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
@@ -150,7 +149,7 @@ const Map = () => {
           <div>Loading...</div>
         </Loading>
       )}
-      
+
       <FooterWrapper>
         <Footer />
       </FooterWrapper>
@@ -164,6 +163,10 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   /* background-color: skyblue; */
+
+  @media (max-width: 1250px) {
+    flex-direction: column;
+  }
 `;
 
 const Wrapper = styled.div`

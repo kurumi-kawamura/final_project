@@ -109,7 +109,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-top: 150px;
+
+  @media (max-width: 950px){
+    flex-direction: column;
+  }
 `;
 
 const DeatilWrapper = styled.div`
@@ -118,6 +123,12 @@ const DeatilWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 100px;
+
+  @media (max-width: 950px){
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: 0;
+  }
 `;
 
 const ItemName = styled.h2`
@@ -131,7 +142,7 @@ const Detail = styled.p`
 const Img = styled.img`
   width: 500px;
   height: 500px;
-  margin-left: -200px;
+  /* margin-left: -200px; */
 `;
 
 const P = styled.p`

@@ -116,6 +116,10 @@ const FormWrapper = styled.div`
   border-radius: 10px;
   margin-top: 100px;
   color: white;
+
+  @media (max-width: 540px){
+    width: 400px;
+  }
 `;
 
 const BtnWrapper = styled.div`

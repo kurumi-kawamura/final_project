@@ -46,6 +46,8 @@ const Admin = () => {
           dispatch(receiveItemsDataError());
         }
       });
+
+      // eslint-disable-next-line 
   }, []);
 
   return (
@@ -136,6 +138,13 @@ const StockWrapper = styled(RequestWrapper)`
   align-items: center;
   margin: 20px;
   height: 500px;
+  @media (max-width: 860px){
+    height: 1100px;
+  }
+
+  @media (max-width: 460px){
+    height: 2200px;
+  }
 `;
 
 const Div = styled.div`

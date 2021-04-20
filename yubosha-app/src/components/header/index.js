@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import { RiAccountPinCircleLine } from "react-icons/ri";
+import { RiAccountPinCircleLine, RiPlantFill } from "react-icons/ri";
 import { FiShoppingCart, FiLogOut } from "react-icons/fi";
 import { ENheader } from "../../sentence/English";
 import { JPheader } from "../../sentence/Japanese";
 import { useSelector } from "react-redux";
+import NavbarSmall from "./Navbar-small";
 
 const Header = () => {
   const { lang, setLang, currentUser, setCurrentUser } = useContext(AppContext);
@@ -21,9 +22,11 @@ const Header = () => {
     localStorage.removeItem("currentUser");
   };
 
-  console.log(Object.keys(currentUser).length);
   return (
     <>
+    <NavSmallWrapper>
+      <NavbarSmall/>
+    </NavSmallWrapper>
       <NavWrapper>
         {Object.keys(currentUser).length !== 0 && lang ? (
           <P>Hello {currentUser.userName}!</P>
@@ -52,7 +55,11 @@ const Header = () => {
               {ENheader.shop}
             </StyledNavLink>
             <StyledNavLink exact to="/cart">
-              {Object.values(cart).length > 0 ? <Circle></Circle> : null}
+              {Object.values(cart).length > 0 ? (
+                <Circle>
+                  <RiPlantFill style={{ height: "25px" }} />
+                </Circle>
+              ) : null}
               <FiShoppingCart
                 style={{
                   color: "var(--soft-gray)",
@@ -100,6 +107,11 @@ const Header = () => {
               {JPheader.shop}
             </StyledNavLink>
             <StyledNavLink exact to="/cart">
+              {Object.values(cart).length > 0 ? (
+                <Circle>
+                  <RiPlantFill style={{ height: "25px" }} />
+                </Circle>
+              ) : null}
               <FiShoppingCart
                 style={{
                   color: "var(--soft-gray)",
@@ -144,6 +156,18 @@ const NavWrapper = styled.div`
   position: fixed;
   right: 2%;
   top: 1%;
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
+
+const NavSmallWrapper = styled.div`
+
+
+  @media (min-width: 650px) {
+    display: none;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -191,13 +215,9 @@ const P = styled.p`
 `;
 
 const Circle = styled.div`
-  width: 12px;
-  height: 12px;
-  background-color: var(--soft-gray);
-  border-radius: 50%;
   position: absolute;
-  top: 11px;
-  left: -2px;
+  top: 2px;
+  left: 17px;
 `;
 
 export default Header;

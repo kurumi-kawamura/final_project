@@ -13,11 +13,13 @@ import Cart from "./components/shop/Cart";
 import Sucess from "./components/shop/Sucess";
 import ErrorPage from "./Error";
 import Admin from "./admin/index";
+import Header from "./components/header/index";
 
 function App() {
   return (
     <Router>
       <GlobalStyle />
+      <Header />
       <Switch>
         <Route exact path="/">
           <Homepage />

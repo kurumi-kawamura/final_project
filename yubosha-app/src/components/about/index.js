@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef } from "react";
-import Header from "../header/index";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { ENabout } from "../../sentence/English";
@@ -59,7 +58,6 @@ const About = () => {
 
   return (
     <>
-      <Header />
 
       <Banner>
         <H1>About us</H1>

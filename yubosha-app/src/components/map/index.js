@@ -12,7 +12,6 @@ import {
   MapsTooltip,
   Zoom,
 } from "@syncfusion/ej2-react-maps";
-import Header from "../header/index";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -57,11 +56,11 @@ const Map = () => {
         history.push("/error");
       }
     }
+    return;
   };
 
   return (
     <>
-      <Header />
       {info ? (
         <>
           <H1>Moss Map</H1>

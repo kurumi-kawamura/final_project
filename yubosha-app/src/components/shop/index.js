@@ -7,7 +7,6 @@ import {
   receiveItemsDataError,
   requestItemsData,
 } from "../../actions";
-import Header from "../header/index";
 import { Loading } from "../../decolation/FormItem";
 import Footer from "../footer/index";
 
@@ -40,7 +39,6 @@ const Shop = () => {
   // console.log(imgStatus);
   return (
     <>
-      <Header />
       <H1>Shop</H1>
       <Container>
         <Wrapper>

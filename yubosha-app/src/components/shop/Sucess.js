@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Header from "../header/index";
 import styled from "styled-components";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
@@ -34,7 +33,6 @@ const Sucess = () => {
   }, []);
   return (
     <>
-      <Header />
       <Wrapper>
         <div>Thank you for your order!</div>
         <p>We will send you the order confimation email within next 24h!</p>

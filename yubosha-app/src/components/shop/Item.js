@@ -9,7 +9,6 @@ import {
   requestItemsData,
 } from "../../actions";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import Header from "../header/index";
 import { ENEachItem } from "../../sentence/English";
 import { JPEachItem } from "../../sentence/Japanese";
 import { AppContext } from "../../context";
@@ -38,7 +37,6 @@ const Item = () => {
   }, []);
   return (
     <>
-      <Header />
       <Wrapper>
         {item ? (
           <>

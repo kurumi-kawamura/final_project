@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import Header from "../header/index";
 import { gsap } from "gsap";
 import About from "../about/index";
 import { TiArrowSortedDown } from "react-icons/ti";
@@ -16,7 +15,6 @@ const Homepage = () => {
   return (
     <>
       <Wrapper>
-        <Header />
         <Container>
           <Logo>
             <YU className="YU">YU</YU>

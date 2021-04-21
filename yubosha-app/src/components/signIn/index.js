@@ -65,6 +65,11 @@ const SignIn = () => {
               type="password"
               onChange={(e) => setPass(e.target.value)}
             />
+            <PassLink>
+              <Link to="/forgetPassword" style={{ color: "white" }}>
+                Forgot password?
+              </Link>
+            </PassLink>
 
             <BtnWrapper>
               {name && pass ? (
@@ -94,6 +99,11 @@ const SignIn = () => {
               placeholder="password:"
               onChange={(e) => setPass(e.target.value)}
             />
+            <PassLink>
+              <Link to="/forgetPassword" style={{ color: "white" }}>
+                Forgot password?
+              </Link>
+            </PassLink>
             <BtnWrapper>
               {name && pass ? (
                 <Btn onClick={signIn}>{JPBtn.signIn}</Btn>
@@ -154,6 +164,12 @@ const LinkWrapper = styled.div`
   font-size: 10px;
 `;
 
+const PassLink = styled(LinkWrapper)`
+  position: absolute;
+  top: 485px;
+  font-size: 15px;
+  color: white;
+`;
 
 const Div = styled.div`
   text-align: center;

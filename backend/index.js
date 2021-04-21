@@ -20,6 +20,7 @@ const {
   addRequest,
   getRequest,
   AddStock,
+  updatePassword,
 } = require("./handlers");
 
 require("dotenv").config();
@@ -82,6 +83,7 @@ express()
   .get("/moss", getAllMossInfo)
   .post("/createAcc", addingUser)
   .post("/users/login", login)
+  .post("/updatePassword", updatePassword)
   .get("/users", getUsers)
   .post("/addNewMoss", addNewMoss)
   .post("/addRequest", addRequest)

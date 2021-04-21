@@ -14,6 +14,7 @@ import Sucess from "./components/shop/Sucess";
 import ErrorPage from "./Error";
 import Admin from "./admin/index";
 import Header from "./components/header/index";
+import ForgotPass from "./components/signIn/ForgetPass";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route exact path="/signIn">
           <SignIn />
+        </Route>
+        <Route exact path="/forgetPassword">
+          <ForgotPass />
         </Route>
         <Route exact path="/createAcc">
           <CreateAcc />

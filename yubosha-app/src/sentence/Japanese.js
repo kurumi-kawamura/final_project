@@ -26,6 +26,14 @@ export const JPsignIn = {
   here: "リンク",
 };
 
+export const JPResetPass = {
+  username: "ユーザー名をご記入ください:",
+  email: "メールアドレスをご記入ください:",
+  newPass: "新しいパスワードをご記入ください:",
+  warning:
+    "ユーザー名とメールアドレスがアカウントに結びついているものと一致していることをご確認ください。",
+};
+
 export const JPContactUs = {
   email: "メールアドレス:",
   askus: "ご質問内容:",

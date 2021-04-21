@@ -5,7 +5,6 @@ const { changeAddress } = require("./apiHandlers");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 const bcrypt = require("bcrypt");
-const { rejects } = require("assert");
 
 const options = {
   useNewUrlParser: true,
@@ -213,10 +212,32 @@ const login = async (req, res) => {
   client.close();
 };
 
+const updatePassword = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { username, newPass } = req.body;
+  try {
+    await client.connect();
+    
+    const hashedPassword = await bcrypt.hash(newPass, 10);
+    const newValue = { $set: { password: hashedPassword } };
+
+    const db = client.db();
+    const result = await db
+      .collection("account")
+      .updateOne({ _id: username }, newValue);
+    assert.equal(1, result.matchedCount);
+    assert.equal(1, result.modifiedCount);
+    res.status(200).json({ status: 200, msg: "success", data: result });
+  } catch (err) {
+    res.status(404).json({ status: 404, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close();
+};
+
 const updateStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   const { quantity, _id, stock } = req.body;
-  console.log(req.body);
   let newArr = [];
   for (let i = 0; i < _id.length; i++) {
     for (let j = 0; j < quantity.length; j++) {
@@ -319,4 +340,5 @@ module.exports = {
   addRequest,
   getRequest,
   AddStock,
+  updatePassword,
 };

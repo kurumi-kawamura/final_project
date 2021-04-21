@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import AddComment from "./AddComment";
 
-const Comment = ({ show, comments }) => {
+const Comment = ({ show, comments, id, currentUser }) => {
   return (
     <>
-      {show && comments
-        ? comments.map((c, index) => {
+      {show && comments ? (
+        <>
+          {comments.length === 0 && <P2>No comments yet.</P2>}
+          {comments.map((c, index) => {
             return (
               <>
                 <Wrapper key={index}>
@@ -15,8 +18,10 @@ const Comment = ({ show, comments }) => {
                 <Line />
               </>
             );
-          })
-        : null}
+          })}
+          {Object.keys(currentUser).length !== 0 && <AddComment id={id} />}
+        </>
+      ) : null}
     </>
   );
 };

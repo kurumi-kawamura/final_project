@@ -35,7 +35,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: mossArticle,
-        start: "20px 80%",
+        start: "20px 70%",
       },
     });
 
@@ -45,7 +45,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: secondArticle,
-        start: "top center",
+        start: "20px 80%",
       },
     });
 
@@ -55,7 +55,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: pic1,
-        start: "20px 80%",
+        start: "20px 70%",
       },
     });
 
@@ -65,7 +65,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: secondArticle,
-        start: "20px 150%",
+        start: "20px 100%",
       },
     });
 
@@ -75,7 +75,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: pic2,
-        start: "60px 80%",
+        start: "60px 70%",
       },
     });
 
@@ -85,7 +85,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: pic3,
-        start: "60px 80%",
+        start: "60px 70%",
       },
     });
     // eslint-disable-next-line

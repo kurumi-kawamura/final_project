@@ -32,7 +32,7 @@ export const ENResetPass = {
   username: "Please confrim your username:",
   email: "Please confrim your email address:",
   newPass: "Please enter new password:",
-  warning: "Please make sure to enter correct username and email address to update password."
+  warning: "Please make sure to enter correct username and email address associated with your account to update password."
 
 }
 

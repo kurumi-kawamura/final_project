@@ -64,9 +64,9 @@ const Map = () => {
 
   return (
     <>
+          <H1>Moss Map</H1>
       {info ? (
         <>
-          <H1>Moss Map</H1>
           <Container>
             {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
 

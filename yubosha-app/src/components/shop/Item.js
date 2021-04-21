@@ -38,7 +38,7 @@ const Item = () => {
   return (
     <>
       <Wrapper>
-        {item ? (
+        {item  ? (
           <>
             <Img src={item.imgSrc} alt={item.ItemName} />
             <DeatilWrapper>

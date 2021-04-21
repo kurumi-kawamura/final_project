@@ -75,12 +75,18 @@ const Demo = () => {
     mapRef.current = map;
   }, []);
 
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading Maps";
   console.log(selected);
   return (
     <>
-      <Search />
+      <Search panTo={panTo} />
+      <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}
@@ -125,7 +131,27 @@ const Demo = () => {
   );
 };
 
-function Search() {
+function Locate({ panTo }) {
+  return (
+    <button
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          },
+          () => null
+        );
+      }}
+    >
+      compass
+    </button>
+  );
+}
+
+function Search({ panTo }) {
   const {
     ready,
     value,
@@ -140,7 +166,20 @@ function Search() {
   });
 
   return (
-    <Combobox onSelect={(address) => console.log(address)}>
+    <Combobox
+      onSelect={async (address) => {
+        console.log(address)
+        setValue(address, false);
+        clearSuggestions();
+        try {
+          const results = await getGeocode({ address });
+          const { lat, lng } = await getLatLng(results[0]);
+          panTo({ lat, lng });
+        } catch (err) {
+          console.log("error!");
+        }
+      }}
+    >
       <ComboboxInput
         value={value}
         onChange={(e) => {
@@ -150,10 +189,12 @@ function Search() {
         placeholder="Enter address"
       />
       <ComboboxPopover>
-        {status === "OK" &&
-          data.map((id, description) => (
-            <ComboboxOption key={id} value={description} />
-          ))}
+        <ComboboxList>
+          {status === "OK" &&
+            data.map((id, description) => (
+              <ComboboxOption key={id} value={description} />
+            ))}
+        </ComboboxList>
       </ComboboxPopover>
     </Combobox>
   );

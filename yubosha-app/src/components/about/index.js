@@ -35,7 +35,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: mossArticle,
-        start: "top center",
+        start: "20px 80%",
       },
     });
 
@@ -65,7 +65,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: secondArticle,
-        start: "20px 100%",
+        start: "20px 150%",
       },
     });
 

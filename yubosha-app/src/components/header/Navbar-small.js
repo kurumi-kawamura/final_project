@@ -205,6 +205,10 @@ const ItemWrapper = styled.div`
   line-height: 35px;
   color: var(--soft-black);
   z-index: 100;
+
+  @media (max-width: 500px){
+    width: 400px;
+  }
 `;
 
 const P = styled.p`

@@ -77,10 +77,13 @@ const Map = () => {
                     markerClick={(e) => markerClick(e)}
                     width={"700"}
                     height={"600"}
+                    
+                    
                   >
                     <Inject services={[Marker, MapsTooltip, Zoom]} />
                     <LayersDirective>
                       <LayerDirective
+                      
                         shapeData={japan_map}
                         shapeSettings={{
                           fill: "#547a6d",
@@ -176,6 +179,9 @@ const Container = styled.div`
   @media (max-width: 1250px) {
     flex-direction: column;
   }
+  @media (max-width: 500px){
+    width: 400px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -184,6 +190,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+
+  @media (max-width: 500px){
+    width: 400px;
+  }
 `;
 
 const H1 = styled.h1`

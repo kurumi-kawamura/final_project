@@ -19,7 +19,8 @@ const Comment = ({ show, comments, id, currentUser }) => {
               </>
             );
           })}
-          {Object.keys(currentUser).length !== 0 && <AddComment id={id} />}
+          
+          {Object.keys(currentUser).length !== 0 && <><Line /><AddComment id={id} /></>}
         </>
       ) : null}
     </>

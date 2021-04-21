@@ -35,7 +35,7 @@ const Admin = () => {
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
 
     dispatch(requestItemsData());

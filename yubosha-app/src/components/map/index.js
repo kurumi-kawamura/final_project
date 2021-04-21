@@ -56,6 +56,8 @@ const Map = () => {
       } else {
         history.push("/error");
       }
+    } else {
+      history.push("/error");
     }
     return;
   };
@@ -174,7 +176,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  /* background-color: skyblue; */
 
   @media (max-width: 1250px) {
     flex-direction: column;
@@ -228,9 +229,7 @@ const MossWrapper = styled.div`
 
 const FooterWrapper = styled.div`
 text-align: center;
-  /* position: relative;
-  top: 10%;
-  right: -45%; */
+margin-top: 60px;
 `;
 
 export default Map;

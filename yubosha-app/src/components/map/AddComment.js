@@ -46,6 +46,7 @@ const AddComment = ({ id }) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 8px;
 `;
 
 const Button = styled.button`
@@ -56,7 +57,7 @@ const Button = styled.button`
 
 const Input = styled.input`
   border-radius: 5px;
-  border: none;
+  border: 1px solid;
   width: 120px;
   margin-right: 5px;
   box-sizing: border-box;

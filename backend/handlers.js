@@ -5,6 +5,7 @@ const { changeAddress } = require("./apiHandlers");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 const bcrypt = require("bcrypt");
+const { rejects } = require("assert");
 
 const options = {
   useNewUrlParser: true,

@@ -19,6 +19,8 @@ const Item = () => {
   const { lang } = useContext(AppContext);
 
   const { _id } = useParams();
+  const cart = useSelector((state) => state.item.cart);
+  
 
   useEffect(() => {
     dispacth(requestItemsData());
@@ -35,10 +37,11 @@ const Item = () => {
       });
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <Wrapper>
-        {item  ? (
+        {item ? (
           <>
             <Img src={item.imgSrc} alt={item.ItemName} />
             <DeatilWrapper>
@@ -49,22 +52,45 @@ const Item = () => {
                   <Price>
                     {item.price} {ENEachItem.price}
                   </Price>
-                  {item.stock > 0 ? (
-                    <Btn
-                      onClick={() => {
-                        dispacth(addItemInCart(item));
-                      }}
-                    >
-                      {ENEachItem.addCart}
-                    </Btn>
+                  {Object.keys(cart).length > 0 && Object.keys(cart).includes(item.ItemName) ? (
+                    <>
+                      {cart[item.ItemName].stock > 0 ? (
+                        <Btn
+                          onClick={() => {
+                            dispacth(addItemInCart(item));
+                          }}
+                        >
+                          {ENEachItem.addCart}
+                        </Btn>
+                      ) : (
+                        <>
+                          <DisabledBtn disabled={true}>
+                            {ENEachItem.addCart}
+                          </DisabledBtn>
+                          <P>{ENEachItem.soldout}</P>
+                        </>
+                      )}
+                    </>
                   ) : (
                     <>
-                      <DisabledBtn disabled={true}>
-                        {ENEachItem.addCart}
-                      </DisabledBtn>
-                      <P>{ENEachItem.soldout}</P>
+                      {item.stock > 0 ? (
+                        <Btn
+                          onClick={() => {
+                            dispacth(addItemInCart(item));
+                          }}
+                        >
+                          {ENEachItem.addCart}
+                        </Btn>
+                      ) : (
+                        <>
+                          <DisabledBtn disabled={true}>
+                            {ENEachItem.addCart}
+                          </DisabledBtn>
+                          <P>{ENEachItem.soldout}</P>
+                        </>
+                      )}
                     </>
-                  )}
+                   )} 
                 </>
               ) : (
                 <>

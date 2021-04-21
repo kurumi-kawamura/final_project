@@ -166,6 +166,7 @@ const ItemContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 60vh;
 `;
 
 const Container = styled.div`

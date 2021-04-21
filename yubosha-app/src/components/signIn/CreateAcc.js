@@ -169,7 +169,7 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
+  background-image: url("/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

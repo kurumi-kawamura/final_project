@@ -138,7 +138,7 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
+  background-image: url("/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

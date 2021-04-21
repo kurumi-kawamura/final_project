@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Header from "../header/index";
 import { Btn, DisabledBtn, Loading } from "../../decolation/FormItem";
 import CartItem from "./CartItem";
 import { loadStripe } from "@stripe/stripe-js";
@@ -82,7 +81,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
       <H1>Cart</H1>
       <Container>
         <ItemContainer>
@@ -174,6 +172,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width:400px){
+    width: 340px;
+  }
 `;
 
 const BtnWrapper = styled.div`

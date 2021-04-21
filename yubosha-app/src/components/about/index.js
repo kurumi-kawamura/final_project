@@ -25,7 +25,7 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: item,
-        start: "top center",
+        start: "20px 70%",
       },
     });
 
@@ -257,7 +257,10 @@ const Div = styled.div`
 
   @media (max-width: 800px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
 `;
 
 const Div2 = styled(Div)`
@@ -309,6 +312,10 @@ const ExWrapper = styled.div`
   @media (max-width: 450px) {
     width: 250px;
   }
+
+  @media (max-width: 400px) {
+    width: 200px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -336,6 +343,10 @@ const P = styled.p`
   opacity: 0;
   line-height: 40px;
   text-align: left;
+
+  @media (max-width: 400px) {
+    width: 200px;
+  }
 `;
 
 const PDiv = styled.div`
@@ -343,6 +354,11 @@ const PDiv = styled.div`
   opacity: 0;
   line-height: 40px;
   text-align: left;
+
+  @media (max-width: 400px) {
+    width: 200px;
+
+  }
 `;
 
 const H2 = styled.h2`

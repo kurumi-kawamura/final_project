@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
@@ -17,13 +17,14 @@ const Item = () => {
   const dispacth = useDispatch();
   const item = useSelector((state) => state.item.item);
   const { lang } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
 
   const { _id } = useParams();
   const cart = useSelector((state) => state.item.cart);
-  
 
   useEffect(() => {
     dispacth(requestItemsData());
+    setLoading(true);
 
     fetch(`/items/${_id}`)
       .then((res) => res.json())
@@ -31,17 +32,19 @@ const Item = () => {
         const { status, data } = json;
         if (status === 200) {
           dispacth(receiveSingleItemData(data));
+          setLoading(false);
         } else {
           dispacth(receiveItemsDataError());
+          setLoading(false);
         }
       });
     // eslint-disable-next-line
-  }, []);
+  }, [_id]);
 
   return (
     <>
       <Wrapper>
-        {item ? (
+        {item && !loading ? (
           <>
             <Img src={item.imgSrc} alt={item.ItemName} />
             <DeatilWrapper>
@@ -52,7 +55,8 @@ const Item = () => {
                   <Price>
                     {item.price} {ENEachItem.price}
                   </Price>
-                  {Object.keys(cart).length > 0 && Object.keys(cart).includes(item.ItemName) ? (
+                  {Object.keys(cart).length > 0 &&
+                  Object.keys(cart).includes(item.ItemName) ? (
                     <>
                       {cart[item.ItemName].stock > 0 ? (
                         <Btn
@@ -90,7 +94,7 @@ const Item = () => {
                         </>
                       )}
                     </>
-                   )} 
+                  )}
                 </>
               ) : (
                 <>

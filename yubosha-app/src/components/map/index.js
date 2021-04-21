@@ -27,6 +27,7 @@ import { Loading } from "../../decolation/FormItem";
 import Footer from "../footer/index";
 import { useHistory } from "react-router";
 import Spinner from "../../decolation/spinner";
+import { useWindowDimensions } from "./hooks";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Map = () => {
   const [clicked, setClicked] = useState(null);
   const [currentMoss, setCurrentMoss] = useState(null);
   const history = useHistory();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     dispatch(requestMapInfo());
@@ -44,27 +46,30 @@ const Map = () => {
         dispatch(receiveMapInfo(data.data));
       })
       .catch((err) => dispatch(receiveMapInfoError()));
-  }, [dispatch]);
+      // eslint-disable-next-line
+  }, []);
 
   const markerClick = (e) => {
     if (e) {
       let res = e.data;
-      if (res) {
-        setCurrentMoss({ ...res });
-        setClicked(true);
-        return true;
-      } else {
-        history.push("/error");
-      }
+      setCurrentMoss({ ...res });
+      setClicked(true);
+      return true;
     } else {
-      history.push("/error");
+      // history.push("/error");
+      return null;
     }
-    return;
   };
 
+
+  if (!MapsComponent) {
+    history.push("/error");
+  }
+
+  console.log(MapsComponent)
   return (
     <>
-          <H1>Moss Map</H1>
+      <H1>Moss Map</H1>
       {info ? (
         <>
           <Container>
@@ -77,15 +82,12 @@ const Map = () => {
                     id="container"
                     zoomSettings={{ enable: true, enablePanning: true }}
                     markerClick={(e) => markerClick(e)}
-                    width={"700"}
-                    height={"600"}
-                    
-                    
+                    width={width < 700 ? "400" : "700"}
+                    height={width < 700 ? "300" : "600"}
                   >
                     <Inject services={[Marker, MapsTooltip, Zoom]} />
                     <LayersDirective>
                       <LayerDirective
-                      
                         shapeData={japan_map}
                         shapeSettings={{
                           fill: "#547a6d",
@@ -154,9 +156,9 @@ const Map = () => {
               </>
             )}
           </Container>
-      <FooterWrapper>
-        <Footer />
-      </FooterWrapper>
+          <FooterWrapper>
+            <Footer />
+          </FooterWrapper>
         </>
       ) : (
         <Loading>
@@ -166,7 +168,6 @@ const Map = () => {
           </div>
         </Loading>
       )}
-
     </>
   );
 };
@@ -180,7 +181,7 @@ const Container = styled.div`
   @media (max-width: 1250px) {
     flex-direction: column;
   }
-  @media (max-width: 500px){
+  @media (max-width: 500px) {
     width: 400px;
   }
 `;
@@ -192,7 +193,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 50px;
 
-  @media (max-width: 500px){
+  @media (max-width: 500px) {
     width: 400px;
   }
 `;
@@ -228,8 +229,8 @@ const MossWrapper = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-text-align: center;
-margin-top: 60px;
+  text-align: center;
+  margin-top: 60px;
 `;
 
 export default Map;

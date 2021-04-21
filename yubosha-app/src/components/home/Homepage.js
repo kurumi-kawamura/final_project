@@ -72,7 +72,7 @@ const Arrow = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background-image: url("./assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
+  background-image: url("/assets/tony-anananana-qOXWUIDZOqM-unsplash.jpg");
   height: 900px;
   width: 100%;
   background-size: cover;

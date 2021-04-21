@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context";
-import { ENsignIn, ENBtn } from "../../sentence/English";
-import { JPsignIn, JPBtn } from "../../sentence/Japanese";
+import { ENsignIn, ENBtn, ENContactUs } from "../../sentence/English";
+import { JPsignIn, JPBtn, JPContactUs } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
 import { Btn, Wrapper, DisabledBtn } from "../../decolation/FormItem";
@@ -13,14 +13,15 @@ const CreateAcc = () => {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
   const [sucsess, setSucsess] = useState("idle");
+  const [email, setEmail] = useState("");
   const history = useHistory();
 
   const submitNewUser = (e) => {
     e.preventDefault();
-    if (name && pass) {
+    if (name && pass && email) {
       fetch("/createAcc", {
         method: "POST",
-        body: JSON.stringify({ name: name, password: pass }),
+        body: JSON.stringify({ name: name, password: pass, email: email }),
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -31,8 +32,6 @@ const CreateAcc = () => {
           const { status } = json;
           if (status === 200) {
             setSucsess("succsess");
-            // setName(null);
-            // setPass(null);
             history.push("/signIn");
           } else if (status === 400) {
             setSucsess("duplicate");
@@ -46,46 +45,88 @@ const CreateAcc = () => {
         });
     }
   };
+
+  const emailValidation = (email) => {
+    if (email) {
+      const valid = email.includes("@") && email.includes(".");
+      if (valid) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+
   return (
     <>
       <Header />
       <H1>Create Account</H1>
       <Wrapper>
-        <FormWrapper>
-          {lang ? <P>{ENsignIn.createAcc}</P> : <P>{JPsignIn.createAcc}</P>}
-          <Input onChange={(e) => setName(e.target.value)} />
-          {lang ? <P>{ENsignIn.createPass}</P> : <P>{JPsignIn.createPass}</P>}
-          <Input type="password" onChange={(e) => setPass(e.target.value)} />
-          <Warning>
-            <IconWrapper>
-              <RiErrorWarningLine />
-            </IconWrapper>
-            {lang ? (
-              <p>{ENsignIn.passRequirement}</p>
-            ) : (
-              <p>{JPsignIn.passRequirement}</p>
-            )}
-          </Warning>
-        </FormWrapper>
-        <BtnWrapper>
-          {name.length > 0 && pass.length > 5 ? (
-            <>
-              {lang ? (
-                <Btn onClick={submitNewUser}>{ENBtn.confirm}</Btn>
+        {lang ? (
+          <>
+            <FormWrapper>
+              <P>{ENsignIn.createAcc}</P>
+              <Input onChange={(e) => setName(e.target.value)} />
+              <P>{ENsignIn.enterEmail}</P>
+              <Input onChange={(e) => setEmail(e.target.value)} />
+              <p>{ENContactUs.emailValid}</p>
+              <P>{ENsignIn.createPass}</P>
+              <Input
+                type="password"
+                onChange={(e) => setPass(e.target.value)}
+              />
+              <Warning>
+                <IconWrapper>
+                  <RiErrorWarningLine />
+                </IconWrapper>
+                <p>{ENsignIn.passRequirement}</p>
+              </Warning>
+            </FormWrapper>
+            <BtnWrapper>
+              {name.length > 0 && emailValidation(email) && pass.length > 5 ? (
+                <>
+                  <Btn onClick={(e) => submitNewUser(e)}>{ENBtn.confirm}</Btn>
+                </>
               ) : (
-                <Btn onClick={submitNewUser}>{JPBtn.confirm}</Btn>
+                <>
+                  <DisabledBtn disabled={true}>{ENBtn.confirm}</DisabledBtn>
+                </>
               )}
-            </>
-          ) : (
-            <>
-              {lang ? (
-                <DisabledBtn>{ENBtn.confirm}</DisabledBtn>
+            </BtnWrapper>
+          </>
+        ) : (
+          <>
+            <FormWrapper>
+              <P>{JPsignIn.createAcc}</P>
+              <Input onChange={(e) => setName(e.target.value)} />
+              <P>{JPsignIn.enterEmail}</P>
+              <Input onChange={(e) => setEmail(e.target.value)} />
+              <p>{JPContactUs.emailValid}</p>
+              <P>{JPsignIn.createPass}</P>
+              <Input
+                type="password"
+                onChange={(e) => setPass(e.target.value)}
+              />
+              <Warning>
+                <IconWrapper>
+                  <RiErrorWarningLine />
+                </IconWrapper>
+                <p>{JPsignIn.passRequirement}</p>
+              </Warning>
+            </FormWrapper>
+            <BtnWrapper>
+              {name.length > 0 && pass.length > 5 && emailValidation(email) ? (
+                <>
+                  <Btn onClick={(e) => submitNewUser(e)}>{JPBtn.confirm}</Btn>
+                </>
               ) : (
-                <DisabledBtn>{JPBtn.confirm}</DisabledBtn>
+                <>
+                  <DisabledBtn disabled={true}>{JPBtn.confirm}</DisabledBtn>
+                </>
               )}
-            </>
-          )}
-        </BtnWrapper>
+            </BtnWrapper>
+          </>
+        )}
       </Wrapper>
       {sucsess === "succsess" && <Div>Success!</Div>}
       {sucsess === "error" && (
@@ -110,7 +151,7 @@ const H1 = styled.h1`
 `;
 
 const P = styled.p`
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 
 const Input = styled.input`
@@ -118,7 +159,7 @@ const Input = styled.input`
   width: 200px;
   height: 30px;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-top: 20px;
   box-sizing: border-box;
   padding: 10px;
@@ -132,7 +173,7 @@ const FormWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 400px;
+  height: 450px;
   width: 500px;
   border-radius: 10px;
   margin-top: 60px;

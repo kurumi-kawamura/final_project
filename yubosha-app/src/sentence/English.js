@@ -19,6 +19,7 @@ export const ENsignIn = {
   noAcc: "Do not have an account yet? Click below to create one.",
   createAcc: "Enter new username:",
   createPass: "Enter new password:",
+  enterEmail: "Enter your email addrress：",
   passRequirement: "minimum 6 charactors",
   error: "Error! Please try again.",
   duplicate:

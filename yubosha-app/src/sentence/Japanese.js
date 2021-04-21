@@ -17,6 +17,7 @@ export const JPsignIn = {
   noAcc: "アカウントがありませんか？　以下のリンクから作成してください。",
   createAcc: "ユーザー名を記入してください:",
   createPass: "パスワードを記入してください:",
+  enterEmail: "メールアドレスをご記入ください：",
   passRequirement: "最小6文字必要です。",
   error: "エラー。再度お試しください。",
   duplicate:

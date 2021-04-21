@@ -14,14 +14,19 @@ const options = {
 
 const addingUser = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
-  const { name, password } = req.body;
+  const { name, password, email } = req.body;
   try {
     await client.connect();
 
     const db = client.db();
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = { _id: name, userName: name, password: hashedPassword };
+    const user = {
+      _id: name,
+      userName: name,
+      password: hashedPassword,
+      email: email,
+    };
 
     const result = await db.collection("account").insertOne(user);
     assert.equal(1, result.insertedCount);

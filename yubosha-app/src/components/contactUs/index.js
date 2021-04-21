@@ -5,7 +5,10 @@ import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
 import { ENContactUs, ENBtn } from "../../sentence/English";
 import { JPContactUs, JPBtn } from "../../sentence/Japanese";
-import { AiOutlineYoutube, AiOutlineInstagram } from "react-icons/ai";
+import {
+  AiOutlineYoutube,
+  AiOutlineInstagram,
+} from "react-icons/ai";
 import { BsCloud } from "react-icons/bs";
 
 const ContactUs = () => {
@@ -13,49 +16,50 @@ const ContactUs = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [body, setBody] = useState(null);
-  const [emailValid, setEmailValid] = useState(false);
 
-  const submit = (e) => {
-    e.preventDefault();
-
-    fetch("/send", {
-      method: "POST",
-      body: JSON.stringify({ name: name, email: email, message: body }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        const { status } = json;
-        if (status === "success") {
-          alert("Message Sent.");
-          resetForm();
-        } else if (status === "fail") {
-          alert("Message failed to send.");
-        }
-      });
-  };
-
-  const resetForm = () => {
-    setName(null);
-    setEmail(null);
-    setBody(null);
-    setEmailValid(false);
-  };
 
   const emailValidation = (email) => {
     if (email) {
       const valid = email.includes("@") && email.includes(".");
       if (valid) {
-        setEmailValid(true);
         return true;
       } else {
         return false;
       }
     }
   };
+
+  const submit = (e) => {
+    e.preventDefault();
+      fetch("/send", {
+        method: "POST",
+        body: JSON.stringify({ name: name, email: email, message: body }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          console.log(res)
+          return res.json()})
+        .then((json) => {
+          console.log(json)
+          const { status } = json;
+          if (status === "success") {
+            alert("Message Sent.");
+            resetForm();
+          } else if (status === "fail") {
+            alert("Message failed to send.");
+          }
+        });
+  };
+
+  const resetForm = () => {
+    setName(null);
+    setEmail(null);
+    setBody(null);
+  };
+
   return (
     <>
       <Header />
@@ -73,7 +77,7 @@ const ContactUs = () => {
                   placeholder={ENContactUs.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {!emailValid && <P>{ENContactUs.emailValid}</P>}
+                <P>{ENContactUs.emailValid}</P>
                 <TextArea
                   placeholder={ENContactUs.askus}
                   onChange={(e) => setBody(e.target.value)}
@@ -89,7 +93,7 @@ const ContactUs = () => {
                   placeholder={JPContactUs.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {!emailValid && <P>{JPContactUs.emailValid}</P>}
+                <P>{JPContactUs.emailValid}</P>
                 <TextArea
                   placeholder={JPContactUs.askus}
                   onChange={(e) => setBody(e.target.value)}
@@ -101,9 +105,9 @@ const ContactUs = () => {
             {lang ? (
               <>
                 {name && emailValidation(email) && body ? (
-                  <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+                  <Btn onClick={submit}>{ENBtn.submit}</Btn>
                 ) : (
-                  <DisabledBtn>{ENBtn.submit}</DisabledBtn>
+                  <DisabledBtn disabled={true}>{ENBtn.submit}</DisabledBtn>
                 )}
                 <Btn type="reset" onClick={resetForm}>
                   {ENBtn.clear}
@@ -111,10 +115,10 @@ const ContactUs = () => {
               </>
             ) : (
               <>
-                {name && emailValidation(email) && body ? (
-                  <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
+                {name && email && body ? (
+                  <Btn onClick={submit}>{JPBtn.submit}</Btn>
                 ) : (
-                  <DisabledBtn>{JPBtn.submit}</DisabledBtn>
+                  <DisabledBtn disabled={true}>{JPBtn.submit}</DisabledBtn>
                 )}
                 <Btn type="reset" onClick={resetForm}>
                   {JPBtn.clear}
@@ -123,7 +127,7 @@ const ContactUs = () => {
             )}
           </BtnWrapper>
         </Wrapper>
-         
+
         <IconWrapper>
           <a
             href="https://camp-fire.jp/projects/view/404287"
@@ -165,7 +169,7 @@ const ContactUs = () => {
             />
           </a>
         </IconWrapper>
-        </Container>
+      </Container>
     </>
   );
 };

@@ -1,7 +1,7 @@
 export const ENabout = {
   about: "explanation",
   about1:
-    "explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation",
+    "explanation explanation explanation explanation explanation explanation explanation explanation explanation",
   about2:
     "explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation",
 };

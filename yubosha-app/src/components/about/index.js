@@ -10,8 +10,10 @@ import Footer from "../footer/index";
 const About = () => {
   const { lang } = useContext(AppContext);
   let item = useRef(null);
+  let mossArticle = useRef(null);
   let secondArticle = useRef(null);
   let pic1 = useRef(null);
+  let terrariumPic = useRef(null);
   let pic2 = useRef(null);
   let pic3 = useRef(null);
 
@@ -23,6 +25,16 @@ const About = () => {
       ease: Power3.easeOut,
       scrollTrigger: {
         trigger: item,
+        start: "top center",
+      },
+    });
+
+    gsap.to(mossArticle, 3, {
+      opacity: 1,
+      y: -30,
+      ease: Power3.easeOut,
+      scrollTrigger: {
+        trigger: mossArticle,
         start: "top center",
       },
     });
@@ -44,6 +56,16 @@ const About = () => {
       scrollTrigger: {
         trigger: pic1,
         start: "20px 80%",
+      },
+    });
+
+    gsap.to(terrariumPic, 3, {
+      opacity: 1,
+      x: 30,
+      ease: Power3.easeOut,
+      scrollTrigger: {
+        trigger: secondArticle,
+        start: "20px 100%",
       },
     });
 
@@ -79,14 +101,16 @@ const About = () => {
           <ExWrapper>
             <H2>About Yubosha</H2>
             <Div>
-              <P
-                ref={(el) => {
-                  item = el;
-                }}
-                id="firstArticle"
-              >
-                {ENabout.about1}
-              </P>
+              <SentenceWrapper>
+                <P
+                  ref={(el) => {
+                    item = el;
+                  }}
+                  id="firstArticle"
+                >
+                  {ENabout.about1}
+                </P>
+              </SentenceWrapper>
               <Img
                 ref={(e) => {
                   pic1 = e;
@@ -94,6 +118,26 @@ const About = () => {
                 src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
                 alt="yubosha about"
               />
+            </Div>
+            <H2>Moss Terrarium</H2>
+            <Div>
+              <Terra
+                src="./assets/moss_terrarium_stairs.jpg"
+                alt="stairs terrarium"
+                ref={(e) => {
+                  terrariumPic = e;
+                }}
+              />
+              <PDiv
+                ref={(e) => {
+                  mossArticle = e;
+                }}
+              >
+                <p>
+                  {ENabout.about2}
+                </p>
+                
+              </PDiv>
             </Div>
             <H2>Activity</H2>
             <P
@@ -125,14 +169,16 @@ const About = () => {
           <ExWrapper>
             <H2>About Yubosha</H2>
             <Div>
-              <P
-                ref={(el) => {
-                  item = el;
-                }}
-                id="firstArticle"
-              >
-                {JPabout.about1}
-              </P>
+              <SentenceWrapper>
+                <P
+                  ref={(el) => {
+                    item = el;
+                  }}
+                  id="firstArticle"
+                >
+                  {JPabout.about1}
+                </P>
+              </SentenceWrapper>
               <Img
                 ref={(e) => {
                   pic1 = e;
@@ -141,6 +187,34 @@ const About = () => {
                 alt="yubosha about"
               />
             </Div>
+            <H2>Moss Terrarium</H2>
+            <Div>
+              <Terra
+                src="./assets/moss_terrarium_stairs.jpg"
+                alt="stairs terrarium"
+                ref={(e) => {
+                  terrariumPic = e;
+                }}
+              />
+              <PDiv
+                ref={(e) => {
+                  mossArticle = e;
+                }}
+              >
+                <p>
+                  ガラス容器にちいさな自分だけの世界をつくることができます。
+                </p>
+                <p>
+                  条件はありますが、食卓や机のうえなど、とても身近な生活空間で育てることができます。
+                </p>
+                <p>苔も生きています。</p>
+                <p>
+                  毎日の生活のなかに苔を取り入れ手入れをしながら一緒に過ごしてみませんか。
+                </p>
+                <p>きっと、生活のなかに潤いがプラスされるでしょう。</p>
+              </PDiv>
+            </Div>
+
             <H2>Activity</H2>
             <P
               ref={(e) => {
@@ -188,6 +262,12 @@ const Div = styled.div`
 
 const Div2 = styled(Div)`
   margin-top: 10px;
+`;
+
+const SentenceWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Wrapper = styled.div`
@@ -244,10 +324,25 @@ const Img = styled.img`
   opacity: 0;
 `;
 
+const Terra = styled(Img)`
+  width: 300px;
+  height: 250px;
+  margin-top: 130px;
+  /* border-radius: 50%; */
+`;
+
 const P = styled.p`
   margin-top: 70px;
   opacity: 0;
   line-height: 40px;
+  text-align: left;
+`;
+
+const PDiv = styled.div`
+  margin-top: 70px;
+  opacity: 0;
+  line-height: 40px;
+  text-align: left;
 `;
 
 const H2 = styled.h2`

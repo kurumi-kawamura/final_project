@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context";
-import { ENsignIn } from "../../sentence/English";
-import { JPsignIn } from "../../sentence/Japanese";
+import { ENsignIn, ENBtn } from "../../sentence/English";
+import { JPsignIn, JPBtn } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";
 import { Btn, Wrapper, DisabledBtn } from "../../decolation/FormItem";
@@ -49,9 +49,9 @@ const CreateAcc = () => {
   return (
     <>
       <Header />
+      <H1>Create Account</H1>
       <Wrapper>
         <FormWrapper>
-          <H1>Create Account</H1>
           {lang ? <P>{ENsignIn.createAcc}</P> : <P>{JPsignIn.createAcc}</P>}
           <Input onChange={(e) => setName(e.target.value)} />
           {lang ? <P>{ENsignIn.createPass}</P> : <P>{JPsignIn.createPass}</P>}
@@ -60,36 +60,57 @@ const CreateAcc = () => {
             <IconWrapper>
               <RiErrorWarningLine />
             </IconWrapper>
-            <p>minimum 6 charactors</p>
+            {lang ? (
+              <p>{ENsignIn.passRequirement}</p>
+            ) : (
+              <p>{JPsignIn.passRequirement}</p>
+            )}
           </Warning>
         </FormWrapper>
         <BtnWrapper>
           {name.length > 0 && pass.length > 5 ? (
-            <Btn onClick={submitNewUser}>Confirm</Btn>
+            <>
+              {lang ? (
+                <Btn onClick={submitNewUser}>{ENBtn.confirm}</Btn>
+              ) : (
+                <Btn onClick={submitNewUser}>{JPBtn.confirm}</Btn>
+              )}
+            </>
           ) : (
-            <DisabledBtn>Confirm</DisabledBtn>
+            <>
+              {lang ? (
+                <DisabledBtn>{ENBtn.confirm}</DisabledBtn>
+              ) : (
+                <DisabledBtn>{JPBtn.confirm}</DisabledBtn>
+              )}
+            </>
           )}
         </BtnWrapper>
       </Wrapper>
       {sucsess === "succsess" && <Div>Success!</Div>}
-      {sucsess === "error" && <Div>Error! Please try again.</Div>}
+      {sucsess === "error" && (
+        <>{lang ? <Div>{ENsignIn.error}</Div> : <Div>{JPsignIn.error}</Div>}</>
+      )}
       {sucsess === "duplicate" && (
-        <Div>
-          Someone is using the username already. Please enter different
-          username.
-        </Div>
+        <>
+          {lang ? (
+            <Div>{ENsignIn.duplicate}</Div>
+          ) : (
+            <Div>{JPsignIn.duplicate}</Div>
+          )}
+        </>
       )}
     </>
   );
 };
 
 const H1 = styled.h1`
-  color: white;
-  margin-top: 30px;
+  text-align: center;
+  margin-top: 70px;
 `;
 
 const P = styled.p`
-  margin-top: 40px;
+  margin-top: 60px;
 `;
 
 const Input = styled.input`
@@ -98,7 +119,7 @@ const Input = styled.input`
   height: 30px;
   border-radius: 5px;
   margin-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
   box-sizing: border-box;
   padding: 10px;
 `;
@@ -114,10 +135,10 @@ const FormWrapper = styled.div`
   height: 400px;
   width: 500px;
   border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 60px;
   color: white;
 
-  @media (max-width: 540px){
+  @media (max-width: 540px) {
     width: 400px;
   }
 `;
@@ -132,9 +153,8 @@ const Div = styled.div`
 
 const Warning = styled.div`
   font-size: 15px;
-  display:flex;
+  display: flex;
   flex-direction: row;
-
 `;
 
 const IconWrapper = styled.span`

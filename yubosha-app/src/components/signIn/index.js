@@ -54,8 +54,8 @@ const SignIn = () => {
       {lang ? (
         <>
           <Wrapper>
-            <FormWrapper></FormWrapper>
             <H1>{ENsignIn.signIn}</H1>
+            <FormWrapper></FormWrapper>
             <Input
               placeholder="username:"
               onChange={(e) => setName(e.target.value)}
@@ -75,7 +75,7 @@ const SignIn = () => {
             </BtnWrapper>
             <P>{ENsignIn.noAcc}</P>
             <LinkWrapper>
-              <Link to="/CreateAcc">here</Link>
+              <Link to="/CreateAcc">{ENsignIn.here}</Link>
             </LinkWrapper>
           </Wrapper>
           {success === "success" && <Div>Success!</Div>}
@@ -84,8 +84,8 @@ const SignIn = () => {
       ) : (
         <>
           <Wrapper>
-            <FormWrapper></FormWrapper>
             <H1>{JPsignIn.signIn}</H1>
+            <FormWrapper></FormWrapper>
             <Input
               placeholder="username:"
               onChange={(e) => setName(e.target.value)}
@@ -103,7 +103,7 @@ const SignIn = () => {
             </BtnWrapper>
             <P>{JPsignIn.noAcc}</P>
             <LinkWrapper>
-              <Link to="/CreateAcc">here</Link>
+              <Link to="/CreateAcc">{JPsignIn.here}</Link>
             </LinkWrapper>
           </Wrapper>
           {success === "success" && <Div>Success!</Div>}
@@ -115,9 +115,8 @@ const SignIn = () => {
 };
 
 const H1 = styled.h1`
-  position: absolute;
-  top: 160px;
-  color: white;
+  text-align: center;
+  margin-top: 70px;
 `;
 
 const Input = styled.input`
@@ -126,18 +125,17 @@ const Input = styled.input`
   position: absolute;
   border: none;
   border-radius: 5px;
-  top: 260px;
+  top: 280px;
   padding: 10px;
   box-sizing: border-box;
 `;
 
 const Input2 = styled(Input)`
-  top: 360px;
+  top: 440px;
 `;
-
 const BtnWrapper = styled.div`
   position: absolute;
-  top: 570px;
+  top: 650px;
   color: var(--soft-gray);
   display: flex;
   flex-direction: column;
@@ -145,14 +143,14 @@ const BtnWrapper = styled.div`
 
 const P = styled.p`
   position: absolute;
-  top: 520px;
+  top: 600px;
   font-size: 13px;
   color: var(--soft-black);
 `;
 
 const LinkWrapper = styled.div`
   position: absolute;
-  top: 540px;
+  top: 620px;
   font-size: 10px;
 `;
 

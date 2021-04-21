@@ -29,7 +29,7 @@ export const FormWrapper = styled.div`
   height: 400px;
   width: 500px;
   border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 60px;
 
   @media (max-width: 540px){
     width: 400px;

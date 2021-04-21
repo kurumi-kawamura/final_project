@@ -19,7 +19,12 @@ export const ENsignIn = {
   noAcc: "Do not have an account yet? Click below to create one.",
   createAcc: "Enter new username:",
   createPass: "Enter new password:",
+  passRequirement: "minimum 6 charactors",
+  error: "Error! Please try again.",
+  duplicate:
+    "Someone is using the username already. Please enter different username.",
   noMatch: "Username or password does not match! Please try again.",
+  here: "here",
 };
 
 export const ENContactUs = {
@@ -35,6 +40,7 @@ export const ENBtn = {
   upload: "Upload",
   signIn: "Sign in",
   logOut: "Log out",
+  confirm: "Confirm",
 };
 
 export const ENAddMoss = {

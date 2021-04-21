@@ -206,9 +206,6 @@ const ItemWrapper = styled.div`
   color: var(--soft-black);
   z-index: 100;
 
-  @media (max-width: 500px){
-    width: 400px;
-  }
 `;
 
 const P = styled.p`

@@ -15,6 +15,7 @@ export const JPheader = {
 export const JPsignIn = {
   signIn: "サインイン",
   noAcc: "アカウントがありませんか？　以下のリンクから作成してください。",
+  forgetPass: "パスワードを忘れましたか?",
   createAcc: "ユーザー名を記入してください:",
   createPass: "パスワードを記入してください:",
   enterEmail: "メールアドレスをご記入ください：",

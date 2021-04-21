@@ -67,7 +67,7 @@ const SignIn = () => {
             />
             <PassLink>
               <Link to="/forgetPassword" style={{ color: "white" }}>
-                Forgot password?
+                {ENsignIn.forgetPass}
               </Link>
             </PassLink>
 
@@ -101,7 +101,7 @@ const SignIn = () => {
             />
             <PassLink>
               <Link to="/forgetPassword" style={{ color: "white" }}>
-                Forgot password?
+                {JPsignIn.forgetPass}
               </Link>
             </PassLink>
             <BtnWrapper>

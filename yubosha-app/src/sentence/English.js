@@ -17,6 +17,7 @@ export const ENheader = {
 export const ENsignIn = {
   signIn: "Sign In",
   noAcc: "Do not have an account yet? Click below to create one.",
+  forgetPass: "Forgot password?",
   createAcc: "Enter new username:",
   createPass: "Enter new password:",
   enterEmail: "Enter your email addrress：",

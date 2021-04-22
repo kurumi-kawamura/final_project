@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 import { removeItem } from "../../actions";
+import { cartStuff } from "../../sentence/Language";
+import { AppContext } from "../../context";
 
 const CartItem = ({ src, name, quantity, item, price }) => {
+  const { lang } = useContext(AppContext);
   const dispacth = useDispatch();
   return (
     <>
@@ -15,8 +18,8 @@ const CartItem = ({ src, name, quantity, item, price }) => {
         <Img src={src} alt={name} />
         <Div>
           <H2>{name}</H2>
-          <P>Quantity: {quantity}</P>
-          <P>Price: {price} yen</P>
+          <P>{cartStuff[`${lang}quantity`]}: {quantity}</P>
+          <P>{cartStuff[`${lang}Price`]}: {price} yen</P>
         </Div>
       </Wrapper>
     </>

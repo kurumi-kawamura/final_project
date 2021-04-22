@@ -134,9 +134,13 @@ export const cartStuff = {
   ENprice: "yen",
   ENproceed: "Checkout",
   ENempty: "Your cart is currently empty.",
+  ENquantity: "Quantity",
+  ENPrice: "Price",
   JPprice: "円",
   JPproceed: "チェックアウト",
   JPempty: "カートは空です。",
+  JPquantity: "個数",
+  JPPrice: "お値段",
 };
 
 export const footer = {

@@ -1,13 +1,10 @@
 import React, { useContext, useState } from "react";
-// import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENAddMoss, ENBtn } from "../../sentence/Language";
-import { JPAddMoss, JPBtn } from "../../sentence/Japanese";
+import { AddMoss, button } from "../../sentence/Language";
 
 const AddNewMoss = () => {
-  // const dispatch = useDispatch();
   const { currentUser, lang } = useContext(AppContext);
   const [pic, setPic] = useState(null);
   const [mossName, setMossName] = useState(null);
@@ -83,97 +80,51 @@ const AddNewMoss = () => {
   return (
     <>
       <Wrapper>
-        {lang ? (
           <>
-            <H2>{ENAddMoss.add}</H2>
+            <H2>{AddMoss[`${lang}add`]}</H2>
             <Input
-              placeholder={ENAddMoss.name}
+              placeholder={AddMoss[`${lang}name`]}
               onChange={(e) => setMossName(e.target.value)}
               required
               className="nameInput"
             />
             <Input
-              placeholder={ENAddMoss.location}
+              placeholder={AddMoss[`${lang}location`]}
               onChange={(e) => setLocation(e.target.value)}
               required
               className="locationInput"
             />
             <UploadWrapper>
-              <P>{ENAddMoss.upload}</P>
+              <P>{AddMoss[`${lang}upload`]}</P>
               <ChooseFile
                 type="file"
                 onChange={(e) => setPic(e.target.files[0])}
                 className="picInput"
               />
               <Button onClick={(e) => postDetails(e)}>
-                {ENAddMoss.confirmPic}
+                {AddMoss[`${lang}confirmPic`]}
               </Button>
 
-              {upload === "uploaded" && <P>{ENAddMoss.uploadSuccess}</P>}
-              {upload === "loadingPic" && <P>uploading...</P>}
-              {upload === "notUploaded" && <P>{ENAddMoss.Unsuccess}</P>}
-              {upload === "pleaseSelect" && <P>{ENAddMoss.selectFile}</P>}
+              {upload === "uploaded" && <P>{AddMoss[`${lang}uploadSuccess`]}</P>}
+              {upload === "loadingPic" && <P>{AddMoss[`${lang}uploading`]}</P>}
+              {upload === "notUploaded" && <P>{AddMoss[`${lang}unsuccess`]}</P>}
+              {upload === "pleaseSelect" && <P>{AddMoss[`${lang}selectFile`]}</P>}
             </UploadWrapper>
             <BtnWrapper>
               {location && mossName ? (
-                <Btn onClick={(e) => submit(e)}>{ENBtn.submit}</Btn>
+                <Btn onClick={(e) => submit(e)}>{button[`${lang}submit`]}</Btn>
               ) : (
                 <DisabledBtn disabled={true} onClick={(e) => submit(e)}>
-                  {ENBtn.submit}
+                  {button[`${lang}submit`]}
                 </DisabledBtn>
               )}
             </BtnWrapper>
             <Btn type="reset" onClick={clear}>
-              {ENBtn.clear}
+              {button[`${lang}clear`]}
             </Btn>
-            {upload === "error" && <P>{ENAddMoss.Unsuccess}</P>}
+            {upload === "error" && <P>{AddMoss[`${lang}unsuccess`]}</P>}
           </>
-        ) : (
-          <>
-            <H2>{JPAddMoss.add}</H2>
-            <Input
-              placeholder={JPAddMoss.name}
-              onChange={(e) => setMossName(e.target.value)}
-              required
-              className="nameInput"
-            />
-            <Input
-              placeholder={JPAddMoss.location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-              className="locationInput"
-            />
-            <UploadWrapper>
-              <P>{JPAddMoss.upload}</P>
-              <ChooseFile
-                type="file"
-                onChange={(e) => setPic(e.target.files[0])}
-                className="picInput"
-              />
-              <Button onClick={(e) => postDetails(e)}>
-                {JPAddMoss.confirmPic}
-              </Button>
-              {upload === "uploaded" && <P>{JPAddMoss.uploadSuccess}</P>}
-              {upload === "loadingPic" && <P>写真を読み込み中...</P>}
-              {upload === "notUploaded" && <P>{JPAddMoss.Unsuccess}</P>}
-              {upload === "pleaseSelect" && <P>{JPAddMoss.selectFile}</P>}
-            </UploadWrapper>
-            <BtnWrapper>
-              {location && mossName ? (
-                <Btn onClick={(e) => submit(e)}>{JPBtn.submit}</Btn>
-              ) : (
-                <DisabledBtn disabled={true} onClick={(e) => submit(e)}>
-                  {JPBtn.submit}
-                </DisabledBtn>
-              )}
-            </BtnWrapper>
-
-            <Btn type="reset" onClick={clear}>
-              {JPBtn.clear}
-            </Btn>
-            {upload === "error" && <P>{JPAddMoss.Unsuccess}</P>}
-          </>
-        )}
+        
       </Wrapper>
     </>
   );

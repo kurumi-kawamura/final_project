@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import {success} from "../../sentence/Language";
+import { AppContext } from "../../context";
 
 const Sucess = () => {
   const ids = JSON.parse(localStorage.getItem("ids"));
   const quantitys = JSON.parse(localStorage.getItem("quantitys"));
   const stocks = JSON.parse(localStorage.getItem("stocks"));
+  const {lang} = useContext(AppContext);
 
   useEffect(() => {
     fetch("/updateStock", {
@@ -34,13 +37,13 @@ const Sucess = () => {
   return (
     <>
       <Wrapper>
-        <div>Thank you for your order!</div>
-        <p>We will send you the order confimation email within next 24h!</p>
+        <div>{success[`${lang}thanks`]}</div>
+        <p>{success[`${lang}mailyou`]}</p>
         <Return exact to="/">
           <Icon>
             <BsArrowReturnLeft style={{ fill: "green" }} />
           </Icon>
-          <p>Return to Home</p>
+          <p>{success[`${lang}returnHM`]}</p>
         </Return>
       </Wrapper>
     </>

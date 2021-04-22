@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Header from "../header/index";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
-import { ENContactUs, ENBtn } from "../../sentence/Language";
-import { JPContactUs, JPBtn } from "../../sentence/Japanese";
+import { contactUs, button } from "../../sentence/Language";
 import {
   AiOutlineYoutube,
   AiOutlineInstagram,
@@ -70,70 +69,37 @@ const ContactUs = () => {
       <Container>
         <Wrapper>
           <FormWrapper>
-            {lang ? (
               <>
                 <Input
-                  placeholder={ENContactUs.name}
+                  placeholder={contactUs[`${lang}name`]}
                   onChange={(e) => setName(e.target.value)}
                   className="inputFeild"
                 />
                 <Input
-                  placeholder={ENContactUs.email}
+                  placeholder={contactUs[`${lang}email`]}
                   onChange={(e) => setEmail(e.target.value)}
                   className="inputFeild2"
                 />
-                <P>{ENContactUs.emailValid}</P>
+                <P>{contactUs[`${lang}emailValid`]}</P>
                 <TextArea
-                  placeholder={ENContactUs.askus}
+                  placeholder={contactUs[`${lang}askus`]}
                   onChange={(e) => setBody(e.target.value)}
                   className="inputFeild3"
                 />
               </>
-            ) : (
-              <>
-                <Input
-                  placeholder={JPContactUs.name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="inputFeild"
-                />
-                <Input
-                  placeholder={JPContactUs.email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="inputFeild2"
-                />
-                <P>{JPContactUs.emailValid}</P>
-                <TextArea
-                  placeholder={JPContactUs.askus}
-                  onChange={(e) => setBody(e.target.value)}
-                  className="inputFeild3"
-                />
-              </>
-            )}
+          
           </FormWrapper>
           <BtnWrapper>
-            {lang ? (
               <>
                 {name && emailValidation(email) && body ? (
-                  <Btn onClick={submit}>{ENBtn.submit}</Btn>
+                  <Btn onClick={submit}>{button[`${lang}submit`]}</Btn>
                 ) : (
-                  <DisabledBtn disabled={true}>{ENBtn.submit}</DisabledBtn>
+                  <DisabledBtn disabled={true}>{button[`${lang}submit`]}</DisabledBtn>
                 )}
                 <Btn type="reset" onClick={resetForm}>
-                  {ENBtn.clear}
+                  {button[`${lang}clear`]}
                 </Btn>
               </>
-            ) : (
-              <>
-                {name && email && body ? (
-                  <Btn onClick={submit}>{JPBtn.submit}</Btn>
-                ) : (
-                  <DisabledBtn disabled={true}>{JPBtn.submit}</DisabledBtn>
-                )}
-                <Btn type="reset" onClick={resetForm}>
-                  {JPBtn.clear}
-                </Btn>
-              </>
-            )}
           </BtnWrapper>
         </Wrapper>
 

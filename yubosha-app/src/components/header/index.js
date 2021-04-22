@@ -11,10 +11,6 @@ import NavbarSmall from "./Navbar-small";
 const Header = () => {
   const { lang, setLang, currentUser, setCurrentUser } = useContext(AppContext);
   const cart = useSelector((state) => state.item.cart);
-  const home = `${lang}home`
-  const about = `${lang}about`
-  const map = `${lang}map`
-  const shop = `${lang}shop`
   const change = () => {
     if(lang==="EN"){
 
@@ -50,16 +46,16 @@ const Header = () => {
         <Btn onClick={change}>EN/JP</Btn>
           <>
             <StyledNavLink exact to="/">
-              {header[home]}
+              {header[`${lang}home`]}
             </StyledNavLink>
             <StyledNavLink exact to="/about">
-              {header[about]}
+              {header[`${lang}about`]}
             </StyledNavLink>
             <StyledNavLink exact to="/map">
-              {header[map]}
+              {header[`${lang}map`]}
             </StyledNavLink>
             <StyledNavLink exact to="/shop">
-              {header[shop]}
+              {header[`${lang}shop`]}
             </StyledNavLink>
             <StyledNavLink exact to="/cart">
               {Object.values(cart).length > 0 ? (

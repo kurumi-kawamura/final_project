@@ -3,22 +3,15 @@ import { AiOutlineYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import { ENFooter } from "../../sentence/Language";
-import { JPFooter } from "../../sentence/Japanese";
+import { footer } from "../../sentence/Language";
 
 const Footer = () => {
   const { lang } = useContext(AppContext);
   return (
     <>
-      {lang ? (
         <StyledNavLink exact to="/contactUs">
-          {ENFooter.contactUs}
+          {footer[`${lang}contactUs`]}
         </StyledNavLink>
-      ) : (
-        <StyledNavLink exact to="/contactUs">
-          {JPFooter.contactUs}
-        </StyledNavLink>
-      )}
 
       <a
         href="https://www.youtube.com/channel/UChVt91DKeuMDi4bGlVZ5_Aw"

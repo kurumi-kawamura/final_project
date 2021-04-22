@@ -3,8 +3,7 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENResetPass, ENBtn } from "../../sentence/Language";
-import { JPResetPass, JPBtn } from "../../sentence/Japanese";
+import { ResetPass, button } from "../../sentence/Language";
 
 const ForgotPass = () => {
   const [username, setUsername] = useState(null);
@@ -67,51 +66,26 @@ const ForgotPass = () => {
       <H1>Reset Password</H1>
       <Container>
         <FormWrapper>
-          {lang ? (
             <>
-              <label>{ENResetPass.username}</label>
+              <label>{ResetPass[`${lang}username`]}</label>
               <Input onChange={(e) => setUsername(e.target.value)} />
-              <label>{ENResetPass.email}</label>
+              <label>{ResetPass[`${lang}email`]}</label>
               <Input onChange={(e) => setEmail(e.target.value)} />
-              <label>{ENResetPass.newPass}</label>
+              <label>{ResetPass[`${lang}newPass`]}</label>
               <Input
                 type="password"
                 onChange={(e) => setNewPass(e.target.value)}
               />
               {check() && newPass.length > 5 ? (
-                <Btn onClick={change}>{ENBtn.confirm}</Btn>
+                <Btn onClick={change}>{button[`${lang}confirm`]}</Btn>
               ) : (
                 <DisabledBtn disabled={true} onClick={change}>
-                  {ENBtn.confirm}
+                  {button[`${lang}confirm`]}
                 </DisabledBtn>
               )}
-              <P>
-                {ENResetPass.warning}
-              </P>
+              <P>{ResetPass[`${lang}warning`]}</P>
             </>
-          ) : (
-            <>
-              <label>{JPResetPass.username}</label>
-              <Input onChange={(e) => setUsername(e.target.value)} />
-              <label>{JPResetPass.email}</label>
-              <Input onChange={(e) => setEmail(e.target.value)} />
-              <label>{JPResetPass.newPass}</label>
-              <Input
-                type="password"
-                onChange={(e) => setNewPass(e.target.value)}
-              />
-              {check() && newPass.length > 5 ? (
-                <Btn onClick={change}>{JPBtn.confirm}</Btn>
-              ) : (
-                <DisabledBtn disabled={true} onClick={change}>
-                  {JPBtn.confirm}
-                </DisabledBtn>
-              )}
-              <P>
-                {JPResetPass.warning}
-              </P>
-            </>
-          )}
+        
         </FormWrapper>
       </Container>
     </>

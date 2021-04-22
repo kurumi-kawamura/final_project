@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context";
-import { ENsignIn, ENBtn, ENContactUs } from "../../sentence/Language";
-import { JPsignIn, JPBtn, JPContactUs } from "../../sentence/Japanese";
+import { signIn, button, contactUs } from "../../sentence/Language";
 import Header from "../header/index";
 import styled from "styled-components";
 import { Btn, Wrapper, DisabledBtn } from "../../decolation/FormItem";
@@ -62,83 +61,49 @@ const CreateAcc = () => {
       <Header />
       <H1>Create Account</H1>
       <Wrapper>
-        {lang ? (
-          <>
-            <FormWrapper>
-              <P>{ENsignIn.createAcc}</P>
-              <Input onChange={(e) => setName(e.target.value)} />
-              <P>{ENsignIn.enterEmail}</P>
-              <Input onChange={(e) => setEmail(e.target.value)} />
-              <p>{ENContactUs.emailValid}</p>
-              <P>{ENsignIn.createPass}</P>
-              <Input
-                type="password"
-                onChange={(e) => setPass(e.target.value)}
-              />
-              <Warning>
-                <IconWrapper>
-                  <RiErrorWarningLine />
-                </IconWrapper>
-                <p>{ENsignIn.passRequirement}</p>
-              </Warning>
-            </FormWrapper>
-            <BtnWrapper>
-              {name.length > 0 && emailValidation(email) && pass.length > 5 ? (
-                <>
-                  <Btn onClick={(e) => submitNewUser(e)}>{ENBtn.confirm}</Btn>
-                </>
-              ) : (
-                <>
-                  <DisabledBtn disabled={true}>{ENBtn.confirm}</DisabledBtn>
-                </>
-              )}
-            </BtnWrapper>
-          </>
-        ) : (
-          <>
-            <FormWrapper>
-              <P>{JPsignIn.createAcc}</P>
-              <Input onChange={(e) => setName(e.target.value)} />
-              <P>{JPsignIn.enterEmail}</P>
-              <Input onChange={(e) => setEmail(e.target.value)} />
-              <p>{JPContactUs.emailValid}</p>
-              <P>{JPsignIn.createPass}</P>
-              <Input
-                type="password"
-                onChange={(e) => setPass(e.target.value)}
-              />
-              <Warning>
-                <IconWrapper>
-                  <RiErrorWarningLine />
-                </IconWrapper>
-                <p>{JPsignIn.passRequirement}</p>
-              </Warning>
-            </FormWrapper>
-            <BtnWrapper>
-              {name.length > 0 && pass.length > 5 && emailValidation(email) ? (
-                <>
-                  <Btn onClick={(e) => submitNewUser(e)}>{JPBtn.confirm}</Btn>
-                </>
-              ) : (
-                <>
-                  <DisabledBtn disabled={true}>{JPBtn.confirm}</DisabledBtn>
-                </>
-              )}
-            </BtnWrapper>
-          </>
-        )}
+        <>
+          <FormWrapper>
+            <P>{signIn[`${lang}createAcc`]}</P>
+            <Input onChange={(e) => setName(e.target.value)} />
+            <P>{signIn[`${lang}enterEmail`]}</P>
+            <Input onChange={(e) => setEmail(e.target.value)} />
+            <p>{contactUs[`${lang}emailValid`]}</p>
+            <P>{signIn[`${lang}createPass`]}</P>
+            <Input type="password" onChange={(e) => setPass(e.target.value)} />
+            <Warning>
+              <IconWrapper>
+                <RiErrorWarningLine />
+              </IconWrapper>
+              <p>{signIn[`${lang}passRequirement`]}</p>
+            </Warning>
+          </FormWrapper>
+          <BtnWrapper>
+            {name.length > 0 && emailValidation(email) && pass.length > 5 ? (
+              <>
+                <Btn onClick={(e) => submitNewUser(e)}>
+                  {button[`${lang}confirm`]}
+                </Btn>
+              </>
+            ) : (
+              <>
+                <DisabledBtn disabled={true}>
+                  {button[`${lang}confirm`]}
+                </DisabledBtn>
+              </>
+            )}
+          </BtnWrapper>
+        </>
       </Wrapper>
       {sucsess === "succsess" && <Div>Success!</Div>}
       {sucsess === "error" && (
-        <>{lang ? <Div>{ENsignIn.error}</Div> : <Div>{JPsignIn.error}</Div>}</>
+        <>
+          {" "}
+          <Div>{signIn[`${lang}error`]}</Div>
+        </>
       )}
       {sucsess === "duplicate" && (
         <>
-          {lang ? (
-            <Div>{ENsignIn.duplicate}</Div>
-          ) : (
-            <Div>{JPsignIn.duplicate}</Div>
-          )}
+          <Div>{signIn[`${lang}duplicate`]}</Div>
         </>
       )}
     </>

@@ -9,8 +9,7 @@ import {
 } from "../../decolation/FormItem";
 import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
-import { ENsignIn, ENBtn } from "../../sentence/Language";
-import { JPsignIn, JPBtn } from "../../sentence/Japanese";
+import { signIn, button } from "../../sentence/Language";
 import { useDispatch } from "react-redux";
 import { requestUserInfo } from "../../actions";
 
@@ -22,7 +21,7 @@ const SignIn = () => {
   const [success, setSuccess] = useState("idle");
   const history = useHistory();
 
-  const signIn = () => {
+  const signInFunc = () => {
     dispacth(requestUserInfo());
     fetch("/users/login", {
       method: "POST",
@@ -50,11 +49,9 @@ const SignIn = () => {
   return (
     <>
       <Header />
-
-      {lang ? (
         <>
           <Wrapper>
-            <H1>{ENsignIn.signIn}</H1>
+            <H1>{signIn[`${lang}signIn`]}</H1>
             <FormWrapper></FormWrapper>
             <Input
               placeholder="username:"
@@ -67,59 +64,26 @@ const SignIn = () => {
             />
             <PassLink>
               <Link to="/forgetPassword" style={{ color: "white" }}>
-                {ENsignIn.forgetPass}
+                {signIn[`${lang}forgetPass`]}
               </Link>
             </PassLink>
 
             <BtnWrapper>
               {name && pass ? (
-                <Btn onClick={signIn}>{ENBtn.signIn}</Btn>
+                <Btn onClick={signInFunc}>{button[`${lang}signIn`]}</Btn>
               ) : (
-                <DisabledBtn>{ENBtn.signIn}</DisabledBtn>
+                <DisabledBtn>{button[`${lang}signIn`]}</DisabledBtn>
               )}
             </BtnWrapper>
-            <P>{ENsignIn.noAcc}</P>
+            <P>{signIn[`${lang}noAcc`]}</P>
             <LinkWrapper>
-              <Link to="/CreateAcc">{ENsignIn.here}</Link>
+              <Link to="/CreateAcc">{signIn[`${lang}here`]}</Link>
             </LinkWrapper>
           </Wrapper>
           {success === "success" && <Div>Success!</Div>}
-          {success === "error" && <Div>{ENsignIn.noMatch}</Div>}
+          {success === "error" && <Div>{signIn[`${lang}noMatch`]}</Div>}
         </>
-      ) : (
-        <>
-          <Wrapper>
-            <H1>{JPsignIn.signIn}</H1>
-            <FormWrapper></FormWrapper>
-            <Input
-              placeholder="username:"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <Input2
-              placeholder="password:"
-              onChange={(e) => setPass(e.target.value)}
-            />
-            <PassLink>
-              <Link to="/forgetPassword" style={{ color: "white" }}>
-                {JPsignIn.forgetPass}
-              </Link>
-            </PassLink>
-            <BtnWrapper>
-              {name && pass ? (
-                <Btn onClick={signIn}>{JPBtn.signIn}</Btn>
-              ) : (
-                <DisabledBtn>{JPBtn.signIn}</DisabledBtn>
-              )}
-            </BtnWrapper>
-            <P>{JPsignIn.noAcc}</P>
-            <LinkWrapper>
-              <Link to="/CreateAcc">{JPsignIn.here}</Link>
-            </LinkWrapper>
-          </Wrapper>
-          {success === "success" && <Div>Success!</Div>}
-          {success === "error" && <Div>{JPsignIn.noMatch}</Div>}
-        </>
-      )}
+      
     </>
   );
 };

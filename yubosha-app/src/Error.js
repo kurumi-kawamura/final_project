@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AppContext } from "./context";
+import { error } from "./sentence/Language";
 
 const ErrorPage = () => {
+  const { lang } = useContext(AppContext);
   return (
     <>
       <Wrapper>
-        <div>Oppos! Something went wrong... Please try again...</div>
+        <div>{error[`${lang}error`]}</div>
       </Wrapper>
     </>
   );

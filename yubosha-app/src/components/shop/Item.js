@@ -9,8 +9,7 @@ import {
   requestItemsData,
 } from "../../actions";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENEachItem } from "../../sentence/Language";
-import { JPEachItem } from "../../sentence/Japanese";
+import { EachItem } from "../../sentence/Language";
 import { AppContext } from "../../context";
 import Spinner from "../../decolation/spinner";
 const Item = () => {
@@ -48,12 +47,11 @@ const Item = () => {
           <>
             <Img src={item.imgSrc} alt={item.ItemName} />
             <DeatilWrapper>
-              {lang ? (
                 <>
                   <ItemName>{item.ItemName}</ItemName>
-                  <Detail>{ENEachItem.detail}</Detail>
+                  <Detail>{EachItem[`${lang}detail`]}</Detail>
                   <Price>
-                    {item.price} {ENEachItem.price}
+                    {item.price} {EachItem[`${lang}price`]}
                   </Price>
                   {Object.keys(cart).length > 0 &&
                   Object.keys(cart).includes(item.ItemName) ? (
@@ -64,14 +62,14 @@ const Item = () => {
                             dispacth(addItemInCart(item));
                           }}
                         >
-                          {ENEachItem.addCart}
+                          {EachItem[`${lang}addCart`]}
                         </Btn>
                       ) : (
                         <>
                           <DisabledBtn disabled={true}>
-                            {ENEachItem.addCart}
+                            {EachItem[`${lang}addCart`]}
                           </DisabledBtn>
-                          <P>{ENEachItem.soldout}</P>
+                          <P>{EachItem[`${lang}soldout`]}</P>
                         </>
                       )}
                     </>
@@ -83,44 +81,20 @@ const Item = () => {
                             dispacth(addItemInCart(item));
                           }}
                         >
-                          {ENEachItem.addCart}
+                          {EachItem[`${lang}addCart`]}
                         </Btn>
                       ) : (
                         <>
                           <DisabledBtn disabled={true}>
-                            {ENEachItem.addCart}
+                            {EachItem[`${lang}addCart`]}
                           </DisabledBtn>
-                          <P>{ENEachItem.soldout}</P>
+                          <P>{EachItem[`${lang}soldout`]}</P>
                         </>
                       )}
                     </>
                   )}
                 </>
-              ) : (
-                <>
-                  <ItemName>{item.ItemName}</ItemName>
-                  <Detail>{JPEachItem.detail}</Detail>
-                  <Price>
-                    {item.price} {JPEachItem.price}
-                  </Price>
-                  {item.stock > 0 ? (
-                    <Btn
-                      onClick={() => {
-                        dispacth(addItemInCart(item));
-                      }}
-                    >
-                      {JPEachItem.addCart}
-                    </Btn>
-                  ) : (
-                    <>
-                      <DisabledBtn disabled={true}>
-                        {JPEachItem.addCart}
-                      </DisabledBtn>
-                      <P>{JPEachItem.soldout}</P>
-                    </>
-                  )}
-                </>
-              )}
+              
             </DeatilWrapper>
           </>
         ) : (

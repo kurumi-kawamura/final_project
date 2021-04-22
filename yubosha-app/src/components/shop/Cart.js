@@ -5,8 +5,7 @@ import { Btn, DisabledBtn, Loading } from "../../decolation/FormItem";
 import CartItem from "./CartItem";
 import { loadStripe } from "@stripe/stripe-js";
 import { AppContext } from "../../context";
-import { ENCart } from "../../sentence/Language";
-import { JPCart } from "../../sentence/Japanese";
+import { cartStuff } from "../../sentence/Language";
 import Footer from "../footer/index";
 import Spinner from "../../decolation/spinner";
 
@@ -84,14 +83,9 @@ const Cart = () => {
       <Container>
         <Div>
           <ItemContainer>
-            {lang && cartItem.length === 0 && (
+            {cartItem.length === 0 && (
               <Empty>
-                <p>{ENCart.empty}</p>
-              </Empty>
-            )}
-            {!lang && cartItem.length === 0 && (
-              <Empty>
-                <p>{JPCart.empty}</p>
+                <p>{cartStuff[`${lang}empty`]}</p>
               </Empty>
             )}
 
@@ -120,33 +114,19 @@ const Cart = () => {
         </Div>
 
         <BtnWrapper>
-          {lang ? (
             <>
               <P>
-                Total: {total} {ENCart.price}
+                Total: {total} {cartStuff[`${lang}price`]}
               </P>
               {cartItem.length !== 0 ? (
                 <Btn role="link" onClick={createCheckout}>
-                  {ENCart.proceed}
+                  {cartStuff[`${lang}proceed`]}
                 </Btn>
               ) : (
-                <DisabledBtn>{ENCart.proceed}</DisabledBtn>
+                <DisabledBtn>{cartStuff[`${lang}proceed`]}</DisabledBtn>
               )}
             </>
-          ) : (
-            <>
-              <P>
-                Total: {total} {JPCart.price}
-              </P>
-              {cartItem.length !== 0 ? (
-                <Btn role="link" onClick={createCheckout}>
-                  {JPCart.proceed}
-                </Btn>
-              ) : (
-                <DisabledBtn>{JPCart.proceed}</DisabledBtn>
-              )}
-            </>
-          )}
+        
         </BtnWrapper>
       </Container>
       <FooterWrapper>

@@ -6,16 +6,24 @@ import { AppContext } from "../../context";
 import { useSelector } from "react-redux";
 import { RiAccountPinCircleLine, RiPlantFill } from "react-icons/ri";
 import { FiShoppingCart, FiLogOut } from "react-icons/fi";
-import { ENheader } from "../../sentence/English";
-import { JPheader } from "../../sentence/Japanese";
+import { header } from "../../sentence/Language";
 
 const NavbarSmall = () => {
   const [show, setShow] = useState(false);
   const { lang, setLang, currentUser, setCurrentUser } = useContext(AppContext);
   const cart = useSelector((state) => state.item.cart);
+  const home = `${lang}home`
+  const about = `${lang}about`
+  const map = `${lang}map`
+  const shop = `${lang}shop`
 
   const change = () => {
-    setLang(!lang);
+    if(lang==="EN"){
+
+      setLang("JP");
+    } else {
+      setLang("EN");
+    }
   };
 
   const logout = () => {
@@ -55,23 +63,21 @@ const NavbarSmall = () => {
           ) : null}
           <Btn onClick={change}>EN/JP</Btn>
           <Line />
-
-          {lang ? (
             <>
               <StyledNavLink exact to="/">
-                {ENheader.home}
+                {header[home]}
               </StyledNavLink>
               <Line />
               <StyledNavLink exact to="/about">
-                {ENheader.about}
+                {header[about]}
               </StyledNavLink>
               <Line />
               <StyledNavLink exact to="/map">
-                {ENheader.map}
+                {header[map]}
               </StyledNavLink>
               <Line />
               <StyledNavLink exact to="/shop">
-                {ENheader.shop}
+                {header[shop]}
               </StyledNavLink>
               <Line />
               <StyledNavLink exact to="/cart">
@@ -118,69 +124,7 @@ const NavbarSmall = () => {
               )}
               <Line />
             </>
-          ) : (
-            <>
-              <StyledNavLink exact to="/">
-                {JPheader.home}
-              </StyledNavLink>
-              <Line />
-              <StyledNavLink exact to="/about">
-                {JPheader.about}
-              </StyledNavLink>
-              <Line />
-              <StyledNavLink exact to="/map">
-                {JPheader.map}
-              </StyledNavLink>
-              <Line />
-              <StyledNavLink exact to="/shop">
-                {JPheader.shop}
-              </StyledNavLink>
-              <Line />
-              <StyledNavLink exact to="/cart">
-                {Object.values(cart).length > 0 ? (
-                  <Circle>
-                    <RiPlantFill style={{ height: "25px" }} />
-                  </Circle>
-                ) : null}
-                <Div>
-                <FiShoppingCart
-                  style={{
-                    color: "var(--soft-black)",
-                    width: "25px",
-                    height: "25px",
-                    zIndex: 5,
-                  }}
-                />
-                </Div>
-              </StyledNavLink>
-              <Line />
-              {Object.keys(currentUser).length !== 0 ? (
-                <Div>
-                  <FiLogOut
-                    onClick={logout}
-                    style={{
-                      color: "var(--soft-black)",
-                      width: "25px",
-                      height: "25px",
-                      cursor: "pointer",
-                      zIndex: 5,
-                    }}
-                  />
-                </Div>
-              ) : (
-                <StyledNavLink exact to="/signIn">
-                  <RiAccountPinCircleLine
-                    style={{
-                      fill: "var(--soft-black)",
-                      width: "25px",
-                      height: "25px",
-                    }}
-                  />
-                </StyledNavLink>
-              )}
-              <Line />
-            </>
-          )}
+         
         </ItemWrapper>
       ) : null}
     </>

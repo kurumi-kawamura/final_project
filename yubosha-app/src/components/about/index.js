@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import { ENabout } from "../../sentence/English";
+import { ENabout } from "../../sentence/Language";
 import { JPabout } from "../../sentence/Japanese";
 import { gsap, Power3 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -134,10 +134,11 @@ const About = () => {
                 }}
               >
                 <p>
-                  You can create your little own world in the tiny glass which will make you feel comfortable!
+                  {ENabout.line1}
                 </p>
-                <p>You can grow them in your dining table, desk...anywhere!</p>
-                <p>We are sure that tiny moss will bring you comfort into your life.</p>
+                
+                <p>{ENabout.line2}</p>
+                <p>{ENabout.line3}</p>
                 
               </PDiv>
             </Div>
@@ -204,16 +205,16 @@ const About = () => {
                 }}
               >
                 <p>
-                  ガラス容器にちいさな自分だけの世界をつくることができます。
+                  {JPabout.line1}
                 </p>
                 <p>
-                  条件はありますが、食卓や机のうえなど、とても身近な生活空間で育てることができます。
+                {JPabout.line2}
                 </p>
-                <p>苔も生きています。</p>
+                <p>{JPabout.line3}</p>
                 <p>
-                  毎日の生活のなかに苔を取り入れ手入れをしながら一緒に過ごしてみませんか。
+                {JPabout.line4}
                 </p>
-                <p>きっと、生活のなかに潤いがプラスされるでしょう。</p>
+                <p>{JPabout.line5}</p>
               </PDiv>
             </Div>
 

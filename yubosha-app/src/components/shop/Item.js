@@ -9,7 +9,7 @@ import {
   requestItemsData,
 } from "../../actions";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENEachItem } from "../../sentence/English";
+import { ENEachItem } from "../../sentence/Language";
 import { JPEachItem } from "../../sentence/Japanese";
 import { AppContext } from "../../context";
 import Spinner from "../../decolation/spinner";

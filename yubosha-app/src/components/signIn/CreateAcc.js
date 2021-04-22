@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context";
-import { ENsignIn, ENBtn, ENContactUs } from "../../sentence/English";
+import { ENsignIn, ENBtn, ENContactUs } from "../../sentence/Language";
 import { JPsignIn, JPBtn, JPContactUs } from "../../sentence/Japanese";
 import Header from "../header/index";
 import styled from "styled-components";

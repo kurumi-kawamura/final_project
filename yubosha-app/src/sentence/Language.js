@@ -3,15 +3,22 @@ export const ENabout = {
     "We are introducing charm of moss locally and also hosting moss terrarium workshop.",
   about2:
     "We are helding local moss terrarium workshop frequently! Join us our next workshop!",
+    line1: "You can create your little own world in the tiny glass which will make you feel comfortable!",
+    line2: "You can grow them in your dining table, desk...anywhere!",
+    line3: "We are sure that tiny moss will bring you comfort into your life."
 };
 
-export const ENheader = {
-  header: "Hello",
-  home: "Home",
-  about: "About",
-  map: "Map",
-  shop: "Shop",
-};
+export let header = {
+  ENhome: "Home",
+  ENabout: "About",
+  ENmap: "Map",
+  ENshop: "Shop",
+  JPhome: "ホーム",
+  JPabout: "アバウト",
+  JPmap: "マップ",
+  JPshop: "ストア",
+
+}
 
 export const ENsignIn = {
   signIn: "Sign In",

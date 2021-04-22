@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../header/index";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
 import { AppContext } from "../../context";
-import { ENContactUs, ENBtn } from "../../sentence/English";
+import { ENContactUs, ENBtn } from "../../sentence/Language";
 import { JPContactUs, JPBtn } from "../../sentence/Japanese";
 import {
   AiOutlineYoutube,

@@ -1,6 +1,11 @@
 export const JPabout = {
   about1: "苔についての情報発信、販売、体験会などを提供しています。",
   about2: "採取した苔で、苔テラリウム作成の体験会なども開催しています。",
+  line1: "ガラス容器にちいさな自分だけの世界をつくることができます。",
+  line2: "条件はありますが、食卓や机のうえなど、とても身近な生活空間で育てることができます。",
+  line3: "苔も生きています。",
+  line4: "毎日の生活のなかに苔を取り入れ手入れをしながら一緒に過ごしてみませんか。",
+  line5: "きっと、生活のなかに潤いがプラスされるでしょう。"
 };
 
 export const JPheader = {
@@ -10,6 +15,10 @@ export const JPheader = {
   map: "マップ",
   shop: "ストア",
 };
+
+export let header = {
+  JPhome: "Home",
+}
 
 export const JPsignIn = {
   signIn: "サインイン",

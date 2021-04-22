@@ -5,7 +5,7 @@ import { Btn, DisabledBtn, Loading } from "../../decolation/FormItem";
 import CartItem from "./CartItem";
 import { loadStripe } from "@stripe/stripe-js";
 import { AppContext } from "../../context";
-import { ENCart } from "../../sentence/English";
+import { ENCart } from "../../sentence/Language";
 import { JPCart } from "../../sentence/Japanese";
 import Footer from "../footer/index";
 import Spinner from "../../decolation/spinner";
@@ -118,6 +118,7 @@ const Cart = () => {
             )}
           </ItemContainer>
         </Div>
+
         <BtnWrapper>
           {lang ? (
             <>
@@ -198,11 +199,11 @@ const FooterWrapper = styled.div`
 `;
 
 const Div = styled.div`
-  border: 1.5px double rgba(133, 132, 131, 0.6);
+  border: 1.5px solid rgba(133, 132, 131, 0.6);
   border-radius: 10px;
   width: 800px;
   margin-top: 30px;
-  @media(max-width: 800px){
+  @media (max-width: 800px) {
     width: 600px;
   }
   @media (max-width: 600px) {

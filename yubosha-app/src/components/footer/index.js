@@ -3,7 +3,7 @@ import { AiOutlineYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../context";
-import { ENFooter } from "../../sentence/English";
+import { ENFooter } from "../../sentence/Language";
 import { JPFooter } from "../../sentence/Japanese";
 
 const Footer = () => {

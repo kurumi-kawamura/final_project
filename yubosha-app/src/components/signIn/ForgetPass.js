@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENResetPass, ENBtn } from "../../sentence/English";
+import { ENResetPass, ENBtn } from "../../sentence/Language";
 import { JPResetPass, JPBtn } from "../../sentence/Japanese";
 
 const ForgotPass = () => {

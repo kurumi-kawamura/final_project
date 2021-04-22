@@ -13,7 +13,7 @@ export const AppProvider = ({ children }) => {
     });
     return [value, setValue];
   };
-  const [lang, setLang] = useState(true);
+  const [lang, setLang] = useState("EN");
   const [currentUser, setCurrentUser] = useCurrent({}, "currentUser");
   const [cartIds, setCartIds] = useCurrent({}, "ids");
   const [cartQuantitys, setCartQuantitys] = useCurrent({}, "quantitys");

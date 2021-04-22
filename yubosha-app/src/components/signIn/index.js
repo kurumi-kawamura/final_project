@@ -9,7 +9,7 @@ import {
 } from "../../decolation/FormItem";
 import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "../../context";
-import { ENsignIn, ENBtn } from "../../sentence/English";
+import { ENsignIn, ENBtn } from "../../sentence/Language";
 import { JPsignIn, JPBtn } from "../../sentence/Japanese";
 import { useDispatch } from "react-redux";
 import { requestUserInfo } from "../../actions";

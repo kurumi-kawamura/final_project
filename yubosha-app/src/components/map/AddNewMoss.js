@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../context";
 import { Btn, DisabledBtn } from "../../decolation/FormItem";
-import { ENAddMoss, ENBtn } from "../../sentence/English";
+import { ENAddMoss, ENBtn } from "../../sentence/Language";
 import { JPAddMoss, JPBtn } from "../../sentence/Japanese";
 
 const AddNewMoss = () => {

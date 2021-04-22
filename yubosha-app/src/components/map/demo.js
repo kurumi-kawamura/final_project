@@ -11,7 +11,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 
-import mapStyle from "./mapStyle";
+import {mapStyle} from "./mapStyle";
 
 import { useDispatch, useSelector } from "react-redux";
 import {

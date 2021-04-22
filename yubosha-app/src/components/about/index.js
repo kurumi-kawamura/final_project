@@ -134,8 +134,10 @@ const About = () => {
                 }}
               >
                 <p>
-                  {ENabout.about2}
+                  You can create your little own world in the tiny glass which will make you feel comfortable!
                 </p>
+                <p>You can grow them in your dining table, desk...anywhere!</p>
+                <p>We are sure that tiny moss will bring you comfort into your life.</p>
                 
               </PDiv>
             </Div>
@@ -334,7 +336,7 @@ const Terra = styled(Img)`
   width: 300px;
   height: 250px;
   margin-top: 130px;
-  /* border-radius: 50%; */
+  margin-left: 30px;
 `;
 
 const P = styled.p`

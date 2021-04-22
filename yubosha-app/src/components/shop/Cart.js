@@ -12,9 +12,7 @@ import Spinner from "../../decolation/spinner";
 
 //test publick key
 const { REACT_APP_TSET_PK_KEY } = process.env;
-const stripePromise = loadStripe(
-  REACT_APP_TSET_PK_KEY
-);
+const stripePromise = loadStripe(REACT_APP_TSET_PK_KEY);
 
 const Cart = () => {
   const cart = useSelector((state) => state.item.cart);
@@ -84,40 +82,42 @@ const Cart = () => {
     <>
       <H1>Cart</H1>
       <Container>
-        <ItemContainer>
-          {lang && cartItem.length === 0 && (
-            <Empty>
-              <p>{ENCart.empty}</p>
-            </Empty>
-          )}
-          {!lang && cartItem.length === 0 && (
-            <Empty>
-              <p>{JPCart.empty}</p>
-            </Empty>
-          )}
+        <Div>
+          <ItemContainer>
+            {lang && cartItem.length === 0 && (
+              <Empty>
+                <p>{ENCart.empty}</p>
+              </Empty>
+            )}
+            {!lang && cartItem.length === 0 && (
+              <Empty>
+                <p>{JPCart.empty}</p>
+              </Empty>
+            )}
 
-          {cartItem ? (
-            cartItem.map((item) => {
-              return (
-                <CartItem
-                  src={item.imgSrc}
-                  name={item.ItemName}
-                  quantity={item.quantity}
-                  key={item._id}
-                  item={item}
-                  price={item.price}
-                />
-              );
-            })
-          ) : (
-            <Loading>
-              <div>
-                <Spinner />
-                Loading...
-              </div>
-            </Loading>
-          )}
-        </ItemContainer>
+            {cartItem ? (
+              cartItem.map((item) => {
+                return (
+                  <CartItem
+                    src={item.imgSrc}
+                    name={item.ItemName}
+                    quantity={item.quantity}
+                    key={item._id}
+                    item={item}
+                    price={item.price}
+                  />
+                );
+              })
+            ) : (
+              <Loading>
+                <div>
+                  <Spinner />
+                  Loading...
+                </div>
+              </Loading>
+            )}
+          </ItemContainer>
+        </Div>
         <BtnWrapper>
           {lang ? (
             <>
@@ -165,7 +165,6 @@ const ItemContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 60vh;
 `;
 
 const Container = styled.div`
@@ -173,8 +172,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width:400px){
+  @media (max-width: 400px) {
     width: 340px;
   }
 `;
@@ -198,4 +196,21 @@ const FooterWrapper = styled.div`
   margin-top: 20px;
   text-align: center;
 `;
+
+const Div = styled.div`
+  border: 1.5px double rgba(133, 132, 131, 0.6);
+  border-radius: 10px;
+  width: 800px;
+  margin-top: 30px;
+  @media(max-width: 800px){
+    width: 600px;
+  }
+  @media (max-width: 600px) {
+    width: 500px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+  }
+`;
+
 export default Cart;

@@ -1,9 +1,8 @@
 export const ENabout = {
-  about: "explanation",
   about1:
-    "explanation explanation explanation explanation explanation explanation explanation explanation explanation",
+    "We are introducing charm of moss locally and also hosting moss terrarium workshop.",
   about2:
-    "explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation explanation",
+    "We are helding local moss terrarium workshop frequently! Join us our next workshop!",
 };
 
 export const ENheader = {

@@ -65,6 +65,9 @@ const AddNewMoss = () => {
           alert("Request sent!");
           setUpload("success");
           clear();
+          document.querySelector(".nameInput").value = "";
+          document.querySelector(".locationInput").value = "";
+          document.querySelector(".picInput").value = "";
         } else {
           setUpload("error");
         }
@@ -88,17 +91,20 @@ const AddNewMoss = () => {
               placeholder={ENAddMoss.name}
               onChange={(e) => setMossName(e.target.value)}
               required
+              className="nameInput"
             />
             <Input
               placeholder={ENAddMoss.location}
               onChange={(e) => setLocation(e.target.value)}
               required
+              className="locationInput"
             />
             <UploadWrapper>
               <P>{ENAddMoss.upload}</P>
               <ChooseFile
                 type="file"
                 onChange={(e) => setPic(e.target.files[0])}
+                className="picInput"
               />
               <Button onClick={(e) => postDetails(e)}>
                 {ENAddMoss.confirmPic}
@@ -130,17 +136,20 @@ const AddNewMoss = () => {
               placeholder={JPAddMoss.name}
               onChange={(e) => setMossName(e.target.value)}
               required
+              className="nameInput"
             />
             <Input
               placeholder={JPAddMoss.location}
               onChange={(e) => setLocation(e.target.value)}
               required
+              className="locationInput"
             />
             <UploadWrapper>
               <P>{JPAddMoss.upload}</P>
               <ChooseFile
                 type="file"
                 onChange={(e) => setPic(e.target.files[0])}
+                className="picInput"
               />
               <Button onClick={(e) => postDetails(e)}>
                 {JPAddMoss.confirmPic}
@@ -184,6 +193,7 @@ const Wrapper = styled.form`
   justify-content: center;
   align-items: center;
   background-color: rgba(198, 204, 204, 0.5);
+  margin-top: 20px;
 `;
 const Input = styled.input`
   margin: 10px 0;

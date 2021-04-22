@@ -48,6 +48,9 @@ const ContactUs = () => {
           if (status === "success") {
             alert("Message Sent.");
             resetForm();
+            document.querySelector(".inputFeild").value = "";
+            document.querySelector(".inputFeild2").value = "";
+            document.querySelector(".inputFeild3").value = "";
           } else if (status === "fail") {
             alert("Message failed to send.");
           }
@@ -72,15 +75,18 @@ const ContactUs = () => {
                 <Input
                   placeholder={ENContactUs.name}
                   onChange={(e) => setName(e.target.value)}
+                  className="inputFeild"
                 />
                 <Input
                   placeholder={ENContactUs.email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="inputFeild2"
                 />
                 <P>{ENContactUs.emailValid}</P>
                 <TextArea
                   placeholder={ENContactUs.askus}
                   onChange={(e) => setBody(e.target.value)}
+                  className="inputFeild3"
                 />
               </>
             ) : (
@@ -88,15 +94,18 @@ const ContactUs = () => {
                 <Input
                   placeholder={JPContactUs.name}
                   onChange={(e) => setName(e.target.value)}
+                  className="inputFeild"
                 />
                 <Input
                   placeholder={JPContactUs.email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="inputFeild2"
                 />
                 <P>{JPContactUs.emailValid}</P>
                 <TextArea
                   placeholder={JPContactUs.askus}
                   onChange={(e) => setBody(e.target.value)}
+                  className="inputFeild3"
                 />
               </>
             )}

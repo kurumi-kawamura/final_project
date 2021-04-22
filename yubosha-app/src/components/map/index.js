@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState, useCallback, useRef } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+} from "react";
 import styled from "styled-components";
 import {
   GoogleMap,
@@ -6,7 +12,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import {mapStyle} from "./mapStyle";
+import { mapStyle } from "./mapStyle";
 import { useDispatch, useSelector } from "react-redux";
 import {
   receiveMapInfoError,
@@ -20,34 +26,33 @@ import { Loading } from "../../decolation/FormItem";
 import Footer from "../footer/index";
 import Spinner from "../../decolation/spinner";
 import { useWindowDimensions } from "./hooks";
-import "@reach/combobox/styles.css"
+import "@reach/combobox/styles.css";
 
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+// import usePlacesAutocomplete, {
+//   getGeocode,
+//   getLatLng,
+// } from "use-places-autocomplete";
 
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
+// import {
+//   Combobox,
+//   ComboboxInput,
+//   ComboboxPopover,
+//   ComboboxList,
+//   ComboboxOption,
+// } from "@reach/combobox";
 
-import {DiCompass} from "react-icons/di"
+import { DiCompass } from "react-icons/di";
 
-
-
-const libraries = ["places"];
+// const libraries = ["places"];
 const mapContainerStyle = {
-  width: "700px",
-  height: "600px",
+  width: "65vw",
+  height: "95vh",
+  borderRadius: "10px",
 };
 
 const center = {
-  lat: 36.2048,
-  lng: 138.2529,
+  lat: 38.7437,
+  lng: 136.9805,
 };
 
 const options = {
@@ -56,11 +61,12 @@ const options = {
   zoomControl: true,
 };
 
-require("dotenv").config({path: "/.env"});
+require("dotenv").config({ path: "/.env" });
 const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
 console.log(REACT_APP_GOOGLE_MAPS_API_KEY);
 
 const Map = () => {
+  const { width } = useWindowDimensions();
   const dispatch = useDispatch();
   const { currentUser } = useContext(AppContext);
   const info = useSelector((state) => state.map.info);
@@ -70,7 +76,7 @@ const Map = () => {
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDQugiII4OZ9aCT71lT4SR0HDfW9AbzQo0",
-    libraries,
+    // libraries,
   });
 
   useEffect(() => {
@@ -81,7 +87,7 @@ const Map = () => {
         dispatch(receiveMapInfo(data.data));
       })
       .catch((err) => dispatch(receiveMapInfoError()));
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const mapRef = useRef();
@@ -94,12 +100,10 @@ const Map = () => {
     mapRef.current.setZoom(14);
   }, []);
 
-
   const markerClick = (e) => {
-    console.log(e)
     if (e) {
       setCurrentMoss({ ...e });
-      setSelected(e)
+      setSelected(e);
       setClicked(true);
       return true;
     } else {
@@ -110,60 +114,87 @@ const Map = () => {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading Maps";
 
-
   return (
     <>
       <H1>Moss Map</H1>
       {info ? (
         <>
           <Container>
-            {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
+            <Div>
+              {clicked && (
+                <>
+                  {currentMoss ? (
+                    <MossWrapper>
+                      <MossComponent
+                        location={currentMoss.location}
+                        setClicked={setClicked}
+                      />
+                    </MossWrapper>
+                  ) : (
+                    <Loading>
+                      <div>
+                        <Spinner />
+                        Loading...
+                      </div>
+                    </Loading>
+                  )}
+                </>
+              )}
+              {Object.keys(currentUser).length !== 0 && <AddNewMoss />}
+            </Div>
 
             <Wrapper>
               {info !== null ? (
                 <>
-                <Search panTo={panTo} />
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={5}
-        center={center}
-        options={options}
-        onLoad={onMapLoad}
-      >
+                  {/* <Search panTo={panTo} /> */}
+                  <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    zoom={width > 800 ? 6 : 5}
+                    center={center}
+                    options={options}
+                    onLoad={onMapLoad}
+                  >
+                    <Locate panTo={panTo} />
 
-      <Locate panTo={panTo} />
-{info ? (
-          <>
-            {info.map((i) => (
-              <Marker
-                key={i._id}
-                position={{ lat: i.latitude, lng: i.longitude }}
-                icon={{
-                  url: "/assets/8911338461548336120-128.png",
-                  scaledSize: new window.google.maps.Size(30, 30),
-                }}
-                onClick={() => {
-                  markerClick(i);
-                }}
-              />
-            ))}
-          </>
-        ) : null}
+                    {info ? (
+                      <>
+                        {info.map((i) => (
+                          <>
+                          <Marker
+                            key={i._id}
+                            position={{ lat: i.latitude, lng: i.longitude }}
+                            icon={{
+                              url: "/assets/icons8-google-maps-50.png",
+                              scaledSize: new window.google.maps.Size(30, 30),
+                              origin: new window.google.maps.Point(0,0),
+                              anchor: new window.google.maps.Point(30,30),
+                            }}
+                            onClick={() => {
+                              markerClick(i);
+                            }}
+                          />
+                        </>
+                        ))}
+                      </>
+                    ) : null}
 
-{selected ? (
-          <InfoWindow
-            position={{ lat: selected.latitude, lng: selected.longitude }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-            <div>
-              <h2>{selected.name}</h2>
-              <p>location: {selected.location}</p>
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+                    {selected ? (
+                      <InfoWindow
+                        position={{
+                          lat: selected.latitude,
+                          lng: selected.longitude,
+                        }}
+                        onCloseClick={() => {
+                          setSelected(null);
+                        }}
+                      >
+                        <div>
+                          <h2>{selected.name}</h2>
+                          <p>location: {selected.location}</p>
+                        </div>
+                      </InfoWindow>
+                    ) : null}
+                  </GoogleMap>
                 </>
               ) : (
                 <Loading>
@@ -174,25 +205,6 @@ const Map = () => {
                 </Loading>
               )}
             </Wrapper>
-            {clicked && (
-              <>
-                {currentMoss ? (
-                  <MossWrapper>
-                    <MossComponent
-                      location={currentMoss.location}
-                      setClicked={setClicked}
-                    />
-                  </MossWrapper>
-                ) : (
-                  <Loading>
-                    <div>
-                      <Spinner />
-                      Loading...
-                    </div>
-                  </Loading>
-                )}
-              </>
-            )}
           </Container>
           <FooterWrapper>
             <Footer />
@@ -225,69 +237,68 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <DiCompass style={{width: "30px", height: "30px", cursor:"pointer"}}/>
+      <DiCompass style={{ width: "30px", height: "30px", cursor: "pointer" }} />
     </Compass>
   );
 }
 
-function Search({ panTo }) {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: {
-      location: { lat: () => 36.2048, lng: () => 138.2529 },
-      radius: 200 * 1000,
-    },
-  });
+// function Search({ panTo }) {
+//   const {
+//     ready,
+//     value,
+//     suggestions: { status, data },
+//     setValue,
+//     clearSuggestions,
+//   } = usePlacesAutocomplete({
+//     requestOptions: {
+//       location: { lat: () => 36.2048, lng: () => 138.2529 },
+//       radius: 200 * 1000,
+//     },
+//   });
 
-  return (
-    <Combobox
-      onSelect={async (address) => {
-        console.log(address)
-        setValue(address, false);
-        clearSuggestions();
-        try {
-          const results = await getGeocode({ address });
-          const { lat, lng } = await getLatLng(results[0]);
-          panTo({ lat, lng });
-        } catch (err) {
-          console.log("error!");
-        }
-      }}
-    >
-      <ComboboxInput
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        disabled={!ready}
-        placeholder="Enter address"
-      />
-      <ComboboxPopover>
-        <ComboboxList>
-          {status === "OK" &&
-            data.map(({id, description, index}) => {
-              return <ComboboxOption key={index} value={description} />
-            }
-            )}
-        </ComboboxList>
-      </ComboboxPopover>
-    </Combobox>
-  );
-}
+//   return (
+//     <Combobox
+//       onSelect={async (address) => {
+//         console.log(address);
+//         setValue(address, false);
+//         clearSuggestions();
+//         try {
+//           const results = await getGeocode({ address });
+//           const { lat, lng } = await getLatLng(results[0]);
+//           panTo({ lat, lng });
+//         } catch (err) {
+//           console.log("error!");
+//         }
+//       }}
+//     >
+//       <ComboboxInput
+//         value={value}
+//         onChange={(e) => {
+//           setValue(e.target.value);
+//         }}
+//         disabled={!ready}
+//         placeholder="Enter address"
+//       />
+//       <ComboboxPopover>
+//         <ComboboxList>
+//           {status === "OK" &&
+//             data.map(({ id, description, index }) => {
+//               return <ComboboxOption key={index} value={description} />;
+//             })}
+//         </ComboboxList>
+//       </ComboboxPopover>
+//     </Combobox>
+//   );
+// }
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
 
   @media (max-width: 1250px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   @media (max-width: 500px) {
     width: 400px;
@@ -307,11 +318,11 @@ const Wrapper = styled.div`
 `;
 
 const Compass = styled.button`
-background: none;
-border: none;
-position: absolute;
-top: 2%; 
-right: 2%;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 2%;
+  right: 2%;
 `;
 
 const H1 = styled.h1`
@@ -328,6 +339,7 @@ const MossWrapper = styled.div`
   border-radius: 50%;
   margin-top: 40px;
   overflow-y: auto;
+  z-index: 200;
 
   &::-webkit-scrollbar {
     width: 7px;
@@ -347,6 +359,13 @@ const MossWrapper = styled.div`
 const FooterWrapper = styled.div`
   text-align: center;
   margin-top: 60px;
+`;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Map;

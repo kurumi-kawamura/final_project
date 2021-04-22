@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/header/index";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +16,22 @@ import {
 import { Loading } from "../decolation/FormItem";
 import Request from "./Request";
 import UpdateStock from "./UpdateStock";
+import Spinner from "../decolation/spinner";
 
 const Admin = () => {
   const dispatch = useDispatch();
   const request = useSelector((state) => state.admin.request);
   const stock = useSelector((state) => state.item.items);
+  const [loading, setLoading] = useState(true);
+
+  const counter = useRef(0);
+
+  const imageLoaded = () => {
+    counter.current += 1;
+    if (counter.current >= stock.length) {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     dispatch(requestRequestInfo());
@@ -69,16 +80,22 @@ const Admin = () => {
         {stock ? (
           <>
             <H2>Stock</H2>
+            <div style={{ display: loading ? "block" : "none" }}>
+              <Spinner />
+              Loading...
+            </div>
             <StockWrapper>
               {stock.map((s) => {
                 return (
                   <Div key={s._id}>
                     <UpdateStock
+                      style={{ display: loading ? "none" : "block" }}
                       id={s._id}
                       name={s.ItemName}
                       src={s.imgSrc}
                       price={s.price}
                       inventory={s.stock}
+                      imageLoaded={imageLoaded}
                     />
                   </Div>
                 );

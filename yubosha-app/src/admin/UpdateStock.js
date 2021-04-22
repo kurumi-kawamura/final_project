@@ -4,7 +4,7 @@ import { Btn } from "../decolation/FormItem";
 import { useDispatch, useSelector } from "react-redux";
 import { removeStockItem, addStockItem } from "../actions";
 
-const UpdateStock = ({ id, name, src, price, inventory }) => {
+const UpdateStock = ({ id, name, src, price, inventory, imageLoaded }) => {
   const dispatch = useDispatch();
   const [removeNum, setRemoveNum] = useState(null);
   const [addNum, setAddNum] = useState(null);
@@ -75,28 +75,33 @@ const UpdateStock = ({ id, name, src, price, inventory }) => {
 
   return (
     <>
-      <div>Id: {id}</div>
-      <div>{name}</div>
-      <Img src={src} alt={name} />
-      <div>Price: {price}yen</div>
-      <div>Stock: {inventory}</div>
-      <InputWrapper>
-        <Input onChange={(e) => setRemoveNum(e.target.value)} />
-        <Div>
-          <p>Remove stock for:</p>
-          <Btn onClick={(e) => removeStock(e.target.innerHTML)}>{id}</Btn>
-        </Div>
-      </InputWrapper>
-      <InputWrapper>
-        <Input onChange={(e) => setAddNum(e.target.value)} />
-        <Div>
-          <p>Add stock for:</p>
-          <Btn onClick={(e) => addStock(e.target.innerHTML)}>{id}</Btn>
-        </Div>
-      </InputWrapper>
+     
+      <Wrapper>
+        <P>Id: {id}</P>
+        <P>{name}</P>
+        <Img src={src} alt={name} onLoad={imageLoaded} />
+        <P>Price: {price}yen</P>
+        <P>Stock: {inventory}</P>
+        <InputWrapper>
+          <Input onChange={(e) => setRemoveNum(e.target.value)} />
+          <Div>
+            <p>Remove stock for:</p>
+            <Btn onClick={(e) => removeStock(e.target.innerHTML)}>{id}</Btn>
+          </Div>
+        </InputWrapper>
+        <InputWrapper>
+          <Input onChange={(e) => setAddNum(e.target.value)} />
+          <Div>
+            <p>Add stock for:</p>
+            <Btn onClick={(e) => addStock(e.target.innerHTML)}>{id}</Btn>
+          </Div>
+        </InputWrapper>
+      </Wrapper>
     </>
   );
 };
+
+const Wrapper = styled.div``;
 
 const Img = styled.img`
   width: 170px;
@@ -126,6 +131,10 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const P = styled.p`
+text-align: center;
 `;
 
 export default UpdateStock;

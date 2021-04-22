@@ -28,7 +28,6 @@ const AddNewMoss = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.url);
         if (data.url) {
           setUrl(data.url);
           setUpload("uploaded");

@@ -14,7 +14,6 @@ export default function mapReducer(state = initialState, action) {
     }
 
     case "RECEIVE_REQUEST_INFO": {
-      console.log(action);
       return {
         ...state,
         request: action.data,

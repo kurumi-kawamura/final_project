@@ -95,6 +95,7 @@ const addNewMoss = async (req, res) => {
       longitude: latLng.lng,
       imgSrc: src,
       submittedBy: submittedBy,
+      comments: [],
     };
 
     const result = await db.collection("moss").insertOne(moss);

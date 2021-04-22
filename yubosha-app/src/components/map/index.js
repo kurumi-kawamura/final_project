@@ -61,9 +61,7 @@ const options = {
   zoomControl: true,
 };
 
-require("dotenv").config({ path: "/.env" });
 const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
-console.log(REACT_APP_GOOGLE_MAPS_API_KEY);
 
 const Map = () => {
   const { width } = useWindowDimensions();
@@ -75,7 +73,7 @@ const Map = () => {
   const [selected, setSelected] = useState(null);
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDQugiII4OZ9aCT71lT4SR0HDfW9AbzQo0",
+    googleMapsApiKey: REACT_APP_GOOGLE_MAPS_API_KEY,
     // libraries,
   });
 
@@ -159,21 +157,21 @@ const Map = () => {
                     {info ? (
                       <>
                         {info.map((i) => (
-                          <>
-                          <Marker
-                            key={i._id}
-                            position={{ lat: i.latitude, lng: i.longitude }}
-                            icon={{
-                              url: "/assets/icons8-google-maps-50.png",
-                              scaledSize: new window.google.maps.Size(30, 30),
-                              origin: new window.google.maps.Point(0,0),
-                              anchor: new window.google.maps.Point(30,30),
-                            }}
-                            onClick={() => {
-                              markerClick(i);
-                            }}
-                          />
-                        </>
+                          
+                            <Marker
+                              key={i._id}
+                              position={{ lat: i.latitude, lng: i.longitude }}
+                              icon={{
+                                url: "/assets/icons8-google-maps-50.png",
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(30, 30),
+                              }}
+                              onClick={() => {
+                                markerClick(i);
+                              }}
+                            />
+                          
                         ))}
                       </>
                     ) : null}
@@ -311,6 +309,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  div:focus {
+    outline: none;
+    border: none;
+  }
 
   @media (max-width: 500px) {
     width: 400px;

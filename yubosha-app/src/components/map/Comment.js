@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddComment from "./AddComment";
 
 const Comment = ({ show, comments, id, currentUser }) => {
+  console.log(comments)
   return (
     <>
       {show && comments ? (
@@ -10,13 +11,13 @@ const Comment = ({ show, comments, id, currentUser }) => {
           {comments.length === 0 && <P2>No comments yet.</P2>}
           {comments.map((c, index) => {
             return (
-              <>
+              <div key ={index}>
                 <Wrapper key={index}>
                   <P>{c.msg}</P>
                   <P2>by: {c.by}</P2>
                 </Wrapper>
                 <Line />
-              </>
+              </div>
             );
           })}
           

@@ -11,8 +11,9 @@ import Footer from "../footer/index";
 import Spinner from "../../decolation/spinner";
 
 //test publick key
+const { REACT_APP_TSET_PK_KEY } = process.env;
 const stripePromise = loadStripe(
-  "pk_test_51IgXFuKRpDc8HQiOmMK1Tjef7LlhQ5zcNbZ5D05eTzaXa41WPMen6lwyPxsN0CO1mbQQquTi6HwUXBL2L7uSmOYw00ePJKyETc"
+  REACT_APP_TSET_PK_KEY
 );
 
 const Cart = () => {

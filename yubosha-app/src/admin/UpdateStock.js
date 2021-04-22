@@ -65,6 +65,7 @@ const UpdateStock = ({ id, name, src, price, inventory, imageLoaded }) => {
           dispatch(addStockItem({ _id: Number(id), quantity: Number(addNum) }));
           alert("success");
           setAddNum(null);
+          
         } else {
         }
       })
@@ -72,10 +73,8 @@ const UpdateStock = ({ id, name, src, price, inventory, imageLoaded }) => {
         console.log(err.message);
       });
   };
-
   return (
     <>
-     
       <Wrapper>
         <P>Id: {id}</P>
         <P>{name}</P>
@@ -83,14 +82,20 @@ const UpdateStock = ({ id, name, src, price, inventory, imageLoaded }) => {
         <P>Price: {price}yen</P>
         <P>Stock: {inventory}</P>
         <InputWrapper>
-          <Input onChange={(e) => setRemoveNum(e.target.value)} />
+          <Input
+            onChange={(e) => setRemoveNum(e.target.value)}
+            className="inputFeild"
+          />
           <Div>
             <p>Remove stock for:</p>
             <Btn onClick={(e) => removeStock(e.target.innerHTML)}>{id}</Btn>
           </Div>
         </InputWrapper>
         <InputWrapper>
-          <Input onChange={(e) => setAddNum(e.target.value)} />
+          <Input
+            onChange={(e) => setAddNum(e.target.value)}
+            className="inputFeild"
+          />
           <Div>
             <p>Add stock for:</p>
             <Btn onClick={(e) => addStock(e.target.innerHTML)}>{id}</Btn>
@@ -134,7 +139,7 @@ const Div = styled.div`
 `;
 
 const P = styled.p`
-text-align: center;
+  text-align: center;
 `;
 
 export default UpdateStock;

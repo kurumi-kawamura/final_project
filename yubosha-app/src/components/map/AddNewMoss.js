@@ -155,6 +155,7 @@ const AddNewMoss = () => {
                 {JPAddMoss.confirmPic}
               </Button>
               {upload === "uploaded" && <P>{JPAddMoss.uploadSuccess}</P>}
+              {upload === "loadingPic" && <P>写真を読み込み中...</P>}
               {upload === "notUploaded" && <P>{JPAddMoss.Unsuccess}</P>}
               {upload === "pleaseSelect" && <P>{JPAddMoss.selectFile}</P>}
             </UploadWrapper>

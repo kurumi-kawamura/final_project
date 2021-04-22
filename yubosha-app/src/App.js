@@ -15,7 +15,6 @@ import ErrorPage from "./Error";
 import Admin from "./admin/index";
 import Header from "./components/header/index";
 import ForgotPass from "./components/signIn/ForgetPass";
-import Demo from "./components/map/demo";
 
 function App() {
   return (
@@ -61,9 +60,6 @@ function App() {
         </Route>
         <Route exact path="/error">
           <ErrorPage />
-        </Route>
-        <Route exact path="/demo">
-          <Demo />
         </Route>
       </Switch>
     </Router>

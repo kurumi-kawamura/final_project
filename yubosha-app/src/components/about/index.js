@@ -260,7 +260,6 @@ const Div = styled.div`
     justify-content: center;
     align-items: center;
   }
-
 `;
 
 const Div2 = styled(Div)`
@@ -357,7 +356,6 @@ const PDiv = styled.div`
 
   @media (max-width: 400px) {
     width: 200px;
-
   }
 `;
 

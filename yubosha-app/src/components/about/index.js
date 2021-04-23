@@ -96,80 +96,78 @@ const About = () => {
         <H1>About us</H1>
       </Banner>
       <Wrapper>
-          <ExWrapper>
-            <H2>About Yubosha</H2>
-            <Div>
-              <SentenceWrapper>
-                <P
-                  ref={(el) => {
-                    item = el;
-                  }}
-                  id="firstArticle"
-                >
-                  {about[`${lang}about1`]}
-                </P>
-              </SentenceWrapper>
-              <Img
-                ref={(e) => {
-                  pic1 = e;
+        <ExWrapper>
+          <H2>About Yubosha</H2>
+          <Div>
+            <SentenceWrapper>
+              <P
+                ref={(el) => {
+                  item = el;
                 }}
-                src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
-                alt="yubosha about"
-              />
-            </Div>
-            <H2>Moss Terrarium</H2>
-            <Div>
-              <Terra
-                src="./assets/moss_terrarium_stairs.jpg"
-                alt="stairs terrarium"
-                ref={(e) => {
-                  terrariumPic = e;
-                }}
-              />
-              <PDiv
-                ref={(e) => {
-                  mossArticle = e;
-                }}
+                id="firstArticle"
               >
-                <p>{about[`${lang}line1`]}</p>
-
-                <p>{about[`${lang}line2`]}</p>
-                <p>{about[`${lang}line3`]}</p>
-                {lang === "JP" && (
-                  <>
-                    <p>{about[`${lang}line4`]}</p>
-                    <p>{about[`${lang}line5`]}</p>
-                  </>
-                )}
-              </PDiv>
-            </Div>
-            <H2>Activity</H2>
-            <P
+                {about[`${lang}about1`]}
+              </P>
+            </SentenceWrapper>
+            <Img
               ref={(e) => {
-                secondArticle = e;
+                pic1 = e;
               }}
-              id="secondAriticle"
+              src="./assets/nicole-y-c-raiiC47ZV7E-unsplash.jpg"
+              alt="yubosha about"
+            />
+          </Div>
+          <H2>Moss Terrarium</H2>
+          <Div>
+            <Terra
+              src="./assets/moss_terrarium_stairs.jpg"
+              alt="stairs terrarium"
+              ref={(e) => {
+                terrariumPic = e;
+              }}
+            />
+            <PDiv
+              ref={(e) => {
+                mossArticle = e;
+              }}
             >
-              {about[`${lang}about2`]}
-            </P>
-            <Div2>
-              <Img
-                ref={(e) => {
-                  pic2 = e;
-                }}
-                src="./assets/yubosha_activity.jpg"
-                alt="yubosha activity"
-              />
-              <Img
-                ref={(e) => {
-                  pic3 = e;
-                }}
-                src="./assets/yubosha_activity_2.jpg"
-                alt="yubosha activity"
-              />
-            </Div2>
-          </ExWrapper>
-        
+              <p>{about[`${lang}line1`]}</p>
+              <p>{about[`${lang}line2`]}</p>
+              <p>{about[`${lang}line3`]}</p>
+              {lang === "JP" && (
+                <>
+                  <p>{about[`${lang}line4`]}</p>
+                  <p>{about[`${lang}line5`]}</p>
+                </>
+              )}
+            </PDiv>
+          </Div>
+          <H2>Activity</H2>
+          <P
+            ref={(e) => {
+              secondArticle = e;
+            }}
+            id="secondAriticle"
+          >
+            {about[`${lang}about2`]}
+          </P>
+          <Div2>
+            <Img
+              ref={(e) => {
+                pic2 = e;
+              }}
+              src="./assets/yubosha_activity.jpg"
+              alt="yubosha activity"
+            />
+            <Img
+              ref={(e) => {
+                pic3 = e;
+              }}
+              src="./assets/yubosha_activity_2.jpg"
+              alt="yubosha activity"
+            />
+          </Div2>
+        </ExWrapper>
       </Wrapper>
       <FooterWrapper>
         <Footer />
@@ -260,8 +258,8 @@ const Img = styled.img`
 const Terra = styled(Img)`
   width: 300px;
   height: 250px;
-  margin-top: 130px;
-  margin-left: 30px;
+  margin-top: 100px;
+  margin-left: 0px;
 `;
 
 const P = styled.p`

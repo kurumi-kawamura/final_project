@@ -8,7 +8,7 @@ import { ResetPass, button } from "../../sentence/Language";
 const ForgotPass = () => {
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
-  const [newPass, setNewPass] = useState(null);
+  const [newPass, setNewPass] = useState("");
   const [users, setUsers] = useState(null);
   const history = useHistory();
   const { lang } = useContext(AppContext);

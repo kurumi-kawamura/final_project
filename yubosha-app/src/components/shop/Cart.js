@@ -19,7 +19,7 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   const [checkout, setCheckout] = useState(null);
 
-  const { setCartIds, setCartQuantitys, setCartStocks, lang } = useContext(
+  const { lang } = useContext(
     AppContext
   );
 
@@ -46,11 +46,8 @@ const Cart = () => {
     setTotal(sum);
     setCheckout(arr);
     localStorage.setItem("ids", JSON.stringify(idArr));
-    setCartIds(idArr);
     localStorage.setItem("quantitys", JSON.stringify(quantityArr));
-    setCartQuantitys(quantityArr);
     localStorage.setItem("stocks", JSON.stringify(stockArr));
-    setCartStocks(stockArr);
     // eslint-disable-next-line
   }, [cart]);
 

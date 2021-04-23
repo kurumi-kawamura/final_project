@@ -1,7 +1,7 @@
 
 export const about = {
   ENabout1:
-    "We are introducing charm of moss locally and also hosting moss terrarium workshop.",
+    "We are introducing charm of moss and also hosting moss terrarium workshop.",
   ENabout2:
     "We are helding local moss terrarium workshop frequently! Join us our next workshop!",
   ENline1:

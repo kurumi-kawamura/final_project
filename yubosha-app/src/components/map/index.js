@@ -28,6 +28,8 @@ import Spinner from "../../decolation/spinner";
 import { useWindowDimensions } from "./hooks";
 import "@reach/combobox/styles.css";
 
+
+//for the search bar
 // import usePlacesAutocomplete, {
 //   getGeocode,
 //   getLatLng,
@@ -239,7 +241,7 @@ function Locate({ panTo }) {
     </Compass>
   );
 }
-
+//for the search bar
 // function Search({ panTo }) {
 //   const {
 //     ready,

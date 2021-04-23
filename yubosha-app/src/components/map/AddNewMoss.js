@@ -179,7 +179,7 @@ const Button = styled.button`
 
 const P = styled.p`
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const UploadWrapper = styled.div`

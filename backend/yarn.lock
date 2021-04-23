@@ -2141,8 +2141,8 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-uglify-js@2.3.0:
-  version "2.3.0"
+uglify-js@2.6.0:
+  version "2.6.0"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.3.0.tgz#2cdec16d378a8a2b6ecfb6989784cf8b7ae5491f"
   integrity sha1-LN7BbTeKiituz7aYl4TPi3rlSR8=
   dependencies:

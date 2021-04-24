@@ -60,7 +60,7 @@ const Header = () => {
             <StyledNavLink exact to="/cart">
               {Object.values(cart).length > 0 ? (
                 <Circle>
-                  <RiPlantFill style={{ height: "25px" }} />
+                  <RiPlantFill style={{ height: "25px", fill:"#46705a", zIndex:0 }} />
                 </Circle>
               ) : null}
               <FiShoppingCart
@@ -68,6 +68,7 @@ const Header = () => {
                   color: "var(--soft-gray)",
                   width: "25px",
                   height: "25px",
+                  zIndex: 10,
                 }}
               />
             </StyledNavLink>

@@ -83,7 +83,7 @@ const NavbarSmall = () => {
               <StyledNavLink exact to="/cart">
                 {Object.values(cart).length > 0 ? (
                   <Circle>
-                    <RiPlantFill style={{ height: "25px" }} />
+                    <RiPlantFill style={{ height: "25px", fill:"#46705a" }} />
                   </Circle>
                 ) : null}
                 <Div>

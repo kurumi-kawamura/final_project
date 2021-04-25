@@ -46,10 +46,10 @@ const NavbarSmall = () => {
       </Wrapper>
       {show ? (
         <ItemWrapper>
-          {Object.keys(currentUser).length !== 0 && lang ? (
+          {Object.keys(currentUser).length !== 0 && lang==="EN" ? (
             <P>Hello {currentUser.userName}!</P>
           ) : null}
-          {Object.keys(currentUser).length !== 0 && !lang ? (
+          {Object.keys(currentUser).length !== 0 && lang==="JP" ? (
             <P>こんにちは {currentUser.userName}さん!</P>
           ) : null}
           <Line />

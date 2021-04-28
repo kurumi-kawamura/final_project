@@ -274,6 +274,33 @@ const updateStock = async (req, res) => {
   client.close();
 };
 
+const createOrder = async (req,res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  const { name, email, item, quantity } = req.body;
+  try {
+    await client.connect();
+
+    const db = client.db();
+    const order = {
+      name: name,
+      email: email,
+      item: item,
+      quantity: quantity,
+    };
+
+    const result = await db.collection("orders").insertOne(order);
+    assert.equal(1, result.insertedCount);
+
+    res.status(200).json({ status: 200, data: order });
+
+  } catch (err) {
+    res.status(404).json({ status: 400, msg: err.message });
+    console.log(err.stack);
+  }
+  client.close();
+
+}
+
 const AddStock = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   const { quantity, _id, stock } = req.body;
@@ -342,4 +369,5 @@ module.exports = {
   getRequest,
   AddStock,
   updatePassword,
+  createOrder,
 };

@@ -2,16 +2,38 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import {success} from "../../sentence/Language";
+import { success } from "../../sentence/Language";
 import { AppContext } from "../../context";
 
 const Sucess = () => {
   const ids = JSON.parse(localStorage.getItem("ids"));
   const quantitys = JSON.parse(localStorage.getItem("quantitys"));
   const stocks = JSON.parse(localStorage.getItem("stocks"));
-  const {lang} = useContext(AppContext);
+  const { lang, currentUser } = useContext(AppContext);
 
   useEffect(() => {
+
+    fetch("/createOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        quantity: quantitys,
+        item: ids,
+        name: currentUser.userName,
+        email: currentUser.email,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
     fetch("/updateStock", {
       method: "POST",
       body: JSON.stringify({ _id: ids, quantity: quantitys, stock: stocks }),
@@ -32,7 +54,9 @@ const Sucess = () => {
       .catch((err) => {
         console.log(err.message);
       });
-      // eslint-disable-next-line
+
+    
+    // eslint-disable-next-line
   }, []);
   return (
     <>

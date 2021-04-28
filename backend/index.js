@@ -21,6 +21,7 @@ const {
   getRequest,
   AddStock,
   updatePassword,
+  createOrder,
 } = require("./handlers");
 
 require("dotenv").config();
@@ -89,6 +90,7 @@ express()
   .post("/addRequest", addRequest)
   .get("/getRequest", getRequest)
   .post("/updateStock", updateStock)
+  .post("/createOrder", createOrder)
   .post("/addStock", AddStock)
   .post("/addComment", AddComment)
   .post("/create-checkout-session", async (req, res) => {
